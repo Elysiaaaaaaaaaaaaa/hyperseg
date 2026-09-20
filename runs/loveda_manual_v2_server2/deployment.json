@@ -1,0 +1,23 @@
+{
+  "server": "server2",
+  "deployed_date": "2026-09-12",
+  "remote_root": "/root/autodl-tmp/hyperseg_manual_v2_20260912",
+  "pid": 1905,
+  "log": "/root/autodl-tmp/hyperseg_manual_v2_20260912/logs/manual_v2_0_1_2_5_10shot.log",
+  "output_root": "/root/autodl-tmp/hyperseg_manual_v2_20260912/runs/loveda_manual_v2",
+  "source_checkpoint": "models/hyperseg_resume_best.pt",
+  "checkpoint_sha256": "026b21d99ee6befc357b3e93fe78adefc4dfd457e249d1ff69e5bc581b2b3b48",
+  "manifest_dir": "runs/loveda_manual/export_20260912_101105_509451",
+  "shots": [0, 1, 2, 5, 10],
+  "seeds": [3407, 3408, 3409],
+  "mode": "adapter",
+  "training_steps_per_run": 2000,
+  "batch_size": 2,
+  "crop_size": 512,
+  "eval_size": 1024,
+  "training_precision": "bfloat16",
+  "gpu": "RTX 4090 24GB",
+  "runtime": {"python": "3.12", "torch": "2.3.0+cu121", "transformers": "4.57.6"},
+  "smoke_test": "Passed strict v2 loading, zero-shot evaluation, 2 adapter optimizer updates at crop 512, checkpoint save, evaluation at 1024",
+  "last_observation": "PID alive, GPU 99%, zero_0shot evaluation 100/1599; this is a launch-time observation, not live status"
+}

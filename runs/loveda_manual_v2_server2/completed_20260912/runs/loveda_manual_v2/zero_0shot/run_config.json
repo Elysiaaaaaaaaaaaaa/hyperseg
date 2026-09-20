@@ -1,0 +1,60 @@
+{
+  "signature": "fbd48a0e18372301949f61d2d19f6b3a773ad07a116f54aafc03b65b8d8bdd8c",
+  "shots_per_class": 0,
+  "seed": null,
+  "mode": "zero",
+  "support_images": 0,
+  "evaluation_images": 1599,
+  "model_version": "v2",
+  "source_epoch": 134,
+  "source_val_miou": 0.7631595244109886,
+  "head_mapping": {
+    "0": 0,
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7
+  },
+  "forest_mapping": "source Vegetation -> target Forest (approximate)",
+  "checkpoint_selection": "fixed final step; no evaluation-based selection",
+  "batchnorm": "frozen running statistics",
+  "precision": "torch.bfloat16",
+  "config": {
+    "data_root": "/root/autodl-tmp/LoveDA",
+    "manifest_dir": "runs/loveda_manual/export_20260912_101105_509451",
+    "init_checkpoint": "models/hyperseg_resume_best.pt",
+    "backbone_path": null,
+    "output_root": "runs/loveda_manual_v2",
+    "shots": [
+      0,
+      1,
+      2,
+      5,
+      10
+    ],
+    "seeds": [
+      3407,
+      3408,
+      3409
+    ],
+    "modes": [
+      "adapter"
+    ],
+    "steps": 2000,
+    "crop_size": 512,
+    "eval_size": 1024,
+    "batch_size": 2,
+    "eval_batch_size": 1,
+    "num_workers": 4,
+    "lr": 0.0001,
+    "amp": true,
+    "device": "cuda",
+    "check_only": false,
+    "skip_completed": false,
+    "checkpoint_sha256": "026b21d99ee6befc357b3e93fe78adefc4dfd457e249d1ff69e5bc581b2b3b48",
+    "protocol_sha256": "8184bef3aae39e2b9f01cd79a90782318f436744d14c43f108c76f56fc527ec5"
+  }
+}

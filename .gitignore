@@ -1,0 +1,7 @@
+SUIM/
+dataset/
+LoveDA/
+__pycache__/
+results/
+*.zip
+*.pt

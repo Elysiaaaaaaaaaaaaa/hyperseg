@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "data_root": "D:\\myproject\\hyperseg\\LoveDA",
+  "split": "Val",
+  "protocol": "ordered images per target class",
+  "target_classes": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "per_class": {
+    "1": [
+      "rural/2832.png",
+      "urban/4032.png",
+      "rural/3480.png",
+      "rural/2725.png",
+      "rural/2655.png",
+      "rural/3139.png",
+      "urban/4160.png",
+      "urban/3859.png",
+      "rural/3477.png",
+      "rural/3082.png"
+    ],
+    "2": [
+      "urban/3854.png",
+      "urban/4171.png",
+      "rural/2974.png",
+      "rural/2569.png",
+      "urban/3823.png",
+      "urban/3816.png",
+      "urban/4005.png",
+      "urban/3724.png",
+      "urban/3884.png",
+      "rural/3206.png"
+    ],
+    "3": [
+      "urban/4112.png",
+      "urban/4084.png",
+      "urban/3820.png",
+      "urban/3759.png",
+      "urban/4066.png",
+      "urban/3683.png",
+      "urban/3832.png",
+      "urban/3973.png",
+      "rural/2649.png",
+      "rural/2657.png"
+    ],
+    "4": [
+      "rural/2541.png",
+      "rural/2761.png",
+      "urban/4087.png",
+      "rural/3043.png",
+      "rural/2718.png",
+      "urban/3649.png",
+      "urban/3755.png",
+      "rural/3292.png",
+      "urban/4055.png",
+      "rural/2969.png"
+    ],
+    "5": [
+      "urban/3568.png",
+      "rural/3073.png",
+      "urban/4138.png",
+      "urban/4146.png",
+      "rural/3110.png",
+      "urban/3910.png",
+      "urban/3563.png",
+      "urban/3633.png",
+      "urban/4033.png",
+      "rural/2623.png"
+    ],
+    "6": [
+      "urban/3546.png",
+      "urban/3787.png",
+      "rural/2551.png",
+      "urban/3821.png",
+      "urban/4170.png",
+      "rural/3247.png",
+      "rural/3260.png",
+      "rural/3412.png",
+      "urban/3895.png",
+      "rural/2999.png"
+    ],
+    "7": [
+      "rural/3031.png",
+      "rural/3034.png",
+      "rural/3169.png",
+      "urban/4106.png",
+      "rural/3513.png",
+      "rural/3092.png",
+      "rural/3036.png",
+      "urban/4111.png",
+      "urban/3514.png",
+      "rural/2742.png"
+    ]
+  }
+}

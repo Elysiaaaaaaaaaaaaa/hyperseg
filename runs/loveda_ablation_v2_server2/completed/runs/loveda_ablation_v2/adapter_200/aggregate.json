@@ -1,0 +1,19 @@
+{
+  "variation": "training seeds; support selection is fixed",
+  "results": [
+    {
+      "mode": "adapter",
+      "shots_per_class": 1,
+      "runs": 1,
+      "mean_mIoU": 0.5146719998976439,
+      "std_mIoU": 0.0
+    },
+    {
+      "mode": "adapter",
+      "shots_per_class": 2,
+      "runs": 1,
+      "mean_mIoU": 0.5128716547363855,
+      "std_mIoU": 0.0
+    }
+  ]
+}

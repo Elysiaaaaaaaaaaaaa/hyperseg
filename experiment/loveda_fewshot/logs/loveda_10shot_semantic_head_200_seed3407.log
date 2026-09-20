@@ -1,0 +1,39 @@
+{
+  "support_images": {
+    "0": 0,
+    "1": 7,
+    "2": 14,
+    "5": 35,
+    "10": 70
+  },
+  "evaluation_images": 1599,
+  "protocol_sha256": "8184bef3aae39e2b9f01cd79a90782318f436744d14c43f108c76f56fc527ec5"
+}
+semantic-head_10shot_seed3407 step 20/200: loss=0.8366
+semantic-head_10shot_seed3407 step 40/200: loss=0.9410
+semantic-head_10shot_seed3407 step 60/200: loss=2.6121
+semantic-head_10shot_seed3407 step 80/200: loss=0.8124
+semantic-head_10shot_seed3407 step 100/200: loss=0.1065
+semantic-head_10shot_seed3407 step 120/200: loss=0.9217
+semantic-head_10shot_seed3407 step 140/200: loss=0.0837
+semantic-head_10shot_seed3407 step 160/200: loss=1.5851
+semantic-head_10shot_seed3407 step 180/200: loss=1.2871
+semantic-head_10shot_seed3407 step 200/200: loss=0.5968
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+semantic-head_10shot_seed3407 evaluation 100/1599
+semantic-head_10shot_seed3407 evaluation 200/1599
+semantic-head_10shot_seed3407 evaluation 300/1599
+semantic-head_10shot_seed3407 evaluation 400/1599
+semantic-head_10shot_seed3407 evaluation 500/1599
+semantic-head_10shot_seed3407 evaluation 600/1599
+semantic-head_10shot_seed3407 evaluation 700/1599
+semantic-head_10shot_seed3407 evaluation 800/1599
+semantic-head_10shot_seed3407 evaluation 900/1599
+semantic-head_10shot_seed3407 evaluation 1000/1599
+semantic-head_10shot_seed3407 evaluation 1100/1599
+semantic-head_10shot_seed3407 evaluation 1200/1599
+semantic-head_10shot_seed3407 evaluation 1300/1599
+semantic-head_10shot_seed3407 evaluation 1400/1599
+semantic-head_10shot_seed3407 evaluation 1500/1599
+{"signature": "33f1778e5345eb54f3088898e1f35a35e6b0b2c476504d906e5eaa9efdbc43c3", "mode": "semantic-head", "shots_per_class": 10, "seed": 3407, "support_images": 70, "evaluation_images": 1599, "metrics": {"mIoU": 0.5358676993438983, "per_class_iou": {"background": 0.5424408861055937, "building": 0.6472422084023227, "road": 0.5682391758831123, "water": 0.7055504986468148, "barren": 0.2950463609845176, "forest": 0.390413063810483, "agriculture": 0.602141701574444}, "pixel_accuracy": 0.7211419918745361, "confusion": [[0, 0, 0, 0, 0, 0, 0, 0], [0, 465793038, 31377897, 9855753, 20841680, 5789520, 13334508, 48610335], [0, 14350766, 100190679, 159565, 156421, 202144, 576423, 575361], [0, 20699098, 466942, 49519378, 472703, 572905, 1650472, 972392], [0, 25954571, 137834, 175370, 154662567, 836009, 1497711, 4920540], [0, 30870163, 488142, 405490, 3497183, 23712193, 327697, 8470763], [0, 52380005, 521116, 394385, 1161855, 259572, 56278489, 5106796], [0, 118840913, 5592979, 1800855, 4893915, 4935904, 10662113, 325972855]]}}

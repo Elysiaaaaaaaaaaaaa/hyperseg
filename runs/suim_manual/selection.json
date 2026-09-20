@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "dataset": "SUIM",
+  "data_root": "D:\\myproject\\hyperseg\\SUIM",
+  "split": "train_val",
+  "protocol": "ordered images per SUIM class",
+  "target_classes": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "classes": {
+    "0": "BW_background_waterbody 背景/水体",
+    "1": "HD_human_divers 人类潜水员",
+    "2": "PF_plants_seagrass 植物/海草",
+    "3": "WR_wrecks_ruins 沉船/遗迹",
+    "4": "RO_robots_instruments 机器人/仪器",
+    "5": "RI_reefs_invertebrates 珊瑚礁/无脊椎动物",
+    "6": "FV_fish_vertebrates 鱼类/脊椎动物",
+    "7": "SR_sand_seafloor_rocks 沙地/海底/岩石"
+  },
+  "per_class": {
+    "0": [
+      "train_val/d_r_690_.jpg",
+      "train_val/d_r_549_.jpg",
+      "train_val/f_r_949_.jpg",
+      "train_val/d_r_553_.jpg",
+      "train_val/d_r_25_.jpg",
+      "train_val/d_r_654_.jpg",
+      "train_val/d_r_656_.jpg",
+      "train_val/f_r_1734_.jpg",
+      "train_val/d_r_26_.jpg",
+      "train_val/f_r_1424_.jpg"
+    ],
+    "1": [
+      "train_val/f_r_583_.jpg",
+      "train_val/d_r_486_.jpg",
+      "train_val/d_r_312_.jpg",
+      "train_val/d_r_797_.jpg",
+      "train_val/n_l_28_.jpg",
+      "train_val/n_l_7_.jpg",
+      "train_val/d_r_555_.jpg",
+      "train_val/d_r_23_.jpg",
+      "train_val/d_r_450_.jpg",
+      "train_val/w_r_136_.jpg"
+    ],
+    "2": [
+      "train_val/f_r_1444_.jpg",
+      "train_val/f_r_1192_.jpg",
+      "train_val/f_r_1819_.jpg",
+      "train_val/f_r_640_.jpg",
+      "train_val/f_r_826_.jpg",
+      "train_val/f_r_2001_.jpg",
+      "train_val/d_r_440_.jpg",
+      "train_val/w_r_162_.jpg",
+      "train_val/f_r_892_.jpg",
+      "train_val/n_l_40_.jpg"
+    ],
+    "3": [
+      "train_val/f_r_1897_.jpg",
+      "train_val/w_r_82_.jpg",
+      "train_val/w_r_158_.jpg",
+      "train_val/w_r_235_.jpg",
+      "train_val/f_r_1072_.jpg",
+      "train_val/w_r_193_.jpg",
+      "train_val/w_r_165_.jpg",
+      "train_val/n_l_33_.jpg",
+      "train_val/w_r_134_.jpg",
+      "train_val/w_r_89_.jpg"
+    ],
+    "4": [
+      "train_val/d_r_333_.jpg",
+      "train_val/d_r_125_.jpg",
+      "train_val/d_r_783_.jpg",
+      "train_val/d_r_211_.jpg",
+      "train_val/d_r_675_.jpg",
+      "train_val/d_r_33_.jpg",
+      "train_val/d_r_656_.jpg",
+      "train_val/d_r_3_.jpg",
+      "train_val/d_r_299_.jpg",
+      "train_val/w_r_68_.jpg"
+    ],
+    "5": [
+      "train_val/f_r_1958_.jpg",
+      "train_val/f_r_1936_.jpg",
+      "train_val/f_r_841_.jpg",
+      "train_val/f_r_1421_.jpg",
+      "train_val/f_r_301_.jpg",
+      "train_val/f_r_2083_.jpg",
+      "train_val/f_r_143_.jpg",
+      "train_val/n_l_74_.jpg",
+      "train_val/f_r_560_.jpg",
+      "train_val/n_l_23_.jpg"
+    ],
+    "6": [
+      "train_val/f_r_1102_.jpg",
+      "train_val/f_r_1061_.jpg",
+      "train_val/d_r_46_.jpg",
+      "train_val/f_r_32_.jpg",
+      "train_val/f_r_869_.jpg",
+      "train_val/f_r_445_.jpg",
+      "train_val/f_r_1034_.jpg",
+      "train_val/f_r_1663_.jpg",
+      "train_val/f_r_65_.jpg",
+      "train_val/f_r_1841_.jpg"
+    ],
+    "7": [
+      "train_val/f_r_1047_.jpg",
+      "train_val/n_l_103_.jpg",
+      "train_val/w_r_244_.jpg",
+      "train_val/f_r_1990_.jpg",
+      "train_val/f_r_1856_.jpg",
+      "train_val/f_r_1793_.jpg",
+      "train_val/n_l_98_.jpg",
+      "train_val/f_r_1006_.jpg",
+      "train_val/d_r_323_.jpg",
+      "train_val/n_l_74_.jpg"
+    ]
+  }
+}

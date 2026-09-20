@@ -1,0 +1,148 @@
+{
+  "results": [
+    {
+      "setting": "adapter_200",
+      "mode": "adapter",
+      "steps": 200,
+      "shots_per_class": 1,
+      "runs": 1,
+      "mean_mIoU": 0.20270022748125394,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "adapter_200",
+      "mode": "adapter",
+      "steps": 200,
+      "shots_per_class": 2,
+      "runs": 1,
+      "mean_mIoU": 0.21720695787001337,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "adapter_200",
+      "mode": "adapter",
+      "steps": 200,
+      "shots_per_class": 5,
+      "runs": 1,
+      "mean_mIoU": 0.20340714651904745,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "adapter_200",
+      "mode": "adapter",
+      "steps": 200,
+      "shots_per_class": 10,
+      "runs": 1,
+      "mean_mIoU": 0.18414930010481956,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "adapter_2000",
+      "mode": "adapter",
+      "steps": 2000,
+      "shots_per_class": 1,
+      "runs": 1,
+      "mean_mIoU": 0.2713389318900714,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "adapter_2000",
+      "mode": "adapter",
+      "steps": 2000,
+      "shots_per_class": 2,
+      "runs": 1,
+      "mean_mIoU": 0.3339964694602423,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "adapter_2000",
+      "mode": "adapter",
+      "steps": 2000,
+      "shots_per_class": 5,
+      "runs": 1,
+      "mean_mIoU": 0.40258122229593746,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "adapter_2000",
+      "mode": "adapter",
+      "steps": 2000,
+      "shots_per_class": 10,
+      "runs": 1,
+      "mean_mIoU": 0.43561015445345974,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "semantic_head_200",
+      "mode": "semantic-head",
+      "steps": 200,
+      "shots_per_class": 1,
+      "runs": 1,
+      "mean_mIoU": 0.020887986857020556,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "semantic_head_200",
+      "mode": "semantic-head",
+      "steps": 200,
+      "shots_per_class": 2,
+      "runs": 1,
+      "mean_mIoU": 0.021951572557232693,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "semantic_head_200",
+      "mode": "semantic-head",
+      "steps": 200,
+      "shots_per_class": 5,
+      "runs": 1,
+      "mean_mIoU": 0.022911429012197747,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "semantic_head_200",
+      "mode": "semantic-head",
+      "steps": 200,
+      "shots_per_class": 10,
+      "runs": 1,
+      "mean_mIoU": 0.023909978011506156,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "semantic_head_2000",
+      "mode": "semantic-head",
+      "steps": 2000,
+      "shots_per_class": 1,
+      "runs": 1,
+      "mean_mIoU": 0.16560978620448455,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "semantic_head_2000",
+      "mode": "semantic-head",
+      "steps": 2000,
+      "shots_per_class": 2,
+      "runs": 1,
+      "mean_mIoU": 0.17484476335678045,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "semantic_head_2000",
+      "mode": "semantic-head",
+      "steps": 2000,
+      "shots_per_class": 5,
+      "runs": 1,
+      "mean_mIoU": 0.16063020201511946,
+      "std_mIoU": 0.0
+    },
+    {
+      "setting": "semantic_head_2000",
+      "mode": "semantic-head",
+      "steps": 2000,
+      "shots_per_class": 10,
+      "runs": 1,
+      "mean_mIoU": 0.16255128512113262,
+      "std_mIoU": 0.0
+    }
+  ]
+}

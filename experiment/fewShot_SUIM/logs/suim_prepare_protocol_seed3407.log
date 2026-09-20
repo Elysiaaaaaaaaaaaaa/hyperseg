@@ -1,0 +1,26 @@
+audit 100/1525
+audit 200/1525
+audit 300/1525
+audit 400/1525
+audit 500/1525
+audit 600/1525
+audit 700/1525
+audit 800/1525
+audit 900/1525
+audit 1000/1525
+audit 1100/1525
+audit 1200/1525
+audit 1300/1525
+audit 1400/1525
+audit 1500/1525
+{
+  "protocol_dir": "/root/autodl-tmp/hyperseg_manual_v2_20260912/runs/suim_fewshot_protocol_seed3407",
+  "protocol_sha256": "b8f2e0119060ccd779769b83bd315a4d4d73b607212324decdffed93279678eb",
+  "support_images": {
+    "1": 8,
+    "2": 16,
+    "5": 40,
+    "10": 79
+  },
+  "evaluation_images": 110
+}

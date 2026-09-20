@@ -1,0 +1,40 @@
+{
+  "variation": "training seeds; support selection is fixed",
+  "results": [
+    {
+      "mode": "adapter",
+      "shots_per_class": 1,
+      "runs": 3,
+      "mean_mIoU": 0.4933006573598993,
+      "std_mIoU": 0.0043654794694311235
+    },
+    {
+      "mode": "adapter",
+      "shots_per_class": 2,
+      "runs": 3,
+      "mean_mIoU": 0.5159064165548495,
+      "std_mIoU": 0.0009206916249478444
+    },
+    {
+      "mode": "adapter",
+      "shots_per_class": 5,
+      "runs": 3,
+      "mean_mIoU": 0.5330087025829823,
+      "std_mIoU": 0.0027409558685221485
+    },
+    {
+      "mode": "adapter",
+      "shots_per_class": 10,
+      "runs": 3,
+      "mean_mIoU": 0.5536469945038968,
+      "std_mIoU": 0.0027396218564277497
+    },
+    {
+      "mode": "zero",
+      "shots_per_class": 0,
+      "runs": 1,
+      "mean_mIoU": 0.5333954020998432,
+      "std_mIoU": 0.0
+    }
+  ]
+}

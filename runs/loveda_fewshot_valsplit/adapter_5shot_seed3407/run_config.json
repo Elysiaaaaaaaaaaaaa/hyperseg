@@ -1,0 +1,68 @@
+{
+  "args": {
+    "data_root": "/root/autodl-tmp/LoveDA",
+    "train_split": "Val",
+    "val_split": "Val",
+    "init_checkpoint": "models/hyperseg_b3_best.pt",
+    "output_dir": "runs/loveda_fewshot_valsplit/adapter_5shot_seed3407",
+    "manifest": null,
+    "shots": 5,
+    "domains": [
+      "urban",
+      "rural"
+    ],
+    "mode": "adapter",
+    "epochs": 50,
+    "steps_per_epoch": 100,
+    "crop_size": 512,
+    "eval_size": 1024,
+    "batch_size": 2,
+    "eval_batch_size": 1,
+    "num_workers": 4,
+    "lr": 0.0001,
+    "encoder_lr_multiplier": 0.1,
+    "weight_decay": 0.01,
+    "val_interval": 5,
+    "seed": 3407,
+    "amp": true
+  },
+  "device": "cuda",
+  "train_samples": 10,
+  "val_samples": 1659,
+  "class_histogram": {
+    "no_data": 380666,
+    "background": 1863748,
+    "building": 773176,
+    "road": 1032616,
+    "water": 1377347,
+    "barren": 1102501,
+    "forest": 600086,
+    "agriculture": 3355620
+  },
+  "class_weights": {
+    "no_data": 0.0,
+    "background": 0.6668649315834045,
+    "building": 1.3463283777236938,
+    "road": 1.076029658317566,
+    "water": 0.8541427254676819,
+    "barren": 1.0215840339660645,
+    "forest": 1.6238142251968384,
+    "agriculture": 0.4112367331981659
+  },
+  "transfer": {
+    "loaded_tensors": 684,
+    "translated_tensors": 628,
+    "skipped": [
+      "head.bias",
+      "head.weight"
+    ],
+    "missing": [
+      "head.bias",
+      "head.weight"
+    ],
+    "source_epoch": 141,
+    "source_val_miou": 0.7420226665631505
+  },
+  "trainable_parameters": 769485,
+  "total_parameters": 44841613
+}

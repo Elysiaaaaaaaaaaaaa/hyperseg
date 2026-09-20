@@ -1,0 +1,386 @@
+Unified stdout/stderr log: runs/loveda_ablation_v2/ablation_20260912_145007_676271.log
+
+START adapter_200: /root/miniconda3/bin/python -u /root/autodl-tmp/hyperseg_ablation_v2_20260912/experiment/loveda_fewshot/run_manual.py --data-root /root/autodl-tmp/LoveDA --manifest-dir runs/loveda_manual/export_20260912_101105_509451 --init-checkpoint models/hyperseg_resume_best.pt --output-root runs/loveda_ablation_v2/adapter_200 --shots 1 2 --seeds 3407 --modes adapter --steps 200 --batch-size 2 --crop-size 512 --eval-size 1024 --eval-batch-size 1 --lr 0.0001 --num-workers 4 --amp --device cuda
+{
+  "support_images": {
+    "0": 0,
+    "1": 7,
+    "2": 14,
+    "5": 35,
+    "10": 70
+  },
+  "evaluation_images": 1599,
+  "protocol_sha256": "8184bef3aae39e2b9f01cd79a90782318f436744d14c43f108c76f56fc527ec5"
+}
+adapter_1shot_seed3407 step 20/200: loss=0.5761
+adapter_1shot_seed3407 step 40/200: loss=0.2840
+adapter_1shot_seed3407 step 60/200: loss=0.4775
+adapter_1shot_seed3407 step 80/200: loss=0.1758
+adapter_1shot_seed3407 step 100/200: loss=0.4529
+adapter_1shot_seed3407 step 120/200: loss=0.1967
+adapter_1shot_seed3407 step 140/200: loss=0.1183
+adapter_1shot_seed3407 step 160/200: loss=0.1964
+adapter_1shot_seed3407 step 180/200: loss=0.3124
+adapter_1shot_seed3407 step 200/200: loss=0.1164
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+adapter_1shot_seed3407 evaluation 100/1599
+adapter_1shot_seed3407 evaluation 200/1599
+adapter_1shot_seed3407 evaluation 300/1599
+adapter_1shot_seed3407 evaluation 400/1599
+adapter_1shot_seed3407 evaluation 500/1599
+adapter_1shot_seed3407 evaluation 600/1599
+adapter_1shot_seed3407 evaluation 700/1599
+adapter_1shot_seed3407 evaluation 800/1599
+adapter_1shot_seed3407 evaluation 900/1599
+adapter_1shot_seed3407 evaluation 1000/1599
+adapter_1shot_seed3407 evaluation 1100/1599
+adapter_1shot_seed3407 evaluation 1200/1599
+adapter_1shot_seed3407 evaluation 1300/1599
+adapter_1shot_seed3407 evaluation 1400/1599
+adapter_1shot_seed3407 evaluation 1500/1599
+{"signature": "f15a6725d39ae5a32d5c67402f340912f26614ffbc279fc38f17194158cc095f", "mode": "adapter", "shots_per_class": 1, "seed": 3407, "support_images": 7, "evaluation_images": 1599, "metrics": {"mIoU": 0.5146719998976439, "per_class_iou": {"background": 0.523572837852729, "building": 0.6404762577968391, "road": 0.5439699292512686, "water": 0.7050528714917138, "barren": 0.3285308239070334, "forest": 0.34943993578372556, "agriculture": 0.5116613432001978}, "pixel_accuracy": 0.6859669758216156, "confusion": [[0, 0, 0, 0, 0, 0, 0, 0], [0, 448834420, 32400915, 23222750, 17679497, 16688256, 43880103, 12896790], [0, 12654036, 101050316, 391340, 145531, 415479, 1360252, 194405], [0, 13817537, 409353, 57067121, 283739, 1319897, 1222339, 233904], [0, 25283916, 134316, 502431, 151528883, 1832396, 6022008, 2880652], [0, 23914059, 418866, 1346379, 3037435, 33509531, 3039066, 2506295], [0, 35883979, 940824, 1508132, 905764, 729115, 74496950, 1637454], [0, 150096807, 7258078, 3583673, 4681900, 13241360, 41563585, 252274131]]}}
+adapter_2shot_seed3407 step 20/200: loss=0.3721
+adapter_2shot_seed3407 step 40/200: loss=0.3204
+adapter_2shot_seed3407 step 60/200: loss=0.3229
+adapter_2shot_seed3407 step 80/200: loss=0.3224
+adapter_2shot_seed3407 step 100/200: loss=0.2503
+adapter_2shot_seed3407 step 120/200: loss=0.3090
+adapter_2shot_seed3407 step 140/200: loss=0.3513
+adapter_2shot_seed3407 step 160/200: loss=0.4253
+adapter_2shot_seed3407 step 180/200: loss=0.4349
+adapter_2shot_seed3407 step 200/200: loss=0.2359
+adapter_2shot_seed3407 evaluation 100/1599
+adapter_2shot_seed3407 evaluation 200/1599
+adapter_2shot_seed3407 evaluation 300/1599
+adapter_2shot_seed3407 evaluation 400/1599
+adapter_2shot_seed3407 evaluation 500/1599
+adapter_2shot_seed3407 evaluation 600/1599
+adapter_2shot_seed3407 evaluation 700/1599
+adapter_2shot_seed3407 evaluation 800/1599
+adapter_2shot_seed3407 evaluation 900/1599
+adapter_2shot_seed3407 evaluation 1000/1599
+adapter_2shot_seed3407 evaluation 1100/1599
+adapter_2shot_seed3407 evaluation 1200/1599
+adapter_2shot_seed3407 evaluation 1300/1599
+adapter_2shot_seed3407 evaluation 1400/1599
+adapter_2shot_seed3407 evaluation 1500/1599
+{"signature": "b3e409e44804b2777620b29ae9cfff67d862f42dfa2dca0b754edfa658df9046", "mode": "adapter", "shots_per_class": 2, "seed": 3407, "support_images": 14, "evaluation_images": 1599, "metrics": {"mIoU": 0.5128716547363855, "per_class_iou": {"background": 0.5014304497317588, "building": 0.563403398787839, "road": 0.5246681713023582, "water": 0.705655013145162, "barren": 0.3269147499097643, "forest": 0.3900523311296849, "agriculture": 0.5779774691481312}, "pixel_accuracy": 0.692412868048244, "confusion": [[0, 0, 0, 0, 0, 0, 0, 0], [0, 409500267, 62073332, 30116595, 17024529, 22089972, 24937239, 29860797], [0, 4727280, 108962521, 677058, 145128, 457863, 914005, 327504], [0, 10375585, 1195594, 58752654, 275000, 1675307, 1515311, 564439], [0, 25992269, 329673, 546367, 151088835, 2598143, 2975116, 4654199], [0, 20232689, 945215, 1491179, 2945784, 35684661, 990456, 5481647], [0, 41266195, 1464416, 1149551, 1091121, 1116849, 66290918, 3723168], [0, 118467391, 11180950, 3645955, 4445310, 13446096, 22519563, 298994269]]}}
+DONE adapter_200
+
+START semantic_head_2000: /root/miniconda3/bin/python -u /root/autodl-tmp/hyperseg_ablation_v2_20260912/experiment/loveda_fewshot/run_manual.py --data-root /root/autodl-tmp/LoveDA --manifest-dir runs/loveda_manual/export_20260912_101105_509451 --init-checkpoint models/hyperseg_resume_best.pt --output-root runs/loveda_ablation_v2/semantic_head_2000 --shots 1 2 --seeds 3407 --modes semantic-head --steps 2000 --batch-size 2 --crop-size 512 --eval-size 1024 --eval-batch-size 1 --lr 0.0001 --num-workers 4 --amp --device cuda
+{
+  "support_images": {
+    "0": 0,
+    "1": 7,
+    "2": 14,
+    "5": 35,
+    "10": 70
+  },
+  "evaluation_images": 1599,
+  "protocol_sha256": "8184bef3aae39e2b9f01cd79a90782318f436744d14c43f108c76f56fc527ec5"
+}
+semantic-head_1shot_seed3407 step 20/2000: loss=1.3897
+semantic-head_1shot_seed3407 step 40/2000: loss=0.3586
+semantic-head_1shot_seed3407 step 60/2000: loss=0.7957
+semantic-head_1shot_seed3407 step 80/2000: loss=0.1819
+semantic-head_1shot_seed3407 step 100/2000: loss=1.9181
+semantic-head_1shot_seed3407 step 120/2000: loss=0.3497
+semantic-head_1shot_seed3407 step 140/2000: loss=0.1454
+semantic-head_1shot_seed3407 step 160/2000: loss=1.8601
+semantic-head_1shot_seed3407 step 180/2000: loss=1.4984
+semantic-head_1shot_seed3407 step 200/2000: loss=0.0248
+semantic-head_1shot_seed3407 step 220/2000: loss=1.3100
+semantic-head_1shot_seed3407 step 240/2000: loss=0.6964
+semantic-head_1shot_seed3407 step 260/2000: loss=1.4594
+semantic-head_1shot_seed3407 step 280/2000: loss=2.0699
+semantic-head_1shot_seed3407 step 300/2000: loss=0.7476
+semantic-head_1shot_seed3407 step 320/2000: loss=1.1099
+semantic-head_1shot_seed3407 step 340/2000: loss=0.2402
+semantic-head_1shot_seed3407 step 360/2000: loss=0.3520
+semantic-head_1shot_seed3407 step 380/2000: loss=0.7968
+semantic-head_1shot_seed3407 step 400/2000: loss=0.1387
+semantic-head_1shot_seed3407 step 420/2000: loss=0.3821
+semantic-head_1shot_seed3407 step 440/2000: loss=0.7225
+semantic-head_1shot_seed3407 step 460/2000: loss=2.3213
+semantic-head_1shot_seed3407 step 480/2000: loss=0.0014
+semantic-head_1shot_seed3407 step 500/2000: loss=1.2481
+semantic-head_1shot_seed3407 step 520/2000: loss=1.2558
+semantic-head_1shot_seed3407 step 540/2000: loss=0.3995
+semantic-head_1shot_seed3407 step 560/2000: loss=0.3448
+semantic-head_1shot_seed3407 step 580/2000: loss=1.0256
+semantic-head_1shot_seed3407 step 600/2000: loss=0.5412
+semantic-head_1shot_seed3407 step 620/2000: loss=0.0890
+semantic-head_1shot_seed3407 step 640/2000: loss=1.1089
+semantic-head_1shot_seed3407 step 660/2000: loss=1.9048
+semantic-head_1shot_seed3407 step 680/2000: loss=0.2002
+semantic-head_1shot_seed3407 step 700/2000: loss=1.0987
+semantic-head_1shot_seed3407 step 720/2000: loss=0.3563
+semantic-head_1shot_seed3407 step 740/2000: loss=0.2667
+semantic-head_1shot_seed3407 step 760/2000: loss=1.4877
+semantic-head_1shot_seed3407 step 780/2000: loss=0.5026
+semantic-head_1shot_seed3407 step 800/2000: loss=0.0002
+semantic-head_1shot_seed3407 step 820/2000: loss=0.2278
+semantic-head_1shot_seed3407 step 840/2000: loss=0.7221
+semantic-head_1shot_seed3407 step 860/2000: loss=0.3891
+semantic-head_1shot_seed3407 step 880/2000: loss=1.2195
+semantic-head_1shot_seed3407 step 900/2000: loss=0.3740
+semantic-head_1shot_seed3407 step 920/2000: loss=0.2832
+semantic-head_1shot_seed3407 step 940/2000: loss=0.6117
+semantic-head_1shot_seed3407 step 960/2000: loss=0.9606
+semantic-head_1shot_seed3407 step 980/2000: loss=0.6351
+semantic-head_1shot_seed3407 step 1000/2000: loss=0.1591
+semantic-head_1shot_seed3407 step 1020/2000: loss=0.5912
+semantic-head_1shot_seed3407 step 1040/2000: loss=3.5615
+semantic-head_1shot_seed3407 step 1060/2000: loss=0.4272
+semantic-head_1shot_seed3407 step 1080/2000: loss=1.0343
+semantic-head_1shot_seed3407 step 1100/2000: loss=1.1893
+semantic-head_1shot_seed3407 step 1120/2000: loss=0.7941
+semantic-head_1shot_seed3407 step 1140/2000: loss=2.1544
+semantic-head_1shot_seed3407 step 1160/2000: loss=0.0001
+semantic-head_1shot_seed3407 step 1180/2000: loss=1.9130
+semantic-head_1shot_seed3407 step 1200/2000: loss=0.9508
+semantic-head_1shot_seed3407 step 1220/2000: loss=1.8421
+semantic-head_1shot_seed3407 step 1240/2000: loss=0.9239
+semantic-head_1shot_seed3407 step 1260/2000: loss=0.1816
+semantic-head_1shot_seed3407 step 1280/2000: loss=0.7721
+semantic-head_1shot_seed3407 step 1300/2000: loss=0.1781
+semantic-head_1shot_seed3407 step 1320/2000: loss=1.1969
+semantic-head_1shot_seed3407 step 1340/2000: loss=1.6587
+semantic-head_1shot_seed3407 step 1360/2000: loss=0.1915
+semantic-head_1shot_seed3407 step 1380/2000: loss=0.3231
+semantic-head_1shot_seed3407 step 1400/2000: loss=0.2394
+semantic-head_1shot_seed3407 step 1420/2000: loss=2.1914
+semantic-head_1shot_seed3407 step 1440/2000: loss=1.0035
+semantic-head_1shot_seed3407 step 1460/2000: loss=0.4610
+semantic-head_1shot_seed3407 step 1480/2000: loss=0.4041
+semantic-head_1shot_seed3407 step 1500/2000: loss=0.6708
+semantic-head_1shot_seed3407 step 1520/2000: loss=0.3657
+semantic-head_1shot_seed3407 step 1540/2000: loss=0.6789
+semantic-head_1shot_seed3407 step 1560/2000: loss=0.2405
+semantic-head_1shot_seed3407 step 1580/2000: loss=2.4235
+semantic-head_1shot_seed3407 step 1600/2000: loss=0.5575
+semantic-head_1shot_seed3407 step 1620/2000: loss=0.1961
+semantic-head_1shot_seed3407 step 1640/2000: loss=1.4767
+semantic-head_1shot_seed3407 step 1660/2000: loss=0.1700
+semantic-head_1shot_seed3407 step 1680/2000: loss=1.5480
+semantic-head_1shot_seed3407 step 1700/2000: loss=0.8355
+semantic-head_1shot_seed3407 step 1720/2000: loss=0.9231
+semantic-head_1shot_seed3407 step 1740/2000: loss=2.2638
+semantic-head_1shot_seed3407 step 1760/2000: loss=0.5327
+semantic-head_1shot_seed3407 step 1780/2000: loss=1.1301
+semantic-head_1shot_seed3407 step 1800/2000: loss=2.1977
+semantic-head_1shot_seed3407 step 1820/2000: loss=0.9485
+semantic-head_1shot_seed3407 step 1840/2000: loss=0.0053
+semantic-head_1shot_seed3407 step 1860/2000: loss=0.0001
+semantic-head_1shot_seed3407 step 1880/2000: loss=0.5641
+semantic-head_1shot_seed3407 step 1900/2000: loss=0.1556
+semantic-head_1shot_seed3407 step 1920/2000: loss=0.1676
+semantic-head_1shot_seed3407 step 1940/2000: loss=0.6624
+semantic-head_1shot_seed3407 step 1960/2000: loss=0.3538
+semantic-head_1shot_seed3407 step 1980/2000: loss=0.6862
+semantic-head_1shot_seed3407 step 2000/2000: loss=0.1676
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+semantic-head_1shot_seed3407 evaluation 100/1599
+semantic-head_1shot_seed3407 evaluation 200/1599
+semantic-head_1shot_seed3407 evaluation 300/1599
+semantic-head_1shot_seed3407 evaluation 400/1599
+semantic-head_1shot_seed3407 evaluation 500/1599
+semantic-head_1shot_seed3407 evaluation 600/1599
+semantic-head_1shot_seed3407 evaluation 700/1599
+semantic-head_1shot_seed3407 evaluation 800/1599
+semantic-head_1shot_seed3407 evaluation 900/1599
+semantic-head_1shot_seed3407 evaluation 1000/1599
+semantic-head_1shot_seed3407 evaluation 1100/1599
+semantic-head_1shot_seed3407 evaluation 1200/1599
+semantic-head_1shot_seed3407 evaluation 1300/1599
+semantic-head_1shot_seed3407 evaluation 1400/1599
+semantic-head_1shot_seed3407 evaluation 1500/1599
+{"signature": "b8fd135360b20e5556b0c003a44f8539a2388527de7f5331836a0ddbb8158042", "mode": "semantic-head", "shots_per_class": 1, "seed": 3407, "support_images": 7, "evaluation_images": 1599, "metrics": {"mIoU": 0.5253716084602446, "per_class_iou": {"background": 0.500805257112649, "building": 0.6162175968874456, "road": 0.5431049867677855, "water": 0.7006612060786443, "barren": 0.3233473463402421, "forest": 0.3957369864603167, "agriculture": 0.5977278795746289}, "pixel_accuracy": 0.7023399201324261, "confusion": [[0, 0, 0, 0, 0, 0, 0, 0], [0, 400585627, 45691542, 22862336, 25283725, 9685123, 43456527, 48037851], [0, 7921855, 105285069, 543192, 168205, 303925, 1511888, 477225], [0, 13047478, 726711, 55994891, 495078, 1013954, 2224191, 851587], [0, 20373850, 191678, 345581, 157383040, 1144886, 4039693, 4705874], [0, 24308157, 626314, 1103375, 4035868, 28143258, 1849801, 7704858], [0, 32536961, 712006, 866606, 1198303, 447797, 76015663, 4324882], [0, 106091999, 6697356, 3026432, 5254961, 6669916, 22902006, 322056864]]}}
+semantic-head_2shot_seed3407 step 20/2000: loss=0.7243
+semantic-head_2shot_seed3407 step 40/2000: loss=0.3183
+semantic-head_2shot_seed3407 step 60/2000: loss=0.4889
+semantic-head_2shot_seed3407 step 80/2000: loss=0.3386
+semantic-head_2shot_seed3407 step 100/2000: loss=0.4532
+semantic-head_2shot_seed3407 step 120/2000: loss=0.8058
+semantic-head_2shot_seed3407 step 140/2000: loss=1.2810
+semantic-head_2shot_seed3407 step 160/2000: loss=0.6070
+semantic-head_2shot_seed3407 step 180/2000: loss=0.8451
+semantic-head_2shot_seed3407 step 200/2000: loss=0.3474
+semantic-head_2shot_seed3407 step 220/2000: loss=0.6957
+semantic-head_2shot_seed3407 step 240/2000: loss=0.7916
+semantic-head_2shot_seed3407 step 260/2000: loss=3.6678
+semantic-head_2shot_seed3407 step 280/2000: loss=2.6019
+semantic-head_2shot_seed3407 step 300/2000: loss=0.9429
+semantic-head_2shot_seed3407 step 320/2000: loss=1.7963
+semantic-head_2shot_seed3407 step 340/2000: loss=1.2481
+semantic-head_2shot_seed3407 step 360/2000: loss=0.3777
+semantic-head_2shot_seed3407 step 380/2000: loss=0.5945
+semantic-head_2shot_seed3407 step 400/2000: loss=1.0956
+semantic-head_2shot_seed3407 step 420/2000: loss=0.7703
+semantic-head_2shot_seed3407 step 440/2000: loss=1.5344
+semantic-head_2shot_seed3407 step 460/2000: loss=1.0883
+semantic-head_2shot_seed3407 step 480/2000: loss=1.2644
+semantic-head_2shot_seed3407 step 500/2000: loss=0.7330
+semantic-head_2shot_seed3407 step 520/2000: loss=0.3463
+semantic-head_2shot_seed3407 step 540/2000: loss=1.4678
+semantic-head_2shot_seed3407 step 560/2000: loss=1.7261
+semantic-head_2shot_seed3407 step 580/2000: loss=0.3033
+semantic-head_2shot_seed3407 step 600/2000: loss=0.6611
+semantic-head_2shot_seed3407 step 620/2000: loss=1.1755
+semantic-head_2shot_seed3407 step 640/2000: loss=1.0092
+semantic-head_2shot_seed3407 step 660/2000: loss=0.3795
+semantic-head_2shot_seed3407 step 680/2000: loss=1.6514
+semantic-head_2shot_seed3407 step 700/2000: loss=1.1902
+semantic-head_2shot_seed3407 step 720/2000: loss=0.2414
+semantic-head_2shot_seed3407 step 740/2000: loss=0.4200
+semantic-head_2shot_seed3407 step 760/2000: loss=0.1265
+semantic-head_2shot_seed3407 step 780/2000: loss=0.9928
+semantic-head_2shot_seed3407 step 800/2000: loss=0.3239
+semantic-head_2shot_seed3407 step 820/2000: loss=0.2866
+semantic-head_2shot_seed3407 step 840/2000: loss=0.3510
+semantic-head_2shot_seed3407 step 860/2000: loss=0.7265
+semantic-head_2shot_seed3407 step 880/2000: loss=1.5614
+semantic-head_2shot_seed3407 step 900/2000: loss=1.8400
+semantic-head_2shot_seed3407 step 920/2000: loss=2.6104
+semantic-head_2shot_seed3407 step 940/2000: loss=1.2880
+semantic-head_2shot_seed3407 step 960/2000: loss=0.5653
+semantic-head_2shot_seed3407 step 980/2000: loss=0.0003
+semantic-head_2shot_seed3407 step 1000/2000: loss=1.0997
+semantic-head_2shot_seed3407 step 1020/2000: loss=0.6235
+semantic-head_2shot_seed3407 step 1040/2000: loss=0.9705
+semantic-head_2shot_seed3407 step 1060/2000: loss=0.3259
+semantic-head_2shot_seed3407 step 1080/2000: loss=0.7194
+semantic-head_2shot_seed3407 step 1100/2000: loss=0.4361
+semantic-head_2shot_seed3407 step 1120/2000: loss=0.7649
+semantic-head_2shot_seed3407 step 1140/2000: loss=0.1549
+semantic-head_2shot_seed3407 step 1160/2000: loss=1.6293
+semantic-head_2shot_seed3407 step 1180/2000: loss=0.6575
+semantic-head_2shot_seed3407 step 1200/2000: loss=1.1826
+semantic-head_2shot_seed3407 step 1220/2000: loss=0.3391
+semantic-head_2shot_seed3407 step 1240/2000: loss=1.5063
+semantic-head_2shot_seed3407 step 1260/2000: loss=0.4565
+semantic-head_2shot_seed3407 step 1280/2000: loss=0.5976
+semantic-head_2shot_seed3407 step 1300/2000: loss=0.4457
+semantic-head_2shot_seed3407 step 1320/2000: loss=1.9442
+semantic-head_2shot_seed3407 step 1340/2000: loss=0.2173
+semantic-head_2shot_seed3407 step 1360/2000: loss=0.4022
+semantic-head_2shot_seed3407 step 1380/2000: loss=0.4511
+semantic-head_2shot_seed3407 step 1400/2000: loss=0.2132
+semantic-head_2shot_seed3407 step 1420/2000: loss=1.1231
+semantic-head_2shot_seed3407 step 1440/2000: loss=0.7704
+semantic-head_2shot_seed3407 step 1460/2000: loss=0.5539
+semantic-head_2shot_seed3407 step 1480/2000: loss=0.9955
+semantic-head_2shot_seed3407 step 1500/2000: loss=1.5118
+semantic-head_2shot_seed3407 step 1520/2000: loss=1.4738
+semantic-head_2shot_seed3407 step 1540/2000: loss=0.6789
+semantic-head_2shot_seed3407 step 1560/2000: loss=0.3935
+semantic-head_2shot_seed3407 step 1580/2000: loss=0.7976
+semantic-head_2shot_seed3407 step 1600/2000: loss=0.5442
+semantic-head_2shot_seed3407 step 1620/2000: loss=0.2601
+semantic-head_2shot_seed3407 step 1640/2000: loss=1.3020
+semantic-head_2shot_seed3407 step 1660/2000: loss=0.4244
+semantic-head_2shot_seed3407 step 1680/2000: loss=0.2285
+semantic-head_2shot_seed3407 step 1700/2000: loss=0.7749
+semantic-head_2shot_seed3407 step 1720/2000: loss=0.3550
+semantic-head_2shot_seed3407 step 1740/2000: loss=0.2057
+semantic-head_2shot_seed3407 step 1760/2000: loss=0.7832
+semantic-head_2shot_seed3407 step 1780/2000: loss=0.8182
+semantic-head_2shot_seed3407 step 1800/2000: loss=0.3319
+semantic-head_2shot_seed3407 step 1820/2000: loss=0.6785
+semantic-head_2shot_seed3407 step 1840/2000: loss=0.1633
+semantic-head_2shot_seed3407 step 1860/2000: loss=1.2648
+semantic-head_2shot_seed3407 step 1880/2000: loss=2.2277
+semantic-head_2shot_seed3407 step 1900/2000: loss=1.6863
+semantic-head_2shot_seed3407 step 1920/2000: loss=0.1794
+semantic-head_2shot_seed3407 step 1940/2000: loss=0.3410
+semantic-head_2shot_seed3407 step 1960/2000: loss=2.0188
+semantic-head_2shot_seed3407 step 1980/2000: loss=0.2230
+semantic-head_2shot_seed3407 step 2000/2000: loss=0.2809
+semantic-head_2shot_seed3407 evaluation 100/1599
+semantic-head_2shot_seed3407 evaluation 200/1599
+semantic-head_2shot_seed3407 evaluation 300/1599
+semantic-head_2shot_seed3407 evaluation 400/1599
+semantic-head_2shot_seed3407 evaluation 500/1599
+semantic-head_2shot_seed3407 evaluation 600/1599
+semantic-head_2shot_seed3407 evaluation 700/1599
+semantic-head_2shot_seed3407 evaluation 800/1599
+semantic-head_2shot_seed3407 evaluation 900/1599
+semantic-head_2shot_seed3407 evaluation 1000/1599
+semantic-head_2shot_seed3407 evaluation 1100/1599
+semantic-head_2shot_seed3407 evaluation 1200/1599
+semantic-head_2shot_seed3407 evaluation 1300/1599
+semantic-head_2shot_seed3407 evaluation 1400/1599
+semantic-head_2shot_seed3407 evaluation 1500/1599
+{"signature": "5c526e59e39d92b3763ee59bd6971d8befa9f26311379d6c6614847d606a20e0", "mode": "semantic-head", "shots_per_class": 2, "seed": 3407, "support_images": 14, "evaluation_images": 1599, "metrics": {"mIoU": 0.5137718724612762, "per_class_iou": {"background": 0.4714512227226716, "building": 0.5491830600019415, "road": 0.541987840134369, "water": 0.7032671741567762, "barren": 0.3243816394223784, "forest": 0.403387932222964, "agriculture": 0.6027442385678331}, "pixel_accuracy": 0.6918481698217368, "confusion": [[0, 0, 0, 0, 0, 0, 0, 0], [0, 369356098, 71511697, 23574675, 23702589, 10448346, 35188045, 61821281], [0, 3681609, 109866191, 521798, 161969, 319539, 1097435, 562818], [0, 11804861, 1546673, 56328135, 442329, 1087525, 1977639, 1166728], [0, 20516223, 323125, 355955, 156289752, 1236498, 3271700, 6191349], [0, 22373615, 1113961, 1141285, 3707873, 28596833, 1330104, 9507960], [0, 34342561, 1665086, 923558, 1193922, 518970, 71853496, 5604625], [0, 95123389, 7681959, 3057619, 4840538, 6775480, 19157910, 336062639]]}}
+DONE semantic_head_2000
+
+START semantic_head_200: /root/miniconda3/bin/python -u /root/autodl-tmp/hyperseg_ablation_v2_20260912/experiment/loveda_fewshot/run_manual.py --data-root /root/autodl-tmp/LoveDA --manifest-dir runs/loveda_manual/export_20260912_101105_509451 --init-checkpoint models/hyperseg_resume_best.pt --output-root runs/loveda_ablation_v2/semantic_head_200 --shots 1 2 --seeds 3407 --modes semantic-head --steps 200 --batch-size 2 --crop-size 512 --eval-size 1024 --eval-batch-size 1 --lr 0.0001 --num-workers 4 --amp --device cuda
+{
+  "support_images": {
+    "0": 0,
+    "1": 7,
+    "2": 14,
+    "5": 35,
+    "10": 70
+  },
+  "evaluation_images": 1599,
+  "protocol_sha256": "8184bef3aae39e2b9f01cd79a90782318f436744d14c43f108c76f56fc527ec5"
+}
+semantic-head_1shot_seed3407 step 20/200: loss=1.3905
+semantic-head_1shot_seed3407 step 40/200: loss=0.3591
+semantic-head_1shot_seed3407 step 60/200: loss=0.7965
+semantic-head_1shot_seed3407 step 80/200: loss=0.1823
+semantic-head_1shot_seed3407 step 100/200: loss=1.9348
+semantic-head_1shot_seed3407 step 120/200: loss=0.3551
+semantic-head_1shot_seed3407 step 140/200: loss=0.1474
+semantic-head_1shot_seed3407 step 160/200: loss=1.8974
+semantic-head_1shot_seed3407 step 180/200: loss=1.5548
+semantic-head_1shot_seed3407 step 200/200: loss=0.0238
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+semantic-head_1shot_seed3407 evaluation 100/1599
+semantic-head_1shot_seed3407 evaluation 200/1599
+semantic-head_1shot_seed3407 evaluation 300/1599
+semantic-head_1shot_seed3407 evaluation 400/1599
+semantic-head_1shot_seed3407 evaluation 500/1599
+semantic-head_1shot_seed3407 evaluation 600/1599
+semantic-head_1shot_seed3407 evaluation 700/1599
+semantic-head_1shot_seed3407 evaluation 800/1599
+semantic-head_1shot_seed3407 evaluation 900/1599
+semantic-head_1shot_seed3407 evaluation 1000/1599
+semantic-head_1shot_seed3407 evaluation 1100/1599
+semantic-head_1shot_seed3407 evaluation 1200/1599
+semantic-head_1shot_seed3407 evaluation 1300/1599
+semantic-head_1shot_seed3407 evaluation 1400/1599
+semantic-head_1shot_seed3407 evaluation 1500/1599
+{"signature": "16b55bddb5b3368de639bce550988acebc6e8abfd9a3eb1dbbc3926e79194814", "mode": "semantic-head", "shots_per_class": 1, "seed": 3407, "support_images": 7, "evaluation_images": 1599, "metrics": {"mIoU": 0.5358771988342518, "per_class_iou": {"background": 0.5433753968438699, "building": 0.6464544003555227, "road": 0.5681665488893974, "water": 0.7055460237435217, "barren": 0.2950820549405795, "forest": 0.3913739098231328, "agriculture": 0.6011420572437389}, "pixel_accuracy": 0.7210087798191379, "confusion": [[0, 0, 0, 0, 0, 0, 0, 0], [0, 468950412, 31694686, 9805370, 18933391, 5773568, 13660727, 46784577], [0, 14269018, 100295680, 157012, 150127, 201382, 577141, 560999], [0, 20764297, 471991, 49481356, 462122, 570256, 1671735, 932133], [0, 27849410, 137044, 175193, 152858983, 838590, 1552362, 4773020], [0, 31390250, 493024, 403875, 3220809, 23710780, 340276, 8212617], [0, 52269500, 550051, 393843, 1030361, 257755, 56652773, 4947935], [0, 120886898, 5589184, 1800344, 4672042, 4939993, 10849117, 323961956]]}}
+semantic-head_2shot_seed3407 step 20/200: loss=0.7253
+semantic-head_2shot_seed3407 step 40/200: loss=0.3185
+semantic-head_2shot_seed3407 step 60/200: loss=0.4890
+semantic-head_2shot_seed3407 step 80/200: loss=0.3400
+semantic-head_2shot_seed3407 step 100/200: loss=0.4537
+semantic-head_2shot_seed3407 step 120/200: loss=0.8196
+semantic-head_2shot_seed3407 step 140/200: loss=1.3255
+semantic-head_2shot_seed3407 step 160/200: loss=0.6395
+semantic-head_2shot_seed3407 step 180/200: loss=0.8732
+semantic-head_2shot_seed3407 step 200/200: loss=0.3832
+semantic-head_2shot_seed3407 evaluation 100/1599
+semantic-head_2shot_seed3407 evaluation 200/1599
+semantic-head_2shot_seed3407 evaluation 300/1599
+semantic-head_2shot_seed3407 evaluation 400/1599
+semantic-head_2shot_seed3407 evaluation 500/1599
+semantic-head_2shot_seed3407 evaluation 600/1599
+semantic-head_2shot_seed3407 evaluation 700/1599
+semantic-head_2shot_seed3407 evaluation 800/1599
+semantic-head_2shot_seed3407 evaluation 900/1599
+semantic-head_2shot_seed3407 evaluation 1000/1599
+semantic-head_2shot_seed3407 evaluation 1100/1599
+semantic-head_2shot_seed3407 evaluation 1200/1599
+semantic-head_2shot_seed3407 evaluation 1300/1599
+semantic-head_2shot_seed3407 evaluation 1400/1599
+semantic-head_2shot_seed3407 evaluation 1500/1599
+{"signature": "40582f0f1623f5cdd8c3c1e51a84342f5a810cb2866c834a666859630f98fc21", "mode": "semantic-head", "shots_per_class": 2, "seed": 3407, "support_images": 14, "evaluation_images": 1599, "metrics": {"mIoU": 0.5352712990624452, "per_class_iou": {"background": 0.5421351236231869, "building": 0.6447951966787915, "road": 0.5683943990339511, "water": 0.7055906961029377, "barren": 0.29521218818608924, "forest": 0.38935562173848653, "agriculture": 0.6014158680736738}, "pixel_accuracy": 0.7205771740840486, "confusion": [[0, 0, 0, 0, 0, 0, 0, 0], [0, 467479481, 33075989, 9919098, 18862479, 5788884, 13079152, 47397648], [0, 13542335, 101033550, 160156, 149856, 201903, 561281, 562278], [0, 20653815, 504848, 49579839, 456977, 572936, 1640121, 945354], [0, 27888831, 143714, 176582, 152801087, 840795, 1489421, 4844172], [0, 31305160, 507958, 408712, 3208265, 23729272, 312814, 8299450], [0, 52861805, 568011, 398620, 1036509, 259216, 55961656, 5016401], [0, 120438616, 5679037, 1810823, 4658996, 4945029, 10543895, 324623138]]}}
+DONE semantic_head_200
+ALL_DONE: six ablation runs completed.

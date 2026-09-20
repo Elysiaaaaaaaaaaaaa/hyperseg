@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/root/autodl-tmp/hyperseg_manual_v2_20260912/experiment/fewShot_SUIM/run_grid.py", line 163, in <module>
+    main()
+  File "/root/autodl-tmp/hyperseg_manual_v2_20260912/experiment/fewShot_SUIM/run_grid.py", line 132, in main
+    from experiment.fewShot_SUIM.run import file_sha256
+ModuleNotFoundError: No module named 'experiment'

@@ -1,0 +1,12 @@
+{
+  "variation": "training seeds; support selection is fixed",
+  "results": [
+    {
+      "mode": "semantic-head",
+      "shots_per_class": 10,
+      "runs": 1,
+      "mean_mIoU": 0.5358676993438983,
+      "std_mIoU": 0.0
+    }
+  ]
+}

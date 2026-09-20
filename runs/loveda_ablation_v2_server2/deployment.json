@@ -1,0 +1,19 @@
+{
+  "server": "server2",
+  "remote_root": "/root/autodl-tmp/hyperseg_ablation_v2_20260912",
+  "pid": 1433,
+  "log": "/root/autodl-tmp/hyperseg_ablation_v2_20260912/logs/ablation_console.log",
+  "output_root": "/root/autodl-tmp/hyperseg_ablation_v2_20260912/runs/loveda_ablation_v2",
+  "seed": 3407,
+  "shots": [1, 2],
+  "settings": [
+    {"mode": "adapter", "steps": 200},
+    {"mode": "semantic-head", "steps": 2000},
+    {"mode": "semantic-head", "steps": 200}
+  ],
+  "total_runs": 6,
+  "source_checkpoint": "/root/autodl-tmp/hyperseg_manual_v2_20260912/models/hyperseg_resume_best.pt",
+  "evaluation_images": 1599,
+  "gpu_check": "520 semantic head parameters; no gradients in frozen modules; successful BF16 backward and optimizer update at batch 2, crop 512",
+  "last_observation": "Parent alive, adapter_200 1-shot completed with mIoU 0.5146719998976439; adapter_200 2-shot at 80/200 steps. Launch-time observation, not live status."
+}

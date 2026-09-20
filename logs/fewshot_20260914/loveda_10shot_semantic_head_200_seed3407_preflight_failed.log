@@ -1,0 +1,13 @@
+usage: run_manual.py [-h] [--data-root DATA_ROOT] --manifest-dir MANIFEST_DIR
+                     [--init-checkpoint INIT_CHECKPOINT]
+                     [--backbone-path BACKBONE_PATH]
+                     [--output-root OUTPUT_ROOT]
+                     [--shots {0,1,2,5,10} [{0,1,2,5,10} ...]]
+                     [--seeds SEEDS [SEEDS ...]]
+                     [--modes {head,adapter,full} [{head,adapter,full} ...]]
+                     [--steps STEPS] [--crop-size CROP_SIZE]
+                     [--eval-size EVAL_SIZE] [--batch-size BATCH_SIZE]
+                     [--eval-batch-size EVAL_BATCH_SIZE]
+                     [--num-workers NUM_WORKERS] [--lr LR] [--amp | --no-amp]
+                     [--device {cuda,cpu}] [--check-only] [--skip-completed]
+run_manual.py: error: argument --modes: invalid choice: 'semantic-head' (choose from 'head', 'adapter', 'full')
