@@ -1,0 +1,50 @@
+{
+  "submission": "D:\\myproject\\hyperseg\\experiment\\b3_test2_20260929\\hyperseg_b3_test2_predictions.zip",
+  "submission_bytes": 12655462,
+  "sha256": "ff0a2fb0e0580bafb1b7f41f82d29861ad42bf181689f7efff43df3e84b0ef8a",
+  "sha256_matches_server": true,
+  "entries": 1300,
+  "crc_ok": true,
+  "duplicate_entries": 0,
+  "nested_paths": 0,
+  "modes": [
+    "L"
+  ],
+  "sizes": [
+    "(1024, 1024)"
+  ],
+  "class_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "pixel_counts": {
+    "1": 462685240,
+    "2": 252505327,
+    "3": 93951305,
+    "4": 100121051,
+    "5": 19802513,
+    "6": 285501933,
+    "7": 140432165,
+    "8": 8149266
+  },
+  "share": {
+    "1": 0.339424,
+    "2": 0.185237,
+    "3": 0.068922,
+    "4": 0.073448,
+    "5": 0.014527,
+    "6": 0.209443,
+    "7": 0.10302,
+    "8": 0.005978
+  },
+  "source_images": 1300,
+  "names_match_source": true,
+  "missing_from_prediction": [],
+  "extra_in_prediction": []
+}

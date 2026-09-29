@@ -4,3 +4,6 @@ password=Mb01N+N0B10y
 [server2]
 ssh -p 47563 root@connect.bjb1.seetacloud.com
 password=zAMdEpxjn1n8
+[server3]
+ssh -p 31067 root@connect.bjb1.seetacloud.com
+password = VNJWzqYhYrLm

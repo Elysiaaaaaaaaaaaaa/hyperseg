@@ -551,3 +551,184 @@ python -m unittest experiment.mathseg_uav.test_mathseg -v
 测试不下载预训练权重，使用微型随机 SegFormer 和临时合成图像；覆盖所有变体反向传播、
 M2/M3 配对、先验边缘对齐、Ignore 损失/边界/指标、划分交集、类别权重、采样器恢复、
 训练与恢复一致性、原图评估、预测导出和测速入口。不替代真实 B3/CUDA 的服务器短程检查。
+
+
+## SUIM few-shot 迁移测试
+
+新增 `fewshot.py`（单次）和 `fewshot_grid.py`（矩阵），复用
+`experiment/fewShot_SUIM` 的协议审计、嵌套支持集、图像增强、加权 CE/Dice/边界损失、
+固定更新步数和原尺寸官方 TEST 评估。必须传入 MathSeg 的 9 类 UAV checkpoint；
+M0～M4 的结构和先验设置从 checkpoint 恢复，不通过命令切换变体。
+类别无关参数严格加载，语义头换为随机初始化的 8 通道分类层。
+可选 `--head-init semantic-map` 沿用 SUIM 的四类映射消融。
+SUIM 类别 0 有效，8 类全部参与损失与 mIoU；TEST 不用于选择 checkpoint。
+M4 在此也使用统一的 SUIM 损失，不继续应用 UAV 的渐进类别权重。
+
+- `adapter`：冻结 encoder，训练整个 `model.head`，包括投影、融合 gate/调制（若有）、解码器及双头。
+- `semantic-head`：只训练 `model.head.segmentation`，其他参数冻结。
+- 单次入口还支持 `full`，训练所有可学习参数。
+
+矩阵与原 SUIM 一致：1/2/5/10-shot × 200/2000 步 × 两种更新范围 × 三个 seed，
+每个源 checkpoint 共 48 次。这里的 adapter 是更新范围名称，MathSeg 没有 HyperSeg 的低秩适配器。
+对比不同模型时必须使用同一个 `--manifest-dir`；不要为 MathSeg 重新抽支持集。
+不同源 checkpoint 应使用不同输出目录。
+
+从项目根目录检查命令（不加载权重、不启动训练）：
+
+```bash
+python experiment/mathseg_uav/fewshot_grid.py \
+  --manifest-dir runs/suim_fewshot_protocol_seed3407 \
+  --init-checkpoint /root/autodl-tmp/work_dirs/mathseg_uav/m3_seed3407/best.pt \
+  --output-root runs/mathseg_suim_m3 --dry-run
+```
+
+如尚未生成协议，按 `experiment/fewShot_SUIM/README.md` 运行 `prepare_protocol.py`。
+生成后可用单次入口的 `--check-only` 检查清单和文件：
+
+```bash
+python experiment/mathseg_uav/fewshot.py \
+  --data-root /root/autodl-tmp/SUIM \
+  --manifest-dir runs/suim_fewshot_protocol_seed3407 \
+  --init-checkpoint /root/autodl-tmp/work_dirs/mathseg_uav/m3_seed3407/best.pt \
+  --output-dir runs/mathseg_suim_check --shots 1 --check-only
+```
+
+服务器后台启动完整矩阵（先核实数据、协议和 checkpoint 路径）：
+
+```bash
+mkdir -p experiment/mathseg_uav/logs/suim_m3
+nohup python -u experiment/mathseg_uav/fewshot_grid.py \
+  --data-root /root/autodl-tmp/SUIM \
+  --manifest-dir runs/suim_fewshot_protocol_seed3407 \
+  --init-checkpoint /root/autodl-tmp/work_dirs/mathseg_uav/m3_seed3407/best.pt \
+  --output-root /root/autodl-tmp/work_dirs/mathseg_suim/m3 \
+  --amp --device cuda \
+  > experiment/mathseg_uav/logs/suim_m3/launch.log 2>&1 < /dev/null &
+echo $! > experiment/mathseg_uav/logs/suim_m3/launch.pid
+```
+
+pilot 可增加 `--shots 1 2 --seeds 3407`，并使用独立的 `--output-root`。
+已完成且签名一致的运行可通过 `--skip-completed` 跳过；未完成目录不会覆盖，
+需改用新输出目录重新运行。每次输出 `selection.json`、`run_config.json`、
+`history.jsonl`、`final.pt` 和 `summary.json`；矩阵输出统一日志、`results.csv` 和
+`aggregate.json`。`final.pt` 的 `model_config` 保存 `classes=8`，可直接用
+`MathSegUAV(**checkpoint["model_config"])` 重建，再严格加载 `model`。
+UAV 的评估入口仍是 9 类/Ignore=0 协议，SUIM 评估须使用此 few-shot 流程。
+训练完成后下载统一日志、逐次历史/配置/指标和汇总到本实验的 `logs/suim_<variant>/`，
+在 `experiment.md` 记录各 K/更新范围/预算的均值、标准差和逐类变化。
+
+轻量检查：
+
+```bash
+python -m unittest experiment.mathseg_uav.test_fewshot experiment.fewShot_SUIM.test_grid experiment.fewShot_SUIM.test_protocol
+```
+
+有 PyTorch/Transformers 时，测试使用本地构造的微型 SegFormer 验证 M0～M4 权重迁移、
+八分类 checkpoint 重载和反向传播，不下载权重；缺少依赖时明确跳过该项。
+
+
+## LoveDA few-shot 迁移测试
+
+`fewshot_loveda.py` 复用 LoveDA 的 `run_manual.py` 固定协议，
+`fewshot_loveda_grid.py` 提供与 SUIM 相同的 48 组矩阵。
+使用原有 GUI 导出的每类嵌套支持清单；评估集从 Val 排除全部 10-shot 支持图，
+所有 K 共用同一清单，不是官方完整 Val 成绩。
+本次使用标准 7 类协议：原始 1..7→训练 0..6，原始 0/255→Ignore=255。
+损失和评测均屏蔽无效像素，Background（训练 ID=0）参与 mIoU。
+模型输出 7 通道，从源 UAV 的通道 1..7 映射到目标 0..6，丢弃源 Ignore 和 Vehicle；
+Vegetation→Forest 为近似映射。SUIM 默认随机头，两个数据集绝对成绩不能横比。
+这次改为 7 通道后与历史 8 通道适配的训练 softmax 不同，必须使用新输出目录重新训练。
+M4 也使用统一 LoveDA 适配损失，不继续使用 UAV 的渐进权重。
+
+服务器后台运行示例（核实并按实际位置替换数据和清单路径）：
+
+```bash
+mkdir -p experiment/mathseg_uav/logs/loveda_m3
+nohup python -u experiment/mathseg_uav/fewshot_loveda_grid.py \
+  --data-root /root/autodl-tmp/LoveDA \
+  --manifest-dir runs/loveda_manual/export_20260912_101105_509451 \
+  --init-checkpoint /root/autodl-tmp/work_dirs/mathseg_uav/m3_seed3407/best.pt \
+  --output-root /root/autodl-tmp/work_dirs/mathseg_loveda/m3 \
+  --label-policy standard --amp --device cuda \
+  > experiment/mathseg_uav/logs/loveda_m3/launch.log 2>&1 < /dev/null &
+echo $! > experiment/mathseg_uav/logs/loveda_m3/launch.pid
+```
+
+可先去掉 `nohup` 和重定向、加 `--dry-run` 查看命令；
+用 `--shots 1 2 --seeds 3407` 和独立输出目录运行 pilot。
+矩阵固定 1024 评估，单个结果目录为
+`<output-root>/<setting>/<K>shot_seed<seed>/<mode>_<K>shot_seed<seed>/`，
+矩阵根目录保存统一日志、完整 `results.csv` 和跨 seed 的 `aggregate.json`。
+训练结束下载日志和指标到 `experiment/mathseg_uav/logs/loveda_<variant>/`，
+将各 K、更新范围和预算的分析写入 `experiment.md`。
+
+可单独验证协议或执行 0-shot：
+
+```bash
+python experiment/mathseg_uav/fewshot_loveda.py \
+  --data-root /root/autodl-tmp/LoveDA \
+  --manifest-dir runs/loveda_manual/export_20260912_101105_509451 \
+  --init-checkpoint /root/autodl-tmp/work_dirs/mathseg_uav/m3_seed3407/best.pt \
+  --output-root runs/mathseg_loveda_m3_zero --shots 0 --check-only
+```
+
+去掉 `--check-only` 会执行一次 0-shot 评估，不微调、不按 seed 重复。
+单次入口的 `--shots 1 --seeds 3407 --modes semantic-head --steps 200`
+可运行特定组合；另支持 `head`（仅语义和边界预测层）及 `full`。
+MathSeg 变体从源 checkpoint 恢复，不同源变体必须使用独立输出目录。
+
+
+## 2026-09-22 server2 正式队列
+
+已部署独立代码快照 `/root/autodl-tmp/mathseg_fewshot_20260922`，
+输出 `/root/autodl-tmp/work_dirs/mathseg_fewshot_20260922`。
+`queue_fewshot.py` 顺序执行 M0～M3 × SUIM/LoveDA，每组 48 次，共 384 次；
+每次从对应 UAV `best.pt` 重新初始化，互不继承适配参数。
+固定清单使用 `runs/suim_manual/export_20260913_145956_961191` 和
+`runs/loveda_manual/export_20260912_101105_509451`，分别评估 110 / 1599 张。
+
+服务器预检运行 `preflight_fewshot.py`：检查两数据集全部清单路径与各 K 类别覆盖，
+验证 4 个源模型 × 2 个数据集的真实 GPU 更新、正式尺寸推理、紧凑权重重载输出一致性。
+
+本次 `--checkpoint-format compact` 保存全部非骨干状态（约 0.54～0.60 MiB），
+用源 checkpoint 路径及 SHA-256 引用冻结的 encoder，避免耗尽数据盘。
+源 UAV 权重必须保留；恢复方式：
+
+```python
+from experiment.mathseg_uav.fewshot_backend import restore_compact
+payload = torch.load("final.pt", map_location="cpu", weights_only=False)
+model = restore_compact(payload)  # 可用 source_path 指定迁移后的源权重位置
+```
+
+`sync_fewshot_logs.py` 每 10 分钟下载日志、配置和指标，写入
+`logs/fewshot_20260922/`，同步更新 `experiment.md` 的自动追踪小节。
+队列完成或失败时最后同步一次并退出；本地进程需保持运行。
+手动补同步可执行 `python experiment/mathseg_uav/sync_fewshot_logs.py --once`。
+
+
+### 2026-09-22 用户暂停并取消多种子
+
+队列已停止并释放 GPU，尚未恢复。后续仅使用 seed=3407，
+每个模型/数据集 16 次，总共 128 次，已有 39 次可复用，剩余 89 次。
+历史其他种子的结果保留。`queue_fewshot.py` 默认种子已改为 3407；
+恢复时 `--skip-completed` 将复用已完成结果，不运行 3408/3409。
+本次中断的是 M1/SUIM/adapter_2000/5-shot/seed3409，该未完成目录保留但不进入新计划。
+日志同步进程已停止，暂停状态已做最后一次归档。
+
+### 单种子结果整理（最终归档，2026-09-22）
+
+seed3407 的 128/128 次均已完成。SUIM、LoveDA 的 M0～M3 各完成 16 项。
+此前缺失的 LoveDA M3 semantic-head/2000 步 2/5/10-shot 已补齐；2-shot 从头重跑，
+原 560 步中断记录保留。旧队列状态文件仍残留 `running`，最终完成情况以结果文件及审计为准。
+历史 seed3408/3409 只保留原始日志，不纳入本次单种子对比。
+
+已归档日志：`logs/fewshot_20260922/`；整理目录：`logs/fewshot_20260922/organized_seed3407/`。
+
+- `report.md`：完整配置对照及最终分析，同时写入 `experiment.md` 第 11 节。
+- `results.csv`：128 次单种子运行、支持集数量、指标与最终训练损失。
+- `comparison.csv`：同配置 M0～M3 mIoU 及差值，单位为百分数/百分点。
+- `per_class_iou.csv`：逐类 IoU；`remaining.csv`：剩余项目（最终为空，仅保留表头）。
+- `audit.json`：协议、训练步数、混淆矩阵重算指标和评估像素总数核对结果。
+
+重新整理已下载结果：`python experiment/mathseg_uav/organize_fewshot_results.py`。
+同步器从实际 `plan.json` 提取种子，排除历史 3408/3409；检查进程存活，避免把已中断队列误报为运行中。

@@ -1,0 +1,19 @@
+{
+  "state": "running",
+  "pid": 45912,
+  "started": 1790050895.0731916,
+  "completed_grids": [
+    "m0_suim",
+    "m0_loveda",
+    "m1_suim",
+    "m1_loveda",
+    "m2_suim",
+    "m2_loveda",
+    "m3_suim"
+  ],
+  "total_runs": 128,
+  "current": {
+    "variant": "m3",
+    "dataset": "loveda"
+  }
+}

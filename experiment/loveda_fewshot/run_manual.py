@@ -1,4 +1,4 @@
-"""Run fixed-holdout 0/1/2/5/10-shot experiments using HyperSeg-UAV v2."""
+"""Run fixed-holdout LoveDA few-shot experiments using HyperSeg-UAV v2 or MathSeg."""
 from __future__ import annotations
 
 import argparse
@@ -28,7 +28,7 @@ def load_v2(checkpoint, backbone_path=None):
     config = dict(checkpoint["model_config"])
     if config.pop("version", None) != "v2" or config.get("classes") != 9:
         raise ValueError("Expected an original 9-class UAV v2 checkpoint")
-    config.update(classes=8, pretrained=False)
+    config.update(classes=7, pretrained=False)
     local = ROOT / "models" / config.get("model_name", "nvidia/mit-b3").replace("/", "--")
     if backbone_path or local.is_dir():
         config["model_name"] = str(backbone_path or local)
@@ -45,7 +45,7 @@ def load_v2(checkpoint, backbone_path=None):
         if target in ("head.weight", "head.bias"):
             if tensor.shape[0] != 9:
                 raise ValueError("Expected 9-channel UAV head")
-            tensor = tensor[:8].clone()
+            tensor = tensor[1:8].clone()
         if tensor.shape != destination[target].shape:
             raise ValueError(f"Shape mismatch for {target}: {tensor.shape} vs {destination[target].shape}")
         mapped[target] = tensor
@@ -84,6 +84,10 @@ def run_one(args, manifest, evaluation, paths, checkpoint, k, seed, mode, output
     from experiment.loveda_fewshot.train import (
         Sample, LoveDADataset, seed_worker, compute_class_weights, loveda_loss, CLASS_NAMES,
     )
+    label_policy = args.label_policy
+    class_names = CLASS_NAMES
+    num_classes = len(class_names)
+    first_class = 0
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -92,20 +96,27 @@ def run_one(args, manifest, evaluation, paths, checkpoint, k, seed, mode, output
     device = torch.device(args.device)
     amp = args.amp and device.type == "cuda"
     amp_dtype = torch.bfloat16 if amp and torch.cuda.is_bf16_supported() else torch.float16
-    model = load_v2(checkpoint, args.backbone_path)
-    configure_model(model, mode)
+    if args.model == "mathseg":
+        from experiment.mathseg_uav.fewshot_backend import load_mathseg, configure_mathseg
+        model, transfer = load_mathseg(checkpoint, args.backbone_path, "semantic-map", dataset="loveda", label_policy=label_policy)
+        configure_mathseg(model, mode)
+    else:
+        model = load_v2(checkpoint, args.backbone_path)
+        configure_model(model, mode)
+        transfer = None
     model.to(device)
     def samples(keys):
         return [Sample(key.split("/")[0], key.split("/")[1], *paths[key]) for key in keys]
     common = dict(num_workers=args.num_workers, pin_memory=device.type == "cuda", worker_init_fn=seed_worker)
     info = dict(signature=signature, shots_per_class=k, seed=seed if k else None,
                 mode=mode if k else "zero", support_images=len(manifest["samples"]),
-                evaluation_images=len(evaluation), model_version="v2",
+                evaluation_images=len(evaluation), model_version="mathseg" if args.model == "mathseg" else "v2", transfer=transfer,
                 source_epoch=checkpoint.get("epoch"), source_val_miou=checkpoint.get("val_miou"),
-                head_mapping={str(c): c for c in range(8)},
+                head_mapping={str(c): c + 1 for c in range(7)},
                 forest_mapping="source Vegetation -> target Forest (approximate)",
                 checkpoint_selection="fixed final step; no evaluation-based selection",
-                batchnorm="frozen running statistics",
+                label_policy=label_policy, ignore_index=255,
+                class_names=class_names, batchnorm="frozen running statistics",
                 trainable_parameters=sum(p.numel() for p in model.parameters() if p.requires_grad),
                 total_parameters=sum(p.numel() for p in model.parameters()),
                 trainable_parameter_names=[name for name, p in model.named_parameters() if p.requires_grad],
@@ -115,12 +126,12 @@ def run_one(args, manifest, evaluation, paths, checkpoint, k, seed, mode, output
     write_json(output / "selection.json", manifest)
     if k:
         support = samples(manifest["samples"])
-        weights, histogram = compute_class_weights(support)
+        weights, histogram = compute_class_weights(support, label_policy)
         weights = weights.to(device)
-        info["class_histogram"] = dict(zip(CLASS_NAMES, histogram))
+        info["class_histogram"] = dict(zip(class_names, histogram))
         info["class_weights"] = weights.tolist()
         write_json(output / "run_config.json", info)
-        dataset = LoveDADataset(support, args.crop_size, training=True)
+        dataset = LoveDADataset(support, args.crop_size, training=True, label_policy=label_policy)
         generator = torch.Generator().manual_seed(seed)
         sampler = RandomSampler(dataset, replacement=True, num_samples=args.steps * args.batch_size, generator=generator)
         loader = DataLoader(dataset, batch_size=args.batch_size, sampler=sampler,
@@ -144,7 +155,7 @@ def run_one(args, manifest, evaluation, paths, checkpoint, k, seed, mode, output
                         prediction = model(image)
                         if not all(torch.isfinite(prediction[key]).all() for key in ("logits", "boundary")):
                             raise FloatingPointError(f"Non-finite output at step {step}")
-                        loss = loveda_loss({key: prediction[key].float() for key in ("logits", "boundary")}, target, weights)
+                        loss = loveda_loss({key: prediction[key].float() for key in ("logits", "boundary")}, target, weights, ignore_index=255)
                     if not torch.isfinite(loss):
                         raise FloatingPointError(f"Non-finite loss at step {step}")
                     scaler.scale(loss).backward()
@@ -168,33 +179,37 @@ def run_one(args, manifest, evaluation, paths, checkpoint, k, seed, mode, output
                 if step % 20 == 0 or step == args.steps:
                     history.flush()
                     print(f"{output.name} step {step}/{args.steps}: loss={loss.item():.4f}", flush=True)
-        torch.save(dict(model=model.state_dict(), model_config=model.model_config, step=args.steps,
-                        experiment=info), output / "final.pt")
+        if args.model == "mathseg":
+            from experiment.mathseg_uav.fewshot_backend import checkpoint_payload
+            payload = checkpoint_payload(model, args.steps, info, args.init_checkpoint, args.checkpoint_sha256, args.checkpoint_format)
+        else:
+            payload = dict(model=model.state_dict(), model_config=model.model_config, step=args.steps, experiment=info)
+        torch.save(payload, output / "final.pt")
         del optimizer, loader, scaler
 
-    loader = DataLoader(LoveDADataset(samples(evaluation), args.eval_size, training=False),
+    loader = DataLoader(LoveDADataset(samples(evaluation), args.eval_size, training=False, label_policy=label_policy),
                         batch_size=args.eval_batch_size, shuffle=False, **common)
     model.eval()
-    confusion = torch.zeros(8, 8, dtype=torch.int64, device=device)
+    confusion = torch.zeros(num_classes, num_classes, dtype=torch.int64, device=device)
     with torch.inference_mode():
         for index, batch in enumerate(loader, 1):
             target = batch["mask"].to(device)
             logits = model(batch["image"].to(device))["logits"]
             if not torch.isfinite(logits).all():
                 raise FloatingPointError("Non-finite evaluation logits")
-            prediction = logits[:, 1:].argmax(1) + 1
-            valid = target != 0
-            confusion += torch.bincount(target[valid] * 8 + prediction[valid], minlength=64).reshape(8, 8)
+            prediction = logits[:, first_class:].argmax(1) + first_class
+            valid = target != 255
+            confusion += torch.bincount(target[valid] * num_classes + prediction[valid], minlength=num_classes**2).reshape(num_classes, num_classes)
             if index % 100 == 0:
                 print(f"{output.name} evaluation {index}/{len(loader)}", flush=True)
     cm = confusion.double()
     union = cm.sum(0) + cm.sum(1) - cm.diag()
     iou = cm.diag() / union.clamp_min(1)
-    active = union[1:] > 0
+    active = union[first_class:] > 0
     if not active.any():
         raise ValueError("No valid evaluation pixels")
-    metrics = dict(mIoU=iou[1:][active].mean().item(),
-                   per_class_iou={CLASS_NAMES[c]: iou[c].item() if union[c] > 0 else None for c in range(1, 8)},
+    metrics = dict(mIoU=iou[first_class:][active].mean().item(),
+                   per_class_iou={class_names[c]: iou[c].item() if union[c] > 0 else None for c in range(first_class, num_classes)},
                    pixel_accuracy=(cm.diag().sum() / cm.sum().clamp_min(1)).item(),
                    confusion=confusion.cpu().tolist())
     result = dict(signature=signature, mode=mode if k else "zero", shots_per_class=k,
@@ -221,13 +236,17 @@ def summarize(output, results):
     write_json(output / "aggregate.json", {"variation": "training seeds; support selection is fixed", "results": aggregates})
 
 
-def main():
+def main(default_model="hyperseg-v2"):
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--label-policy", choices=("standard",), default="standard",
+                        help="Raw 1..7 -> training 0..6; raw 0/255 -> ignore 255")
+    parser.add_argument("--checkpoint-format", choices=("full", "compact"), default="full")
+    parser.add_argument("--model", choices=("hyperseg-v2", "mathseg"), default=default_model)
     parser.add_argument("--data-root", type=Path, default=ROOT / "LoveDA")
     parser.add_argument("--manifest-dir", type=Path, required=True)
-    parser.add_argument("--init-checkpoint", type=Path, default=ROOT / "models/hyperseg_resume_best.pt")
+    parser.add_argument("--init-checkpoint", type=Path, default=None)
     parser.add_argument("--backbone-path", type=Path, help="Local Hugging Face mit-b3 directory with config and weights")
-    parser.add_argument("--output-root", type=Path, default=ROOT / "runs/loveda_manual_v2")
+    parser.add_argument("--output-root", type=Path, default=None)
     parser.add_argument("--shots", nargs="+", type=int, choices=SHOTS, default=list(SHOTS))
     parser.add_argument("--seeds", nargs="+", type=int, default=[3407, 3408, 3409])
     parser.add_argument("--modes", nargs="+", choices=("head", "semantic-head", "adapter", "full"), default=["adapter"])
@@ -243,6 +262,14 @@ def main():
     parser.add_argument("--check-only", action="store_true", help="Validate manifests and files without PyTorch or training")
     parser.add_argument("--skip-completed", action="store_true", help="Reuse completed runs only if signatures match")
     args = parser.parse_args()
+    if args.checkpoint_format == "compact" and (args.model != "mathseg" or "full" in args.modes):
+        parser.error("Compact checkpoints require MathSeg with a frozen encoder")
+    if args.init_checkpoint is None:
+        if args.model == "mathseg":
+            parser.error("MathSeg requires --init-checkpoint")
+        args.init_checkpoint = ROOT / "models/hyperseg_resume_best.pt"
+    if args.output_root is None:
+        args.output_root = ROOT / "runs" / ("mathseg_loveda_fewshot" if args.model == "mathseg" else "loveda_manual_v2")
     if min(args.steps, args.crop_size, args.eval_size, args.batch_size, args.eval_batch_size) < 1 or args.lr <= 0 or args.num_workers < 0:
         parser.error("Sizes, steps and learning rate must be positive; workers cannot be negative")
     for name in ("shots", "seeds", "modes"):
@@ -250,13 +277,13 @@ def main():
             parser.error(f"Duplicate --{name}")
     manifests, evaluation, protocol_hash = load_protocol(args.manifest_dir)
     paths = resolve_samples(args.data_root, manifests[10]["samples"] + evaluation)
-    if not args.init_checkpoint.is_file():
-        raise FileNotFoundError(args.init_checkpoint)
     print(json.dumps(dict(support_images={k: len(m["samples"]) for k, m in manifests.items()},
                           evaluation_images=len(evaluation), protocol_sha256=protocol_hash), indent=2), flush=True)
     if args.check_only:
         print("PROTOCOL_OK: fixed evaluation, disjoint supports, nested per-class prefixes, image/mask files exist")
         return
+    if not args.init_checkpoint.is_file():
+        raise FileNotFoundError(args.init_checkpoint)
     import torch
     if args.device == "cuda" and not torch.cuda.is_available():
         raise RuntimeError("CUDA is unavailable. Run on the GPU server; use --check-only for local checks.")
@@ -270,9 +297,11 @@ def main():
     checkpoint.pop("scaler", None)
     args.checkpoint_sha256 = sha.hexdigest()
     args.protocol_sha256 = protocol_hash
+    model_files = ([ROOT / "experiment/mathseg_uav/model.py", ROOT / "experiment/mathseg_uav/fewshot_backend.py"]
+                   if args.model == "mathseg" else [ROOT / "tools/model_1.py"])
     implementation_hash = digest({str(path.relative_to(ROOT)): path.read_text(encoding="utf-8") for path in (
         Path(__file__), Path(__file__).with_name("manual_protocol.py"), Path(__file__).with_name("train.py"),
-        ROOT / "tools/model_1.py",
+        *model_files,
     )})
     args.output_root.mkdir(parents=True, exist_ok=True)
     results = []

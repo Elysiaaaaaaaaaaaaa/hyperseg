@@ -1,0 +1,14 @@
+{
+  "checkpoint": "/root/hyperseg/models/hyperseg_b3_best.pt",
+  "checkpoint_epoch": 141,
+  "recorded_val_miou": 0.7420226665631505,
+  "replayed_val_miou": 0.7420232149377345,
+  "absolute_difference": 5.483745839640619e-07,
+  "samples": 699,
+  "size": 768,
+  "batch_size": 2,
+  "translated_encoder_keys": 628,
+  "elapsed_seconds": 28.75523503869772,
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 4090"
+}

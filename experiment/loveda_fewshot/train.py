@@ -26,7 +26,6 @@ from hyperseg_uav import HyperSegUAV
 
 
 CLASS_NAMES = (
-    "no_data",
     "background",
     "building",
     "road",
@@ -36,7 +35,7 @@ CLASS_NAMES = (
     "agriculture",
 )
 NUM_CLASSES = len(CLASS_NAMES)
-IGNORE_INDEX = 0
+IGNORE_INDEX = 255
 
 
 @dataclass(frozen=True)
@@ -115,16 +114,20 @@ def discover_samples(data_root: Path, split: str, domains: tuple[str, ...]) -> l
     return records
 
 
-def read_mask(path: Path) -> np.ndarray:
+def read_mask(path: Path, label_policy="standard") -> np.ndarray:
     with Image.open(path) as image:
         mask = np.asarray(image)
     if mask.ndim != 2:
         raise ValueError(f"Mask must be a single-channel label PNG, got shape {mask.shape}: {path}")
-    mask = mask.astype(np.uint8, copy=True)
-    mask[mask == 255] = IGNORE_INDEX
-    invalid = np.unique(mask[mask >= NUM_CLASSES])
+    if label_policy != "standard":
+        raise ValueError(f"Unknown label policy: {label_policy}")
+    invalid = np.unique(mask[~np.isin(mask, [*range(8), 255])])
     if invalid.size:
         raise ValueError(f"Mask {path} contains unsupported labels: {invalid.tolist()}")
+    valid = (mask >= 1) & (mask <= 7)
+    converted = np.full(mask.shape, IGNORE_INDEX, dtype=np.uint8)
+    converted[valid] = mask[valid] - 1
+    mask = converted
     return mask
 
 
@@ -141,7 +144,7 @@ def select_few_shot(samples: list[Sample], shots: int, seed: int) -> list[Sample
             sample.key: set(int(label) for label in np.unique(read_mask(sample.mask)) if label != IGNORE_INDEX)
             for sample in candidates
         }
-        counts = {label: 0 for label in range(1, NUM_CLASSES)}
+        counts = {label: 0 for label in range(NUM_CLASSES)}
         remaining = list(candidates)
         for _ in range(shots):
             best = max(
@@ -188,8 +191,9 @@ def samples_from_manifest(path: Path, available: list[Sample]) -> list[Sample]:
 
 
 class LoveDADataset(Dataset):
-    def __init__(self, samples: list[Sample], size: int, training: bool) -> None:
+    def __init__(self, samples: list[Sample], size: int, training: bool, label_policy="standard") -> None:
         self.samples = samples
+        self.label_policy = label_policy
         self.size = size
         self.training = training
 
@@ -200,7 +204,7 @@ class LoveDADataset(Dataset):
         sample = self.samples[index]
         with Image.open(sample.image) as source:
             image = source.convert("RGB")
-        mask = Image.fromarray(read_mask(sample.mask), mode="L")
+        mask = Image.fromarray(read_mask(sample.mask, self.label_policy), mode="L")
         if self.training:
             scale = random.uniform(0.5, 1.5)
             width = max(self.size, round(image.width * scale))
@@ -241,16 +245,19 @@ def seed_worker(worker_id: int) -> None:
     np.random.seed(worker_seed)
 
 
-def compute_class_weights(samples: list[Sample]) -> tuple[torch.Tensor, list[int]]:
-    histogram = np.zeros(NUM_CLASSES, dtype=np.int64)
+def compute_class_weights(samples: list[Sample], label_policy="standard") -> tuple[torch.Tensor, list[int]]:
+    count = NUM_CLASSES
+    start = 0
+    histogram = np.zeros(count, dtype=np.int64)
     for sample in samples:
-        histogram += np.bincount(read_mask(sample.mask).reshape(-1), minlength=NUM_CLASSES)[:NUM_CLASSES]
-    frequencies = histogram[1:] / max(1, histogram[1:].sum())
-    weights = np.zeros(NUM_CLASSES, dtype=np.float32)
+        mask = read_mask(sample.mask, label_policy)
+        histogram += np.bincount(mask[mask != IGNORE_INDEX], minlength=count)[:count]
+    frequencies = histogram[start:] / max(1, histogram[start:].sum())
+    weights = np.zeros(count, dtype=np.float32)
     present = frequencies > 0
-    weights[1:][present] = 1.0 / np.log(1.02 + frequencies[present])
+    weights[start:][present] = 1.0 / np.log(1.02 + frequencies[present])
     if present.any():
-        weights[1:][present] /= weights[1:][present].mean()
+        weights[start:][present] /= weights[start:][present].mean()
     return torch.from_numpy(weights), histogram.tolist()
 
 
@@ -258,17 +265,20 @@ def loveda_loss(
     output: dict[str, torch.Tensor],
     target: torch.Tensor,
     class_weights: torch.Tensor,
+    ignore_index=IGNORE_INDEX,
 ) -> torch.Tensor:
     logits = output["logits"]
-    valid = target != IGNORE_INDEX
+    valid = target != ignore_index if ignore_index is not None else torch.ones_like(target, dtype=torch.bool)
     per_pixel_ce = F.cross_entropy(
-        logits, target, weight=class_weights, ignore_index=IGNORE_INDEX, reduction="none"
+        logits, target, weight=class_weights, ignore_index=ignore_index if ignore_index is not None else -100, reduction="none"
     )
     ce = per_pixel_ce[valid].mean() if valid.any() else logits.sum() * 0.0
 
     probability = logits.softmax(dim=1)
     dice_losses = []
-    for label in range(1, NUM_CLASSES):
+    for label in range(logits.shape[1]):
+        if label == ignore_index:
+            continue
         truth = (target == label) & valid
         if truth.any():
             prediction = probability[:, label][valid]
@@ -340,14 +350,14 @@ def load_transfer_checkpoint(model: nn.Module, checkpoint: dict[str, object], he
         raise ValueError(f"Unsupported head initialization: {head_init}")
     source = checkpoint.get("model", checkpoint)
     destination = model.state_dict()
-    mapping = {i: i for i in (1, 2, 3, 4, 5, 7)} if head_init == "mapped" else {}
+    mapping = {i - 1: i for i in (1, 2, 3, 4, 5, 7)} if head_init == "mapped" else {}
     if mapping:
         for key in ("head.weight", "head.bias"):
             if key not in source or key not in destination:
                 raise ValueError(f"Mapped initialization requires {key}")
-            if (source[key].shape[0] != 9 or destination[key].shape[0] != 8
+            if (source[key].shape[0] != 9 or destination[key].shape[0] != 7
                     or source[key].shape[1:] != destination[key].shape[1:]):
-                raise ValueError(f"Mapped initialization requires a compatible 9-class UAV to 8-class LoveDA head: {key}")
+                raise ValueError(f"Mapped initialization requires a compatible 9-class UAV to 7-class LoveDA head: {key}")
     compatible = {}
     translated = {}
     skipped = []
@@ -428,14 +438,14 @@ def evaluate(model: nn.Module, loader: DataLoader, device: torch.device) -> dict
         confusion += torch.bincount(indices, minlength=NUM_CLASSES**2).reshape(NUM_CLASSES, NUM_CLASSES)
     intersection = confusion.diag().float()
     union = confusion.sum(0).float() + confusion.sum(1).float() - intersection
-    valid_classes = union[1:] > 0
-    class_iou = intersection[1:] / union[1:].clamp_min(1)
+    valid_classes = union > 0
+    class_iou = intersection / union.clamp_min(1)
     miou = class_iou[valid_classes].mean().item() if valid_classes.any() else 0.0
     return {
         "mIoU": miou,
         "per_class_iou": {
-            CLASS_NAMES[label]: (class_iou[label - 1].item() if union[label] > 0 else None)
-            for label in range(1, NUM_CLASSES)
+            CLASS_NAMES[label]: (class_iou[label].item() if union[label] > 0 else None)
+            for label in range(NUM_CLASSES)
         },
         "confusion": confusion.cpu().tolist(),
     }

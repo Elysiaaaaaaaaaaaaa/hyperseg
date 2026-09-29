@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from hyperseg_uav import HyperSegUAV
+from hyperseg_uav import HyperSegUAV, translate_legacy_keys
 
 
 @torch.no_grad()
@@ -56,7 +56,10 @@ def main():
     config = dict(state.get("model_config", {}))
     config["pretrained"] = False
     model = HyperSegUAV(**config).to(device)
-    model.load_state_dict(state["model"])
+    state_dict, translated = translate_legacy_keys(state["model"])
+    if translated:
+        print(f"translated {translated} legacy Transformers-5 encoder keys", flush=True)
+    model.load_state_dict(state_dict)
     model.eval()
     args.output.mkdir(parents=True, exist_ok=True)
     for path in sorted(args.input.glob("*.png")):

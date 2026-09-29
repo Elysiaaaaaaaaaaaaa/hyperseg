@@ -1,0 +1,13 @@
+{
+  "verified_at_utc": "2026-09-26T03:54:53.445206+00:00",
+  "local_zip": "/mnt/d/myproject/hyperseg/experiment/mask2former_uav/test2_20260926/h3_test2_predictions.zip",
+  "zip_bytes": 13349726,
+  "zip_sha256": "8ebee6e7824f26cd393ee546510b5a3f45e83bd7f90dcd3d8f7b524a160da4be",
+  "matches_server_sha256": true,
+  "image_count": 1300,
+  "filenames_match_input": true,
+  "zip_crc": "passed",
+  "png_headers": "1300 grayscale 8-bit PNG images, 1024x1024",
+  "server_mask_validation": "passed: L mode, 1024x1024, label values 0..8",
+  "flat_archive": true
+}

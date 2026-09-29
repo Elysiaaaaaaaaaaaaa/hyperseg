@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from hyperseg_uav import HyperSegUAV, UAVDataset
+from hyperseg_uav import HyperSegUAV, UAVDataset, translate_legacy_keys
 
 
 def parse_args():
@@ -62,7 +62,7 @@ def main():
     config = dict(state.get("model_config", {}))
     config["pretrained"] = False
     model = HyperSegUAV(**config).to(device)
-    incompatible = model.load_state_dict(state["model"], strict=False)
+    incompatible = model.load_state_dict(translate_legacy_keys(state["model"])[0], strict=False)
     if incompatible.missing_keys or incompatible.unexpected_keys:
         print(f"checkpoint compatibility: missing={len(incompatible.missing_keys)}, unexpected={len(incompatible.unexpected_keys)}")
     miou, per_class, confusion = evaluate(model, loader, device)

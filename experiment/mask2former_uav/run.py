@@ -252,7 +252,7 @@ def export(args) -> None:
 def add_runtime_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument('--python', type=Path, default=Path(sys.executable))
     parser.add_argument('--mmseg-root', type=Path, default=ROOT.parent / 'mmsegmentation')
-    parser.add_argument('--data-root', type=Path, default=ROOT / 'dataset')
+    parser.add_argument('--data-root', type=Path, default=ROOT / 'dataset' / 'low_altitude_2026')
     parser.add_argument('--split-dir', type=Path, default=ROOT / 'runs' / 'splits')
     parser.add_argument('--num-workers', type=int, default=4)
     parser.add_argument('--dry-run', action='store_true')
@@ -269,7 +269,7 @@ def parse_args():
     prepare.set_defaults(function=prepare_splits)
 
     check = subparsers.add_parser('check')
-    check.add_argument('--data-root', type=Path, default=ROOT / 'dataset')
+    check.add_argument('--data-root', type=Path, default=ROOT / 'dataset' / 'low_altitude_2026')
     check.add_argument('--split-dir', type=Path, default=ROOT / 'runs' / 'splits')
     check.add_argument('--scan-masks', action='store_true')
     check.set_defaults(

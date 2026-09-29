@@ -215,6 +215,8 @@ python tools/test_hyperseg.py \
 4. 重叠区域的 logits 取平均。
 5. 对类别维做 `argmax`，保存为与输入同名的单通道 `uint8` PNG。
 
+加载权重前会调用 `hyperseg_uav.model.translate_legacy_keys`：由 Transformers 5 保存的 checkpoint（如 `models/hyperseg_b3_best.pt`）骨干键名为 `encoder.backbone.stages.{i}.blocks.{j}...`，需要改写成 Transformers 4 的 `encoder.backbone.encoder.block.{i}.{j}...` 才能加载。转换条数会打印在日志里（该 checkpoint 为 628 条）；`tools/test_hyperseg.py` 同样先转换再加载。
+
 `--tta` 当前只做一次水平翻转：原图和水平翻转结果平均后再 argmax，并不是多模型集成。
 
 ```bash

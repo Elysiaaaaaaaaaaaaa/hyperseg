@@ -1,0 +1,82 @@
+{
+  "checked_at_utc": "2026-09-29T10:17:23.497101+00:00",
+  "checkpoint": "/root/hyperseg/models/hyperseg_b3_best.pt",
+  "checkpoint_sha256": "fb124302bafaec18aaa3f695dc021efead7bd00f710348d040888bb270148968",
+  "checkpoint_epoch": 141,
+  "checkpoint_val_miou": 0.7420226665631505,
+  "translated_legacy_encoder_keys": 628,
+  "model_config": {
+    "classes": 9,
+    "widths": [
+      64,
+      128,
+      320,
+      512
+    ],
+    "context_dim": 128,
+    "pretrained": false,
+    "model_name": "nvidia/mit-b3",
+    "adapter_rank": 8,
+    "adapter_scale": 0.1
+  },
+  "input": "/root/hyperseg/dataset/low_altitude_2026/test_2/images",
+  "output": "/root/hyperseg/runs/b3_test2_20260929/predictions",
+  "image_count": 1300,
+  "image_side": 1024,
+  "first_image": "test2_1.png",
+  "last_image": "test2_999.png",
+  "size": 768,
+  "overlap": 0.5,
+  "tta": false,
+  "precision": "fp32",
+  "torch": "2.3.0+cu121",
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 4090"
+}
+Starting: /root/hyperseg/.venv-mask2former/bin/python -u tools/infer_hyperseg.py --checkpoint /root/hyperseg/models/hyperseg_b3_best.pt --input /root/hyperseg/dataset/low_altitude_2026/test_2/images --output /root/hyperseg/runs/b3_test2_20260929/predictions --size 768 --overlap 0.5
+Progress: 172/1300
+Progress: 375/1300
+Progress: 580/1300
+Progress: 786/1300
+Progress: 993/1300
+Progress: 1200/1300
+{
+  "checked_at_utc": "2026-09-29T10:17:23.497101+00:00",
+  "checkpoint": "/root/hyperseg/models/hyperseg_b3_best.pt",
+  "checkpoint_sha256": "fb124302bafaec18aaa3f695dc021efead7bd00f710348d040888bb270148968",
+  "checkpoint_epoch": 141,
+  "checkpoint_val_miou": 0.7420226665631505,
+  "translated_legacy_encoder_keys": 628,
+  "model_config": {
+    "classes": 9,
+    "widths": [
+      64,
+      128,
+      320,
+      512
+    ],
+    "context_dim": 128,
+    "pretrained": false,
+    "model_name": "nvidia/mit-b3",
+    "adapter_rank": 8,
+    "adapter_scale": 0.1
+  },
+  "input": "/root/hyperseg/dataset/low_altitude_2026/test_2/images",
+  "output": "/root/hyperseg/runs/b3_test2_20260929/predictions",
+  "image_count": 1300,
+  "image_side": 1024,
+  "first_image": "test2_1.png",
+  "last_image": "test2_999.png",
+  "size": 768,
+  "overlap": 0.5,
+  "tta": false,
+  "precision": "fp32",
+  "torch": "2.3.0+cu121",
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "status": "complete",
+  "submission_check": "passed",
+  "submission": "/root/hyperseg/runs/b3_test2_20260929/hyperseg_b3_test2_predictions.zip",
+  "submission_sha256": "ff0a2fb0e0580bafb1b7f41f82d29861ad42bf181689f7efff43df3e84b0ef8a",
+  "elapsed_seconds": 224.8315877839923
+}

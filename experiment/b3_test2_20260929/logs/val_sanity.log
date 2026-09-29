@@ -1,0 +1,24 @@
+translated 628 legacy encoder keys; checkpoint epoch=141 val_miou=0.7420226665631505
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+progress: 100/699 | running mean_iou=0.7370
+progress: 200/699 | running mean_iou=0.7422
+progress: 300/699 | running mean_iou=0.7400
+progress: 400/699 | running mean_iou=0.7396
+progress: 500/699 | running mean_iou=0.7367
+progress: 600/699 | running mean_iou=0.7411
+progress: 699/699 | running mean_iou=0.7420
+{
+  "checkpoint": "/root/hyperseg/models/hyperseg_b3_best.pt",
+  "checkpoint_epoch": 141,
+  "recorded_val_miou": 0.7420226665631505,
+  "replayed_val_miou": 0.7420232149377345,
+  "absolute_difference": 5.483745839640619e-07,
+  "samples": 699,
+  "size": 768,
+  "batch_size": 2,
+  "translated_encoder_keys": 628,
+  "elapsed_seconds": 28.75523503869772,
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 4090"
+}

@@ -11,16 +11,16 @@ def main():
     state = source.get('model', source)
     channels = state['head.weight'].shape[1]
     model = nn.Module()
-    model.head = nn.Conv2d(channels, 8, 1)
+    model.head = nn.Conv2d(channels, 7, 1)
     initial = {k: v.clone() for k, v in model.state_dict().items()}
     report = load_transfer_checkpoint(model, source, 'mapped')
     for i in (1, 2, 3, 4, 5, 7):
-        assert torch.equal(model.head.weight[i], state['head.weight'][i])
-        assert torch.equal(model.head.bias[i], state['head.bias'][i])
-    for i in (0, 6):
+        assert torch.equal(model.head.weight[i - 1], state['head.weight'][i])
+        assert torch.equal(model.head.bias[i - 1], state['head.bias'][i])
+    for i in (5,):
         assert torch.equal(model.head.weight[i], initial['head.weight'][i])
         assert torch.equal(model.head.bias[i], initial['head.bias'][i])
-    assert report['head_random_channels'] == [0, 6]
+    assert report['head_random_channels'] == [5]
     model.zero_grad()
     model.head(torch.randn(1, channels, 2, 2)).sum().backward()
     assert model.head.weight.grad is not None and model.head.bias.grad is not None
@@ -35,7 +35,7 @@ def main():
         pass
     else:
         raise AssertionError('8-class source incorrectly accepted as UAV source')
-    print('MAPPED_HEAD_OK: copied 1..5,7; unchanged 0,6; gradients enabled; random baseline unchanged; wrong source rejected')
+    print('MAPPED_HEAD_OK: copied 1..5,7; unchanged target Forest=5; gradients enabled; random baseline unchanged; wrong source rejected')
 
 
 if __name__ == '__main__':

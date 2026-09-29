@@ -1,0 +1,17 @@
+WorkDir=/root/hyperseg Cmd=["/bin/sh","-c","/bin/bash --norc"]
+DEFAULT_STARTUP_OK
+/root/hyperseg
+CONTAINER_STARTED
+{"cwd": "/root/hyperseg", "python": "/root/hyperseg/.venv-mask2former/bin/python", "version": "3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0]"}
+IMPORT_OK torch 2.3.0+cu121
+IMPORT_OK numpy 2.5.3
+IMPORT_OK PIL 10.3.0
+IMPORT_OK mmcv 2.1.0
+IMPORT_OK mmcv.ops 
+IMPORT_OK mmengine 0.10.7
+IMPORT_OK mmseg 1.2.2
+IMPORT_OK transformers 4.57.6
+IMPORT_OK hyperseg_uav.swin_l_model 
+FILE_OK /root/hyperseg/experiment/mask2former_uav/infer_h3_hyperseg.py 2956
+FILE_OK /root/hyperseg/runs/mask2former_uav/h3_swin_l_hyperseg_160k_seed3407_fp32/best.pt 2369198126
+STARTUP_CHECK_PASSED (no inference, no checkpoint loading)

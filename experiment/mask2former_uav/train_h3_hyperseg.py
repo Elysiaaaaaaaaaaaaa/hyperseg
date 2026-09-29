@@ -128,7 +128,7 @@ def save_checkpoint(path, model, optimizer, step, best, args, metrics):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--data-root", type=Path, default=ROOT / "dataset")
+    parser.add_argument("--data-root", type=Path, default=ROOT / "dataset/low_altitude_2026")
     parser.add_argument("--image-dir", type=Path)
     parser.add_argument("--mask-dir", type=Path)
     parser.add_argument("--split-dir", type=Path, default=ROOT / "runs/splits")

@@ -1,0 +1,2834 @@
+Unified stdout/stderr log: /root/autodl-tmp/work_dirs/mathseg_fewshot_20260922/suim/m2/grid_20260922_131206_465720.log
+
+START adapter_200 K=1 seed=3407
+{
+  "shots_per_class": 1,
+  "support_images": 8,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/200: loss=1.7034
+step 40/200: loss=1.1505
+step 60/200: loss=1.2639
+step 80/200: loss=1.0325
+step 100/200: loss=0.9663
+step 120/200: loss=0.9992
+step 140/200: loss=0.7051
+step 160/200: loss=0.7809
+step 180/200: loss=0.7867
+step 200/200: loss=1.0219
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "dee9c77aecc63b55deba892e585e431190209cfbb2068810d62561e0b9c3d21e",
+  "mode": "adapter",
+  "steps": 200,
+  "shots_per_class": 1,
+  "seed": 3407,
+  "support_images": 8,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.11788908055480007,
+    "foreground_mIoU": 0.10989198536422858,
+    "pixel_accuracy": 0.2992078044045789,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.17386874688880052,
+      "HD_human_divers": 0.02339001527481937,
+      "PF_plants_seagrass": 0.0028382308561295372,
+      "WR_wrecks_ruins": 0.12499440864140343,
+      "RO_robots_instruments": 0.036633610101245835,
+      "RI_reefs_invertebrates": 0.3082380002248217,
+      "FV_fish_vertebrates": 0.10249765553269734,
+      "SR_sand_seafloor_rocks": 0.17065197691848294
+    },
+    "confusion": [
+      [
+        2962942,
+        4359281,
+        60879,
+        1396075,
+        1328410,
+        5469154,
+        614871,
+        286666
+      ],
+      [
+        83292,
+        153327,
+        33425,
+        193406,
+        83623,
+        487189,
+        398597,
+        21190
+      ],
+      [
+        5053,
+        3439,
+        4251,
+        48423,
+        24668,
+        728510,
+        141794,
+        259479
+      ],
+      [
+        119245,
+        13040,
+        9652,
+        832721,
+        33808,
+        777758,
+        495432,
+        589360
+      ],
+      [
+        18625,
+        58730,
+        5558,
+        69458,
+        96695,
+        31338,
+        71986,
+        1909
+      ],
+      [
+        63624,
+        38627,
+        68142,
+        128410,
+        81446,
+        5645915,
+        474073,
+        1174153
+      ],
+      [
+        67343,
+        47096,
+        22650,
+        257287,
+        148577,
+        1403407,
+        521895,
+        198449
+      ],
+      [
+        205797,
+        580971,
+        81841,
+        1697991,
+        584685,
+        1744993,
+        228318,
+        1575307
+      ]
+    ]
+  }
+}
+DONE adapter_200 K=1 seed=3407
+
+START adapter_200 K=2 seed=3407
+{
+  "shots_per_class": 2,
+  "support_images": 16,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/200: loss=1.7551
+step 40/200: loss=1.3476
+step 60/200: loss=1.4904
+step 80/200: loss=1.2792
+step 100/200: loss=1.1203
+step 120/200: loss=1.2230
+step 140/200: loss=1.1443
+step 160/200: loss=1.2191
+step 180/200: loss=1.1169
+step 200/200: loss=1.1318
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "29046447dcda3d354ed9272a4c3b67aede0e0ef9d6117932cdb150e0225a1fd1",
+  "mode": "adapter",
+  "steps": 200,
+  "shots_per_class": 2,
+  "seed": 3407,
+  "support_images": 16,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.16388373768953962,
+    "foreground_mIoU": 0.12812499975833755,
+    "pixel_accuracy": 0.3432230713678827,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.4141949032079541,
+      "HD_human_divers": 0.12222528781040157,
+      "PF_plants_seagrass": 0.09024540312176588,
+      "WR_wrecks_ruins": 0.18475855477256123,
+      "RO_robots_instruments": 0.03506113500665609,
+      "RI_reefs_invertebrates": 0.1571787561664227,
+      "FV_fish_vertebrates": 0.19838500405609483,
+      "SR_sand_seafloor_rocks": 0.10902085737446066
+    },
+    "confusion": [
+      [
+        7211820,
+        1393756,
+        356062,
+        987901,
+        2211763,
+        3751769,
+        356171,
+        209036
+      ],
+      [
+        160792,
+        425724,
+        38718,
+        94286,
+        170249,
+        156205,
+        374149,
+        33926
+      ],
+      [
+        2502,
+        2847,
+        636564,
+        81466,
+        21372,
+        188769,
+        123291,
+        158806
+      ],
+      [
+        104990,
+        33187,
+        328718,
+        1064906,
+        104880,
+        245088,
+        380008,
+        609239
+      ],
+      [
+        20950,
+        117326,
+        2569,
+        17641,
+        159606,
+        7369,
+        28563,
+        275
+      ],
+      [
+        96252,
+        55133,
+        3831927,
+        185612,
+        60459,
+        2151087,
+        487174,
+        806746
+      ],
+      [
+        60822,
+        94521,
+        252751,
+        213259,
+        317692,
+        686601,
+        938345,
+        102713
+      ],
+      [
+        487072,
+        332290,
+        1027338,
+        1312590,
+        1311506,
+        975418,
+        313859,
+        939830
+      ]
+    ]
+  }
+}
+DONE adapter_200 K=2 seed=3407
+
+START adapter_200 K=5 seed=3407
+{
+  "shots_per_class": 5,
+  "support_images": 40,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/200: loss=1.3944
+step 40/200: loss=1.5231
+step 60/200: loss=1.4076
+step 80/200: loss=1.4932
+step 100/200: loss=1.4985
+step 120/200: loss=1.5994
+step 140/200: loss=1.1633
+step 160/200: loss=1.2234
+step 180/200: loss=1.2856
+step 200/200: loss=1.2203
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "0b743b962f8559d5a744ca6cc888b512e8bc5f55bcd62d7139fa8ec7474a2bed",
+  "mode": "adapter",
+  "steps": 200,
+  "shots_per_class": 5,
+  "seed": 3407,
+  "support_images": 40,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.17404740620810627,
+    "foreground_mIoU": 0.14287903570150062,
+    "pixel_accuracy": 0.4145713165307497,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.3922259997543461,
+      "HD_human_divers": 0.1499589216731742,
+      "PF_plants_seagrass": 0.051608446472162214,
+      "WR_wrecks_ruins": 0.20078320916602652,
+      "RO_robots_instruments": 0.03599933413309739,
+      "RI_reefs_invertebrates": 0.38297281631745483,
+      "FV_fish_vertebrates": 0.08702967263200073,
+      "SR_sand_seafloor_rocks": 0.09180084951658835
+    },
+    "confusion": [
+      [
+        6843289,
+        2181005,
+        127599,
+        1153637,
+        2253023,
+        3727016,
+        33509,
+        159200
+      ],
+      [
+        118027,
+        722811,
+        677,
+        100371,
+        146392,
+        308382,
+        33791,
+        23598
+      ],
+      [
+        3181,
+        2972,
+        89725,
+        121032,
+        19754,
+        821978,
+        32705,
+        124270
+      ],
+      [
+        104821,
+        64071,
+        48883,
+        1383214,
+        116870,
+        617073,
+        96302,
+        439782
+      ],
+      [
+        12879,
+        137415,
+        220,
+        9165,
+        159164,
+        17341,
+        16568,
+        1547
+      ],
+      [
+        108470,
+        109830,
+        143945,
+        475185,
+        32405,
+        6131525,
+        66678,
+        606352
+      ],
+      [
+        58085,
+        241102,
+        32324,
+        400612,
+        329135,
+        1248368,
+        262154,
+        94924
+      ],
+      [
+        563570,
+        629616,
+        169307,
+        1758074,
+        1169426,
+        1595792,
+        65980,
+        748138
+      ]
+    ]
+  }
+}
+DONE adapter_200 K=5 seed=3407
+
+START adapter_200 K=10 seed=3407
+{
+  "shots_per_class": 10,
+  "support_images": 78,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/200: loss=1.8562
+step 40/200: loss=1.5426
+step 60/200: loss=1.4159
+step 80/200: loss=1.5549
+step 100/200: loss=1.2547
+step 120/200: loss=1.3646
+step 140/200: loss=1.4008
+step 160/200: loss=1.2853
+step 180/200: loss=1.5060
+step 200/200: loss=1.3245
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "e1fac0d707247d66a3f792736df70e4340edf997dc089d86606dfe30eb284b02",
+  "mode": "adapter",
+  "steps": 200,
+  "shots_per_class": 10,
+  "seed": 3407,
+  "support_images": 78,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.2505697188548549,
+    "foreground_mIoU": 0.19645701148139985,
+    "pixel_accuracy": 0.5293316205182206,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.6293586704690403,
+      "HD_human_divers": 0.251818901460678,
+      "PF_plants_seagrass": 0.13015320814003328,
+      "WR_wrecks_ruins": 0.24433396434751314,
+      "RO_robots_instruments": 0.10798367264153336,
+      "RI_reefs_invertebrates": 0.31726769930045584,
+      "FV_fish_vertebrates": 0.2588420510683642,
+      "SR_sand_seafloor_rocks": 0.06479958341122119
+    },
+    "confusion": [
+      [
+        12518185,
+        754640,
+        193765,
+        448964,
+        90588,
+        2054474,
+        333217,
+        84445
+      ],
+      [
+        265918,
+        793051,
+        286,
+        56231,
+        30408,
+        136629,
+        168163,
+        3363
+      ],
+      [
+        19357,
+        3432,
+        553555,
+        124906,
+        0,
+        332971,
+        139092,
+        42304
+      ],
+      [
+        242739,
+        65971,
+        287599,
+        1315734,
+        18030,
+        355084,
+        297859,
+        288000
+      ],
+      [
+        110709,
+        147908,
+        30,
+        3055,
+        63888,
+        3609,
+        24985,
+        115
+      ],
+      [
+        198129,
+        105379,
+        1734207,
+        503143,
+        431,
+        3691094,
+        1119104,
+        322903
+      ],
+      [
+        262967,
+        209716,
+        83815,
+        123563,
+        9575,
+        486306,
+        1442395,
+        48367
+      ],
+      [
+        2312286,
+        408196,
+        737784,
+        1254104,
+        88314,
+        590542,
+        823367,
+        485310
+      ]
+    ]
+  }
+}
+DONE adapter_200 K=10 seed=3407
+
+START adapter_2000 K=1 seed=3407
+{
+  "shots_per_class": 1,
+  "support_images": 8,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/2000: loss=1.6972
+step 40/2000: loss=1.1258
+step 60/2000: loss=1.2054
+step 80/2000: loss=0.9450
+step 100/2000: loss=0.8774
+step 120/2000: loss=0.8382
+step 140/2000: loss=0.5165
+step 160/2000: loss=0.5805
+step 180/2000: loss=0.5171
+step 200/2000: loss=0.7447
+step 220/2000: loss=0.3879
+step 240/2000: loss=0.3743
+step 260/2000: loss=0.4390
+step 280/2000: loss=0.4023
+step 300/2000: loss=0.3141
+step 320/2000: loss=0.2173
+step 340/2000: loss=0.3383
+step 360/2000: loss=0.3386
+step 380/2000: loss=0.2899
+step 400/2000: loss=0.1793
+step 420/2000: loss=0.1787
+step 440/2000: loss=0.1759
+step 460/2000: loss=0.2390
+step 480/2000: loss=0.1466
+step 500/2000: loss=0.1209
+step 520/2000: loss=0.1200
+step 540/2000: loss=0.2394
+step 560/2000: loss=0.2076
+step 580/2000: loss=0.1841
+step 600/2000: loss=0.1137
+step 620/2000: loss=0.2064
+step 640/2000: loss=0.1441
+step 660/2000: loss=0.1529
+step 680/2000: loss=0.2127
+step 700/2000: loss=0.0925
+step 720/2000: loss=0.1408
+step 740/2000: loss=0.0720
+step 760/2000: loss=0.0707
+step 780/2000: loss=0.1819
+step 800/2000: loss=0.1393
+step 820/2000: loss=0.1206
+step 840/2000: loss=0.0680
+step 860/2000: loss=0.1282
+step 880/2000: loss=0.1243
+step 900/2000: loss=0.1323
+step 920/2000: loss=0.0704
+step 940/2000: loss=0.1263
+step 960/2000: loss=0.1175
+step 980/2000: loss=0.1796
+step 1000/2000: loss=0.0740
+step 1020/2000: loss=0.1056
+step 1040/2000: loss=0.1079
+step 1060/2000: loss=0.0622
+step 1080/2000: loss=0.0569
+step 1100/2000: loss=0.0920
+step 1120/2000: loss=0.0883
+step 1140/2000: loss=0.0695
+step 1160/2000: loss=0.1030
+step 1180/2000: loss=0.1205
+step 1200/2000: loss=0.0652
+step 1220/2000: loss=0.1333
+step 1240/2000: loss=0.1424
+step 1260/2000: loss=0.0795
+step 1280/2000: loss=0.0969
+step 1300/2000: loss=0.1220
+step 1320/2000: loss=0.0548
+step 1340/2000: loss=0.0915
+step 1360/2000: loss=0.0945
+step 1380/2000: loss=0.0538
+step 1400/2000: loss=0.0496
+step 1420/2000: loss=0.1204
+step 1440/2000: loss=0.0670
+step 1460/2000: loss=0.0485
+step 1480/2000: loss=0.0521
+step 1500/2000: loss=0.1047
+step 1520/2000: loss=0.1299
+step 1540/2000: loss=0.0496
+step 1560/2000: loss=0.0792
+step 1580/2000: loss=0.0579
+step 1600/2000: loss=0.1041
+step 1620/2000: loss=0.0315
+step 1640/2000: loss=0.0855
+step 1660/2000: loss=0.0427
+step 1680/2000: loss=0.0990
+step 1700/2000: loss=0.0404
+step 1720/2000: loss=0.1069
+step 1740/2000: loss=0.0994
+step 1760/2000: loss=0.1022
+step 1780/2000: loss=0.0442
+step 1800/2000: loss=0.0959
+step 1820/2000: loss=0.0929
+step 1840/2000: loss=0.0880
+step 1860/2000: loss=0.1540
+step 1880/2000: loss=0.1175
+step 1900/2000: loss=0.1162
+step 1920/2000: loss=0.0936
+step 1940/2000: loss=0.0889
+step 1960/2000: loss=0.1322
+step 1980/2000: loss=0.0893
+step 2000/2000: loss=0.0868
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "f27e2a60a3e74d3a00fc69a0b5f83e8d75155866d3f05197ff6f3cfad81879b1",
+  "mode": "adapter",
+  "steps": 2000,
+  "shots_per_class": 1,
+  "seed": 3407,
+  "support_images": 8,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.25055849193074475,
+    "foreground_mIoU": 0.19336410956263575,
+    "pixel_accuracy": 0.5937004620866115,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.6509191685075075,
+      "HD_human_divers": 0.054005251393287594,
+      "PF_plants_seagrass": 0.02547809488119357,
+      "WR_wrecks_ruins": 0.24370048855298243,
+      "RO_robots_instruments": 0.04777336609731438,
+      "RI_reefs_invertebrates": 0.37489204454432284,
+      "FV_fish_vertebrates": 0.3765363881171774,
+      "SR_sand_seafloor_rocks": 0.23116313335217203
+    },
+    "confusion": [
+      [
+        13934446,
+        105915,
+        2916,
+        46673,
+        258805,
+        1785981,
+        148777,
+        194765
+      ],
+      [
+        416250,
+        95168,
+        5936,
+        37505,
+        259501,
+        276633,
+        323267,
+        39789
+      ],
+      [
+        34228,
+        6117,
+        43512,
+        122341,
+        21127,
+        789971,
+        28629,
+        169692
+      ],
+      [
+        395711,
+        13875,
+        17596,
+        882564,
+        112892,
+        907852,
+        125001,
+        415525
+      ],
+      [
+        208881,
+        32465,
+        247,
+        1418,
+        57080,
+        4491,
+        47952,
+        1765
+      ],
+      [
+        869943,
+        25806,
+        370662,
+        105256,
+        53957,
+        5026668,
+        90029,
+        1132069
+      ],
+      [
+        292133,
+        28938,
+        21449,
+        26757,
+        126421,
+        691688,
+        1324713,
+        154605
+      ],
+      [
+        2711913,
+        95034,
+        73397,
+        410545,
+        7806,
+        1277302,
+        87795,
+        2036111
+      ]
+    ]
+  }
+}
+DONE adapter_2000 K=1 seed=3407
+
+START adapter_2000 K=2 seed=3407
+{
+  "shots_per_class": 2,
+  "support_images": 16,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/2000: loss=1.7533
+step 40/2000: loss=1.3239
+step 60/2000: loss=1.4784
+step 80/2000: loss=1.2300
+step 100/2000: loss=1.0582
+step 120/2000: loss=1.1540
+step 140/2000: loss=0.9562
+step 160/2000: loss=0.9976
+step 180/2000: loss=0.7576
+step 200/2000: loss=0.7791
+step 220/2000: loss=0.6204
+step 240/2000: loss=0.6840
+step 260/2000: loss=0.6151
+step 280/2000: loss=0.7822
+step 300/2000: loss=0.4464
+step 320/2000: loss=0.6187
+step 340/2000: loss=0.3935
+step 360/2000: loss=0.3806
+step 380/2000: loss=0.3186
+step 400/2000: loss=0.4691
+step 420/2000: loss=0.3221
+step 440/2000: loss=0.4242
+step 460/2000: loss=0.3170
+step 480/2000: loss=0.2619
+step 500/2000: loss=0.4051
+step 520/2000: loss=0.4417
+step 540/2000: loss=0.1822
+step 560/2000: loss=0.3549
+step 580/2000: loss=0.2837
+step 600/2000: loss=0.3603
+step 620/2000: loss=0.1400
+step 640/2000: loss=0.2775
+step 660/2000: loss=0.1327
+step 680/2000: loss=0.1151
+step 700/2000: loss=0.3165
+step 720/2000: loss=0.1939
+step 740/2000: loss=0.2135
+step 760/2000: loss=0.1560
+step 780/2000: loss=0.1498
+step 800/2000: loss=0.1360
+step 820/2000: loss=0.1595
+step 840/2000: loss=0.1339
+step 860/2000: loss=0.0931
+step 880/2000: loss=0.1627
+step 900/2000: loss=0.1286
+step 920/2000: loss=0.1546
+step 940/2000: loss=0.0829
+step 960/2000: loss=0.0927
+step 980/2000: loss=0.0895
+step 1000/2000: loss=0.1410
+step 1020/2000: loss=0.1722
+step 1040/2000: loss=0.0779
+step 1060/2000: loss=0.1607
+step 1080/2000: loss=0.3430
+step 1100/2000: loss=0.2569
+step 1120/2000: loss=0.1389
+step 1140/2000: loss=0.1383
+step 1160/2000: loss=0.1705
+step 1180/2000: loss=0.2475
+step 1200/2000: loss=0.2525
+step 1220/2000: loss=0.0717
+step 1240/2000: loss=0.0750
+step 1260/2000: loss=0.0997
+step 1280/2000: loss=0.2941
+step 1300/2000: loss=0.1069
+step 1320/2000: loss=0.2025
+step 1340/2000: loss=0.1485
+step 1360/2000: loss=0.0710
+step 1380/2000: loss=0.1358
+step 1400/2000: loss=0.1968
+step 1420/2000: loss=0.0946
+step 1440/2000: loss=0.0846
+step 1460/2000: loss=0.0874
+step 1480/2000: loss=0.0779
+step 1500/2000: loss=0.1050
+step 1520/2000: loss=0.0868
+step 1540/2000: loss=0.2952
+step 1560/2000: loss=0.0721
+step 1580/2000: loss=0.1142
+step 1600/2000: loss=0.1398
+step 1620/2000: loss=0.1252
+step 1640/2000: loss=0.1125
+step 1660/2000: loss=0.0604
+step 1680/2000: loss=0.0746
+step 1700/2000: loss=0.2041
+step 1720/2000: loss=0.0823
+step 1740/2000: loss=0.2083
+step 1760/2000: loss=0.1128
+step 1780/2000: loss=0.0565
+step 1800/2000: loss=0.1796
+step 1820/2000: loss=0.2350
+step 1840/2000: loss=0.0598
+step 1860/2000: loss=0.0815
+step 1880/2000: loss=0.0415
+step 1900/2000: loss=0.1069
+step 1920/2000: loss=0.1190
+step 1940/2000: loss=0.1011
+step 1960/2000: loss=0.0524
+step 1980/2000: loss=0.1119
+step 2000/2000: loss=0.0578
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "b6b4628465471151b1528d686ba50d26a731ee718fb57fcad6025cf5f93d2d97",
+  "mode": "adapter",
+  "steps": 2000,
+  "shots_per_class": 2,
+  "seed": 3407,
+  "support_images": 16,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.34300863805955256,
+    "foreground_mIoU": 0.2910294268303663,
+    "pixel_accuracy": 0.6305897541234826,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.7068631166638558,
+      "HD_human_divers": 0.2877340540891096,
+      "PF_plants_seagrass": 0.17070276050119634,
+      "WR_wrecks_ruins": 0.25850302124567687,
+      "RO_robots_instruments": 0.16110880007616069,
+      "RI_reefs_invertebrates": 0.46478184417643326,
+      "FV_fish_vertebrates": 0.44996706897424543,
+      "SR_sand_seafloor_rocks": 0.24440843874974227
+    },
+    "confusion": [
+      [
+        12716172,
+        265773,
+        134952,
+        926648,
+        385116,
+        1155167,
+        254558,
+        639892
+      ],
+      [
+        79818,
+        603395,
+        1961,
+        7403,
+        371288,
+        85044,
+        285619,
+        19521
+      ],
+      [
+        12903,
+        941,
+        376121,
+        97759,
+        673,
+        440445,
+        66711,
+        220064
+      ],
+      [
+        48974,
+        76471,
+        53243,
+        1327747,
+        115572,
+        544192,
+        215017,
+        489800
+      ],
+      [
+        29394,
+        74705,
+        0,
+        44,
+        233538,
+        1987,
+        14155,
+        476
+      ],
+      [
+        36521,
+        42591,
+        526779,
+        223712,
+        14617,
+        5616573,
+        277526,
+        936071
+      ],
+      [
+        125218,
+        71405,
+        43845,
+        1202,
+        159027,
+        398071,
+        1751032,
+        116904
+      ],
+      [
+        1178476,
+        111123,
+        226971,
+        1008508,
+        48975,
+        1785025,
+        111177,
+        2229648
+      ]
+    ]
+  }
+}
+DONE adapter_2000 K=2 seed=3407
+
+START adapter_2000 K=5 seed=3407
+{
+  "shots_per_class": 5,
+  "support_images": 40,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/2000: loss=1.3948
+step 40/2000: loss=1.5159
+step 60/2000: loss=1.3900
+step 80/2000: loss=1.4698
+step 100/2000: loss=1.4142
+step 120/2000: loss=1.4850
+step 140/2000: loss=1.0628
+step 160/2000: loss=1.0226
+step 180/2000: loss=1.0105
+step 200/2000: loss=0.9272
+step 220/2000: loss=1.0521
+step 240/2000: loss=0.8568
+step 260/2000: loss=0.8642
+step 280/2000: loss=0.9965
+step 300/2000: loss=0.9859
+step 320/2000: loss=0.7544
+step 340/2000: loss=0.7932
+step 360/2000: loss=0.5553
+step 380/2000: loss=0.8025
+step 400/2000: loss=0.8518
+step 420/2000: loss=0.4245
+step 440/2000: loss=0.4517
+step 460/2000: loss=0.4388
+step 480/2000: loss=0.6528
+step 500/2000: loss=0.8559
+step 520/2000: loss=0.6561
+step 540/2000: loss=0.3167
+step 560/2000: loss=0.2925
+step 580/2000: loss=0.4551
+step 600/2000: loss=0.4408
+step 620/2000: loss=0.4980
+step 640/2000: loss=0.6869
+step 660/2000: loss=0.4541
+step 680/2000: loss=0.5111
+step 700/2000: loss=0.4272
+step 720/2000: loss=0.4221
+step 740/2000: loss=0.4331
+step 760/2000: loss=0.2992
+step 780/2000: loss=0.2835
+step 800/2000: loss=0.2471
+step 820/2000: loss=0.4238
+step 840/2000: loss=0.3875
+step 860/2000: loss=0.2659
+step 880/2000: loss=0.2389
+step 900/2000: loss=0.2521
+step 920/2000: loss=0.2945
+step 940/2000: loss=0.2269
+step 960/2000: loss=0.2342
+step 980/2000: loss=0.3767
+step 1000/2000: loss=0.1466
+step 1020/2000: loss=0.3728
+step 1040/2000: loss=0.1471
+step 1060/2000: loss=0.3493
+step 1080/2000: loss=0.2040
+step 1100/2000: loss=0.3032
+step 1120/2000: loss=0.3164
+step 1140/2000: loss=0.1859
+step 1160/2000: loss=0.2067
+step 1180/2000: loss=0.3803
+step 1200/2000: loss=0.1749
+step 1220/2000: loss=0.2491
+step 1240/2000: loss=0.2248
+step 1260/2000: loss=0.2051
+step 1280/2000: loss=0.3705
+step 1300/2000: loss=0.1404
+step 1320/2000: loss=0.2255
+step 1340/2000: loss=0.2565
+step 1360/2000: loss=0.2982
+step 1380/2000: loss=0.1853
+step 1400/2000: loss=0.0787
+step 1420/2000: loss=0.3249
+step 1440/2000: loss=0.2506
+step 1460/2000: loss=0.2406
+step 1480/2000: loss=0.1745
+step 1500/2000: loss=0.2169
+step 1520/2000: loss=0.1747
+step 1540/2000: loss=0.1895
+step 1560/2000: loss=0.1776
+step 1580/2000: loss=0.2203
+step 1600/2000: loss=0.1040
+step 1620/2000: loss=0.1681
+step 1640/2000: loss=0.0907
+step 1660/2000: loss=0.1417
+step 1680/2000: loss=0.1363
+step 1700/2000: loss=0.1202
+step 1720/2000: loss=0.2362
+step 1740/2000: loss=0.2956
+step 1760/2000: loss=0.1306
+step 1780/2000: loss=0.0812
+step 1800/2000: loss=0.1678
+step 1820/2000: loss=0.3037
+step 1840/2000: loss=0.2351
+step 1860/2000: loss=0.1544
+step 1880/2000: loss=0.1961
+step 1900/2000: loss=0.2996
+step 1920/2000: loss=0.2201
+step 1940/2000: loss=0.1011
+step 1960/2000: loss=0.1057
+step 1980/2000: loss=0.1655
+step 2000/2000: loss=0.1553
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "3b14e6a941958f1af2e9dac3e851f5d51cc1c5b67fe6a52c02fc9e746bdc2124",
+  "mode": "adapter",
+  "steps": 2000,
+  "shots_per_class": 5,
+  "seed": 3407,
+  "support_images": 40,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.4109225493391662,
+    "foreground_mIoU": 0.36271017938044653,
+    "pixel_accuracy": 0.6928032841721026,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.7484091390502037,
+      "HD_human_divers": 0.43771794689698246,
+      "PF_plants_seagrass": 0.11431807075650981,
+      "WR_wrecks_ruins": 0.3922719923865521,
+      "RO_robots_instruments": 0.23510636787429898,
+      "RI_reefs_invertebrates": 0.5283253409730101,
+      "FV_fish_vertebrates": 0.5402321937894187,
+      "SR_sand_seafloor_rocks": 0.2909993429863539
+    },
+    "confusion": [
+      [
+        13920874,
+        211459,
+        92084,
+        295029,
+        193629,
+        733326,
+        140912,
+        890965
+      ],
+      [
+        88392,
+        961507,
+        1038,
+        17031,
+        257787,
+        45306,
+        72048,
+        10940
+      ],
+      [
+        39689,
+        1618,
+        221070,
+        189019,
+        620,
+        621985,
+        23495,
+        118121
+      ],
+      [
+        108722,
+        109622,
+        62995,
+        1840834,
+        172073,
+        236321,
+        28992,
+        311457
+      ],
+      [
+        11678,
+        89582,
+        0,
+        6,
+        248384,
+        3152,
+        1084,
+        413
+      ],
+      [
+        136420,
+        56970,
+        428285,
+        490387,
+        7547,
+        5833770,
+        88242,
+        632769
+      ],
+      [
+        202414,
+        145060,
+        41714,
+        25812,
+        61883,
+        308016,
+        1707896,
+        173909
+      ],
+      [
+        1535027,
+        128276,
+        92082,
+        804449,
+        8637,
+        1419507,
+        139934,
+        2571991
+      ]
+    ]
+  }
+}
+DONE adapter_2000 K=5 seed=3407
+
+START adapter_2000 K=10 seed=3407
+{
+  "shots_per_class": 10,
+  "support_images": 78,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/2000: loss=1.8511
+step 40/2000: loss=1.5355
+step 60/2000: loss=1.3858
+step 80/2000: loss=1.5388
+step 100/2000: loss=1.2378
+step 120/2000: loss=1.3498
+step 140/2000: loss=1.3560
+step 160/2000: loss=1.1150
+step 180/2000: loss=1.2931
+step 200/2000: loss=1.1866
+step 220/2000: loss=1.0224
+step 240/2000: loss=0.8292
+step 260/2000: loss=1.1630
+step 280/2000: loss=1.3345
+step 300/2000: loss=1.2590
+step 320/2000: loss=0.8500
+step 340/2000: loss=0.8247
+step 360/2000: loss=0.7561
+step 380/2000: loss=0.6800
+step 400/2000: loss=0.6646
+step 420/2000: loss=0.5569
+step 440/2000: loss=0.5762
+step 460/2000: loss=1.0810
+step 480/2000: loss=0.5494
+step 500/2000: loss=0.6721
+step 520/2000: loss=0.4865
+step 540/2000: loss=0.9533
+step 560/2000: loss=0.7854
+step 580/2000: loss=0.7260
+step 600/2000: loss=0.6699
+step 620/2000: loss=0.6392
+step 640/2000: loss=0.6865
+step 660/2000: loss=0.6555
+step 680/2000: loss=0.4759
+step 700/2000: loss=0.4909
+step 720/2000: loss=0.5032
+step 740/2000: loss=0.4787
+step 760/2000: loss=0.5234
+step 780/2000: loss=0.3386
+step 800/2000: loss=0.6815
+step 820/2000: loss=0.4847
+step 840/2000: loss=0.5707
+step 860/2000: loss=1.1344
+step 880/2000: loss=0.5586
+step 900/2000: loss=0.3252
+step 920/2000: loss=0.3353
+step 940/2000: loss=0.2411
+step 960/2000: loss=0.2843
+step 980/2000: loss=0.3812
+step 1000/2000: loss=0.3199
+step 1020/2000: loss=0.3390
+step 1040/2000: loss=0.3327
+step 1060/2000: loss=0.3503
+step 1080/2000: loss=0.4507
+step 1100/2000: loss=0.2125
+step 1120/2000: loss=0.3273
+step 1140/2000: loss=0.4922
+step 1160/2000: loss=0.3097
+step 1180/2000: loss=0.2915
+step 1200/2000: loss=0.5534
+step 1220/2000: loss=0.5358
+step 1240/2000: loss=0.5661
+step 1260/2000: loss=0.3470
+step 1280/2000: loss=0.4244
+step 1300/2000: loss=1.0522
+step 1320/2000: loss=0.5942
+step 1340/2000: loss=0.3034
+step 1360/2000: loss=0.2886
+step 1380/2000: loss=0.5900
+step 1400/2000: loss=0.3265
+step 1420/2000: loss=0.5132
+step 1440/2000: loss=0.3247
+step 1460/2000: loss=0.4425
+step 1480/2000: loss=0.2584
+step 1500/2000: loss=0.2820
+step 1520/2000: loss=0.3052
+step 1540/2000: loss=0.4568
+step 1560/2000: loss=0.6844
+step 1580/2000: loss=0.4360
+step 1600/2000: loss=0.3954
+step 1620/2000: loss=0.1858
+step 1640/2000: loss=0.5053
+step 1660/2000: loss=0.4756
+step 1680/2000: loss=0.5110
+step 1700/2000: loss=0.3766
+step 1720/2000: loss=0.3614
+step 1740/2000: loss=0.3240
+step 1760/2000: loss=0.3137
+step 1780/2000: loss=0.4021
+step 1800/2000: loss=0.8146
+step 1820/2000: loss=0.4729
+step 1840/2000: loss=1.0067
+step 1860/2000: loss=0.3544
+step 1880/2000: loss=0.1797
+step 1900/2000: loss=0.3163
+step 1920/2000: loss=0.3041
+step 1940/2000: loss=0.2081
+step 1960/2000: loss=0.2167
+step 1980/2000: loss=0.6147
+step 2000/2000: loss=0.3757
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "c9c8af9cb39b804a71f414645e1ac9ca3885e90c384d97788aa0d0a3d9e2f019",
+  "mode": "adapter",
+  "steps": 2000,
+  "shots_per_class": 10,
+  "seed": 3407,
+  "support_images": 78,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.49932611619423395,
+    "foreground_mIoU": 0.45653346236641545,
+    "pixel_accuracy": 0.7532878712717551,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.7988746929889627,
+      "HD_human_divers": 0.5397941680960548,
+      "PF_plants_seagrass": 0.2223039819953938,
+      "WR_wrecks_ruins": 0.41696792779350783,
+      "RO_robots_instruments": 0.3848473668408812,
+      "RI_reefs_invertebrates": 0.5795161061398603,
+      "FV_fish_vertebrates": 0.6310796728601058,
+      "SR_sand_seafloor_rocks": 0.42122501283910474
+    },
+    "confusion": [
+      [
+        14841101,
+        261106,
+        89029,
+        213660,
+        111907,
+        258232,
+        188504,
+        514739
+      ],
+      [
+        92548,
+        1123479,
+        1039,
+        18992,
+        119737,
+        11345,
+        85718,
+        1191
+      ],
+      [
+        56855,
+        908,
+        469781,
+        252506,
+        1652,
+        324051,
+        22877,
+        86987
+      ],
+      [
+        162271,
+        83553,
+        148349,
+        1924902,
+        64541,
+        159476,
+        54894,
+        273030
+      ],
+      [
+        11294,
+        81221,
+        0,
+        178,
+        257648,
+        1732,
+        1096,
+        1130
+      ],
+      [
+        124920,
+        49539,
+        557167,
+        689333,
+        4499,
+        5365101,
+        196048,
+        687783
+      ],
+      [
+        147339,
+        62865,
+        16452,
+        17629,
+        7608,
+        137701,
+        2190434,
+        86676
+      ],
+      [
+        1504003,
+        88069,
+        85584,
+        553113,
+        5238,
+        690971,
+        255090,
+        3517835
+      ]
+    ]
+  }
+}
+DONE adapter_2000 K=10 seed=3407
+
+START semantic_head_200 K=1 seed=3407
+{
+  "shots_per_class": 1,
+  "support_images": 8,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/200: loss=1.9450
+step 40/200: loss=1.5123
+step 60/200: loss=1.6870
+step 80/200: loss=1.6739
+step 100/200: loss=1.5458
+step 120/200: loss=1.9693
+step 140/200: loss=1.6807
+step 160/200: loss=1.8563
+step 180/200: loss=1.6369
+step 200/200: loss=1.3588
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "1b85e648432a00e934836b5be3c5da8d52bbf12e1a2480609e8efff2ed5837e5",
+  "mode": "semantic-head",
+  "steps": 200,
+  "shots_per_class": 1,
+  "seed": 3407,
+  "support_images": 8,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.05330100284540788,
+    "foreground_mIoU": 0.05672667643445829,
+    "pixel_accuracy": 0.10367697921280057,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.029321287722055046,
+      "HD_human_divers": 0.005646750005601507,
+      "PF_plants_seagrass": 0.013529411667386618,
+      "WR_wrecks_ruins": 0.134900413504792,
+      "RO_robots_instruments": 0.01337851133993171,
+      "RI_reefs_invertebrates": 0.16711587741583497,
+      "FV_fish_vertebrates": 0.01917156967688117,
+      "SR_sand_seafloor_rocks": 0.04334420143078008
+    },
+    "confusion": [
+      [
+        489181,
+        2417805,
+        5382437,
+        2144574,
+        5585419,
+        173560,
+        103488,
+        181814
+      ],
+      [
+        3881,
+        26210,
+        484235,
+        554129,
+        171620,
+        171313,
+        38472,
+        4189
+      ],
+      [
+        4483,
+        6048,
+        163554,
+        104169,
+        52976,
+        316118,
+        252482,
+        315787
+      ],
+      [
+        11351,
+        7868,
+        239666,
+        1275781,
+        171687,
+        273055,
+        169958,
+        721650
+      ],
+      [
+        451,
+        19315,
+        38205,
+        150862,
+        118187,
+        12775,
+        12776,
+        1728
+      ],
+      [
+        44822,
+        95059,
+        2186442,
+        1056793,
+        138688,
+        1516234,
+        1112414,
+        1523938
+      ],
+      [
+        34445,
+        27137,
+        913625,
+        842623,
+        288250,
+        430090,
+        85701,
+        44833
+      ],
+      [
+        105765,
+        614327,
+        1628547,
+        1733040,
+        2071153,
+        21649,
+        113919,
+        411503
+      ]
+    ]
+  }
+}
+DONE semantic_head_200 K=1 seed=3407
+
+START semantic_head_200 K=2 seed=3407
+{
+  "shots_per_class": 2,
+  "support_images": 16,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/200: loss=1.7960
+step 40/200: loss=1.6339
+step 60/200: loss=1.5830
+step 80/200: loss=1.4968
+step 100/200: loss=1.5268
+step 120/200: loss=1.7318
+step 140/200: loss=1.6946
+step 160/200: loss=1.7082
+step 180/200: loss=1.4995
+step 200/200: loss=1.9321
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "2be28f30f293f1a4007e6193465fb96f2209255edc1c7d53321dddbd731c394b",
+  "mode": "semantic-head",
+  "steps": 200,
+  "shots_per_class": 2,
+  "seed": 3407,
+  "support_images": 16,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.0517691160289353,
+    "foreground_mIoU": 0.05406864037696355,
+    "pixel_accuracy": 0.09975844780629628,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.03567244559273756,
+      "HD_human_divers": 0.006339295090800416,
+      "PF_plants_seagrass": 0.01662678196247917,
+      "WR_wrecks_ruins": 0.13928309579464537,
+      "RO_robots_instruments": 0.013508671980077646,
+      "RI_reefs_invertebrates": 0.14181833708416064,
+      "FV_fish_vertebrates": 0.020853119205291912,
+      "SR_sand_seafloor_rocks": 0.040051181521289725
+    },
+    "confusion": [
+      [
+        597178,
+        2001618,
+        5908302,
+        1814448,
+        5780364,
+        135040,
+        73103,
+        168225
+      ],
+      [
+        5628,
+        25836,
+        525341,
+        514702,
+        184855,
+        149750,
+        44271,
+        3666
+      ],
+      [
+        5253,
+        1444,
+        219170,
+        107288,
+        56470,
+        294585,
+        232097,
+        299310
+      ],
+      [
+        16048,
+        7342,
+        271081,
+        1235577,
+        193183,
+        250200,
+        143780,
+        753805
+      ],
+      [
+        485,
+        21725,
+        42705,
+        135649,
+        126500,
+        11507,
+        13810,
+        1918
+      ],
+      [
+        74753,
+        73322,
+        2484182,
+        1073550,
+        156680,
+        1258817,
+        1077659,
+        1475427
+      ],
+      [
+        48053,
+        24693,
+        980545,
+        813849,
+        320432,
+        346020,
+        90551,
+        42561
+      ],
+      [
+        112098,
+        491339,
+        1753972,
+        1540474,
+        2318072,
+        14772,
+        90900,
+        378276
+      ]
+    ]
+  }
+}
+DONE semantic_head_200 K=2 seed=3407
+
+START semantic_head_200 K=5 seed=3407
+{
+  "shots_per_class": 5,
+  "support_images": 40,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/200: loss=1.3983
+step 40/200: loss=1.7438
+step 60/200: loss=1.5893
+step 80/200: loss=1.7630
+step 100/200: loss=1.6674
+step 120/200: loss=1.7526
+step 140/200: loss=1.5730
+step 160/200: loss=1.8286
+step 180/200: loss=1.8004
+step 200/200: loss=1.7285
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "b0724fc08f3f1a4de744483d9ce359da1b4682fcaf13a447c537bd7f0bf1ff5f",
+  "mode": "semantic-head",
+  "steps": 200,
+  "shots_per_class": 5,
+  "seed": 3407,
+  "support_images": 40,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.05817226367509169,
+    "foreground_mIoU": 0.06147779842525729,
+    "pixel_accuracy": 0.11066092431124414,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.035033520423932506,
+      "HD_human_divers": 0.009144283116505841,
+      "PF_plants_seagrass": 0.014383766682675431,
+      "WR_wrecks_ruins": 0.1409546757546431,
+      "RO_robots_instruments": 0.013327999020976726,
+      "RI_reefs_invertebrates": 0.1903293035692248,
+      "FV_fish_vertebrates": 0.02103260005378507,
+      "SR_sand_seafloor_rocks": 0.04117196077899003
+    },
+    "confusion": [
+      [
+        585900,
+        1133468,
+        7063876,
+        1476788,
+        5755656,
+        198899,
+        73169,
+        190522
+      ],
+      [
+        4925,
+        29337,
+        535936,
+        473215,
+        177530,
+        192677,
+        35636,
+        4793
+      ],
+      [
+        4930,
+        464,
+        200364,
+        111332,
+        52908,
+        336883,
+        207359,
+        301377
+      ],
+      [
+        12938,
+        8104,
+        266114,
+        1190094,
+        203962,
+        314673,
+        115541,
+        759590
+      ],
+      [
+        496,
+        24360,
+        50113,
+        120753,
+        125027,
+        16189,
+        15291,
+        2070
+      ],
+      [
+        58985,
+        75395,
+        2093644,
+        1180925,
+        156441,
+        1755068,
+        888047,
+        1465885
+      ],
+      [
+        46660,
+        29442,
+        891865,
+        782528,
+        325728,
+        462871,
+        86109,
+        41501
+      ],
+      [
+        116771,
+        482952,
+        1812705,
+        1426540,
+        2354254,
+        24636,
+        92326,
+        389719
+      ]
+    ]
+  }
+}
+DONE semantic_head_200 K=5 seed=3407
+
+START semantic_head_200 K=10 seed=3407
+{
+  "shots_per_class": 10,
+  "support_images": 78,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/200: loss=2.0088
+step 40/200: loss=1.6325
+step 60/200: loss=1.7610
+step 80/200: loss=1.7585
+step 100/200: loss=1.4004
+step 120/200: loss=1.4558
+step 140/200: loss=1.5424
+step 160/200: loss=1.6080
+step 180/200: loss=1.6985
+step 200/200: loss=1.6847
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "cd1bef5d05c3851b5e38e0574b72965a3646d8ebbf7beea6ae0251251d8580fd",
+  "mode": "semantic-head",
+  "steps": 200,
+  "shots_per_class": 10,
+  "seed": 3407,
+  "support_images": 78,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.054758443329169224,
+    "foreground_mIoU": 0.05565301386200404,
+    "pixel_accuracy": 0.1060827584821086,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.048496449599325475,
+      "HD_human_divers": 0.010382467781726521,
+      "PF_plants_seagrass": 0.013950795126328111,
+      "WR_wrecks_ruins": 0.1390023833138915,
+      "RO_robots_instruments": 0.014668256875351454,
+      "RI_reefs_invertebrates": 0.1511359150032207,
+      "FV_fish_vertebrates": 0.02226828253192515,
+      "SR_sand_seafloor_rocks": 0.03816299640158484
+    },
+    "confusion": [
+      [
+        822967,
+        1098119,
+        7623662,
+        1443017,
+        5035354,
+        165281,
+        122390,
+        167488
+      ],
+      [
+        9449,
+        33512,
+        562630,
+        468033,
+        152128,
+        176161,
+        49742,
+        2394
+      ],
+      [
+        11856,
+        448,
+        205438,
+        108580,
+        46494,
+        301073,
+        275527,
+        266201
+      ],
+      [
+        29333,
+        8580,
+        291838,
+        1174570,
+        183950,
+        295029,
+        178753,
+        708963
+      ],
+      [
+        642,
+        24518,
+        56715,
+        118175,
+        121008,
+        14234,
+        17117,
+        1890
+      ],
+      [
+        154783,
+        81937,
+        2117018,
+        1180437,
+        134010,
+        1367430,
+        1399252,
+        1239523
+      ],
+      [
+        85449,
+        29721,
+        918968,
+        804498,
+        278224,
+        404943,
+        108080,
+        36821
+      ],
+      [
+        199844,
+        530377,
+        1939451,
+        1456243,
+        2065192,
+        16573,
+        144055,
+        348168
+      ]
+    ]
+  }
+}
+DONE semantic_head_200 K=10 seed=3407
+
+START semantic_head_2000 K=1 seed=3407
+{
+  "shots_per_class": 1,
+  "support_images": 8,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/2000: loss=1.9447
+step 40/2000: loss=1.5088
+step 60/2000: loss=1.6820
+step 80/2000: loss=1.6599
+step 100/2000: loss=1.5257
+step 120/2000: loss=1.9334
+step 140/2000: loss=1.6383
+step 160/2000: loss=1.7917
+step 180/2000: loss=1.5793
+step 200/2000: loss=1.3093
+step 220/2000: loss=1.5080
+step 240/2000: loss=1.3314
+step 260/2000: loss=1.3594
+step 280/2000: loss=1.7120
+step 300/2000: loss=1.6859
+step 320/2000: loss=1.6791
+step 340/2000: loss=1.4342
+step 360/2000: loss=1.5561
+step 380/2000: loss=1.3921
+step 400/2000: loss=1.1837
+step 420/2000: loss=1.1322
+step 440/2000: loss=1.2413
+step 460/2000: loss=1.3250
+step 480/2000: loss=1.4130
+step 500/2000: loss=1.5107
+step 520/2000: loss=1.6018
+step 540/2000: loss=1.2442
+step 560/2000: loss=1.4765
+step 580/2000: loss=1.1893
+step 600/2000: loss=1.2189
+step 620/2000: loss=1.4137
+step 640/2000: loss=1.2689
+step 660/2000: loss=1.3138
+step 680/2000: loss=1.3142
+step 700/2000: loss=1.4468
+step 720/2000: loss=1.4268
+step 740/2000: loss=0.9591
+step 760/2000: loss=0.9796
+step 780/2000: loss=1.3713
+step 800/2000: loss=1.2632
+step 820/2000: loss=1.0178
+step 840/2000: loss=0.9735
+step 860/2000: loss=1.2582
+step 880/2000: loss=1.2569
+step 900/2000: loss=0.9792
+step 920/2000: loss=1.1125
+step 940/2000: loss=0.9447
+step 960/2000: loss=1.0613
+step 980/2000: loss=1.1763
+step 1000/2000: loss=1.2199
+step 1020/2000: loss=0.9875
+step 1040/2000: loss=1.1337
+step 1060/2000: loss=1.0992
+step 1080/2000: loss=1.2718
+step 1100/2000: loss=1.3801
+step 1120/2000: loss=1.1329
+step 1140/2000: loss=1.2099
+step 1160/2000: loss=0.9944
+step 1180/2000: loss=1.1504
+step 1200/2000: loss=1.2288
+step 1220/2000: loss=1.0425
+step 1240/2000: loss=1.1590
+step 1260/2000: loss=0.8756
+step 1280/2000: loss=1.0989
+step 1300/2000: loss=1.0784
+step 1320/2000: loss=0.9809
+step 1340/2000: loss=1.1712
+step 1360/2000: loss=1.1268
+step 1380/2000: loss=0.9526
+step 1400/2000: loss=1.0461
+step 1420/2000: loss=1.0903
+step 1440/2000: loss=1.2354
+step 1460/2000: loss=0.9147
+step 1480/2000: loss=0.9734
+step 1500/2000: loss=0.8949
+step 1520/2000: loss=1.0705
+step 1540/2000: loss=1.1547
+step 1560/2000: loss=0.8378
+step 1580/2000: loss=1.1458
+step 1600/2000: loss=0.8717
+step 1620/2000: loss=1.0044
+step 1640/2000: loss=0.9590
+step 1660/2000: loss=0.7289
+step 1680/2000: loss=0.9283
+step 1700/2000: loss=1.2312
+step 1720/2000: loss=1.0063
+step 1740/2000: loss=1.0911
+step 1760/2000: loss=1.1756
+step 1780/2000: loss=0.8933
+step 1800/2000: loss=0.8998
+step 1820/2000: loss=1.1907
+step 1840/2000: loss=0.8399
+step 1860/2000: loss=1.1280
+step 1880/2000: loss=1.1051
+step 1900/2000: loss=1.0113
+step 1920/2000: loss=0.8708
+step 1940/2000: loss=1.1238
+step 1960/2000: loss=0.8127
+step 1980/2000: loss=0.8625
+step 2000/2000: loss=0.8108
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "58aac00aa7c7c53938b6eab9ab3481bb6b8fd115322c29451a470e8b606efad0",
+  "mode": "semantic-head",
+  "steps": 2000,
+  "shots_per_class": 1,
+  "seed": 3407,
+  "support_images": 8,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.10677266298075531,
+    "foreground_mIoU": 0.09381404699845343,
+    "pixel_accuracy": 0.24063998569451622,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.1974829748568685,
+      "HD_human_divers": 0.00815594765122673,
+      "PF_plants_seagrass": 0.06475903287425527,
+      "WR_wrecks_ruins": 0.10509125292003166,
+      "RO_robots_instruments": 0.006831449509377717,
+      "RI_reefs_invertebrates": 0.27048841572488214,
+      "FV_fish_vertebrates": 0.08739594948403949,
+      "SR_sand_seafloor_rocks": 0.11397628082536097
+    },
+    "confusion": [
+      [
+        3342364,
+        6353699,
+        272475,
+        4223655,
+        434572,
+        983674,
+        632958,
+        234881
+      ],
+      [
+        77868,
+        77323,
+        71083,
+        312764,
+        81987,
+        127471,
+        687492,
+        18061
+      ],
+      [
+        1285,
+        31378,
+        268401,
+        191594,
+        0,
+        489927,
+        51645,
+        181387
+      ],
+      [
+        98822,
+        24145,
+        176481,
+        1258832,
+        4511,
+        249570,
+        517632,
+        541023
+      ],
+      [
+        8489,
+        45202,
+        809,
+        157632,
+        8470,
+        6432,
+        126610,
+        655
+      ],
+      [
+        56120,
+        117743,
+        1890731,
+        922346,
+        13520,
+        3034213,
+        396057,
+        1243660
+      ],
+      [
+        63720,
+        95796,
+        190038,
+        647406,
+        85235,
+        1001897,
+        465021,
+        117591
+      ],
+      [
+        140239,
+        1358554,
+        327377,
+        2652053,
+        265730,
+        684173,
+        241755,
+        1030022
+      ]
+    ]
+  }
+}
+DONE semantic_head_2000 K=1 seed=3407
+
+START semantic_head_2000 K=2 seed=3407
+{
+  "shots_per_class": 2,
+  "support_images": 16,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/2000: loss=1.7955
+step 40/2000: loss=1.6317
+step 60/2000: loss=1.5810
+step 80/2000: loss=1.4919
+step 100/2000: loss=1.5147
+step 120/2000: loss=1.7172
+step 140/2000: loss=1.6688
+step 160/2000: loss=1.6726
+step 180/2000: loss=1.4681
+step 200/2000: loss=1.8497
+step 220/2000: loss=1.5865
+step 240/2000: loss=1.7419
+step 260/2000: loss=1.6095
+step 280/2000: loss=1.6142
+step 300/2000: loss=1.2988
+step 320/2000: loss=1.5655
+step 340/2000: loss=1.2922
+step 360/2000: loss=1.6669
+step 380/2000: loss=1.4919
+step 400/2000: loss=1.2946
+step 420/2000: loss=1.6278
+step 440/2000: loss=1.4573
+step 460/2000: loss=1.3806
+step 480/2000: loss=1.4379
+step 500/2000: loss=1.4054
+step 520/2000: loss=1.4942
+step 540/2000: loss=1.4651
+step 560/2000: loss=1.3431
+step 580/2000: loss=1.3934
+step 600/2000: loss=1.2445
+step 620/2000: loss=1.3375
+step 640/2000: loss=1.3943
+step 660/2000: loss=1.3037
+step 680/2000: loss=1.0696
+step 700/2000: loss=1.2641
+step 720/2000: loss=1.3232
+step 740/2000: loss=1.4837
+step 760/2000: loss=1.3595
+step 780/2000: loss=1.1615
+step 800/2000: loss=1.2869
+step 820/2000: loss=1.2832
+step 840/2000: loss=1.3259
+step 860/2000: loss=1.1991
+step 880/2000: loss=1.2502
+step 900/2000: loss=1.4931
+step 920/2000: loss=1.2646
+step 940/2000: loss=1.1562
+step 960/2000: loss=1.3043
+step 980/2000: loss=1.2793
+step 1000/2000: loss=1.2961
+step 1020/2000: loss=1.2818
+step 1040/2000: loss=1.2324
+step 1060/2000: loss=1.2180
+step 1080/2000: loss=1.2978
+step 1100/2000: loss=1.3445
+step 1120/2000: loss=1.1598
+step 1140/2000: loss=1.3268
+step 1160/2000: loss=1.1328
+step 1180/2000: loss=1.3271
+step 1200/2000: loss=1.2495
+step 1220/2000: loss=1.2668
+step 1240/2000: loss=1.3161
+step 1260/2000: loss=1.4090
+step 1280/2000: loss=1.3206
+step 1300/2000: loss=1.0960
+step 1320/2000: loss=1.1438
+step 1340/2000: loss=1.1365
+step 1360/2000: loss=1.1541
+step 1380/2000: loss=1.1252
+step 1400/2000: loss=1.1960
+step 1420/2000: loss=1.0977
+step 1440/2000: loss=1.0706
+step 1460/2000: loss=1.2430
+step 1480/2000: loss=1.2420
+step 1500/2000: loss=1.3026
+step 1520/2000: loss=1.1899
+step 1540/2000: loss=1.2659
+step 1560/2000: loss=1.4226
+step 1580/2000: loss=1.1566
+step 1600/2000: loss=1.3114
+step 1620/2000: loss=1.0556
+step 1640/2000: loss=1.2871
+step 1660/2000: loss=1.1492
+step 1680/2000: loss=1.3245
+step 1700/2000: loss=1.2506
+step 1720/2000: loss=1.1100
+step 1740/2000: loss=1.2276
+step 1760/2000: loss=1.1277
+step 1780/2000: loss=1.0010
+step 1800/2000: loss=1.0747
+step 1820/2000: loss=1.3344
+step 1840/2000: loss=1.2718
+step 1860/2000: loss=1.0718
+step 1880/2000: loss=1.1664
+step 1900/2000: loss=1.2538
+step 1920/2000: loss=1.1389
+step 1940/2000: loss=1.1311
+step 1960/2000: loss=1.0405
+step 1980/2000: loss=1.4184
+step 2000/2000: loss=1.2914
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "d72760771b6858cf8f374cda6d7bf35ce61548d4ba860a85dce6bdf30d55ba23",
+  "mode": "semantic-head",
+  "steps": 2000,
+  "shots_per_class": 2,
+  "seed": 3407,
+  "support_images": 16,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.12820602932043196,
+    "foreground_mIoU": 0.09834744633566042,
+    "pixel_accuracy": 0.2858159748087088,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.3372161102138329,
+      "HD_human_divers": 0.026448568683192307,
+      "PF_plants_seagrass": 0.11329850911476637,
+      "WR_wrecks_ruins": 0.10804725594876168,
+      "RO_robots_instruments": 0.025659174653372877,
+      "RI_reefs_invertebrates": 0.20167975901609186,
+      "FV_fish_vertebrates": 0.1162479999417282,
+      "SR_sand_seafloor_rocks": 0.09705085699170961
+    },
+    "confusion": [
+      [
+        5793074,
+        4232879,
+        251791,
+        2509470,
+        1997927,
+        829888,
+        474963,
+        388286
+      ],
+      [
+        107979,
+        196503,
+        49422,
+        107319,
+        188911,
+        71639,
+        678099,
+        54177
+      ],
+      [
+        3101,
+        20501,
+        576271,
+        113185,
+        2625,
+        270675,
+        33911,
+        195348
+      ],
+      [
+        109188,
+        29820,
+        222441,
+        821321,
+        40217,
+        227495,
+        441047,
+        979487
+      ],
+      [
+        16477,
+        79292,
+        1966,
+        43407,
+        108138,
+        5142,
+        88168,
+        11709
+      ],
+      [
+        47051,
+        161768,
+        2920057,
+        321625,
+        45504,
+        2210223,
+        334013,
+        1634149
+      ],
+      [
+        75560,
+        184153,
+        111638,
+        333578,
+        266537,
+        932843,
+        574539,
+        187856
+      ],
+      [
+        341480,
+        1267165,
+        313375,
+        1301898,
+        1318379,
+        947000,
+        225451,
+        985155
+      ]
+    ]
+  }
+}
+DONE semantic_head_2000 K=2 seed=3407
+
+START semantic_head_2000 K=5 seed=3407
+{
+  "shots_per_class": 5,
+  "support_images": 40,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/2000: loss=1.3981
+step 40/2000: loss=1.7426
+step 60/2000: loss=1.5839
+step 80/2000: loss=1.7568
+step 100/2000: loss=1.6605
+step 120/2000: loss=1.7395
+step 140/2000: loss=1.5553
+step 160/2000: loss=1.7942
+step 180/2000: loss=1.7452
+step 200/2000: loss=1.6637
+step 220/2000: loss=1.6841
+step 240/2000: loss=1.4848
+step 260/2000: loss=1.5849
+step 280/2000: loss=1.7518
+step 300/2000: loss=1.7801
+step 320/2000: loss=1.5940
+step 340/2000: loss=1.7829
+step 360/2000: loss=1.5941
+step 380/2000: loss=1.4263
+step 400/2000: loss=1.2021
+step 420/2000: loss=1.3662
+step 440/2000: loss=1.3531
+step 460/2000: loss=1.5604
+step 480/2000: loss=1.4875
+step 500/2000: loss=1.5878
+step 520/2000: loss=1.4971
+step 540/2000: loss=1.3063
+step 560/2000: loss=1.5380
+step 580/2000: loss=1.4043
+step 600/2000: loss=1.1825
+step 620/2000: loss=1.5830
+step 640/2000: loss=1.4918
+step 660/2000: loss=1.4503
+step 680/2000: loss=1.6436
+step 700/2000: loss=1.4857
+step 720/2000: loss=1.4790
+step 740/2000: loss=1.5982
+step 760/2000: loss=1.2455
+step 780/2000: loss=1.5443
+step 800/2000: loss=1.5570
+step 820/2000: loss=1.5890
+step 840/2000: loss=1.5885
+step 860/2000: loss=1.3159
+step 880/2000: loss=1.2616
+step 900/2000: loss=1.3531
+step 920/2000: loss=1.4264
+step 940/2000: loss=1.5003
+step 960/2000: loss=1.5877
+step 980/2000: loss=1.6494
+step 1000/2000: loss=1.3016
+step 1020/2000: loss=1.2949
+step 1040/2000: loss=1.2257
+step 1060/2000: loss=1.4544
+step 1080/2000: loss=1.2817
+step 1100/2000: loss=1.4213
+step 1120/2000: loss=1.4209
+step 1140/2000: loss=1.2370
+step 1160/2000: loss=1.4573
+step 1180/2000: loss=1.5209
+step 1200/2000: loss=1.3087
+step 1220/2000: loss=1.4021
+step 1240/2000: loss=1.2584
+step 1260/2000: loss=1.1403
+step 1280/2000: loss=1.3951
+step 1300/2000: loss=1.4662
+step 1320/2000: loss=1.3864
+step 1340/2000: loss=1.4839
+step 1360/2000: loss=1.3000
+step 1380/2000: loss=1.3370
+step 1400/2000: loss=1.2129
+step 1420/2000: loss=1.6376
+step 1440/2000: loss=1.2008
+step 1460/2000: loss=1.2923
+step 1480/2000: loss=1.6745
+step 1500/2000: loss=1.2194
+step 1520/2000: loss=1.1397
+step 1540/2000: loss=1.2627
+step 1560/2000: loss=1.1582
+step 1580/2000: loss=1.2118
+step 1600/2000: loss=1.1163
+step 1620/2000: loss=1.4004
+step 1640/2000: loss=1.4975
+step 1660/2000: loss=1.6294
+step 1680/2000: loss=1.4172
+step 1700/2000: loss=1.2826
+step 1720/2000: loss=1.5376
+step 1740/2000: loss=1.2886
+step 1760/2000: loss=1.2643
+step 1780/2000: loss=1.0588
+step 1800/2000: loss=1.1378
+step 1820/2000: loss=1.4348
+step 1840/2000: loss=1.3443
+step 1860/2000: loss=1.2032
+step 1880/2000: loss=1.3544
+step 1900/2000: loss=1.4042
+step 1920/2000: loss=1.2380
+step 1940/2000: loss=1.1783
+step 1960/2000: loss=1.4341
+step 1980/2000: loss=1.2094
+step 2000/2000: loss=1.5211
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "ee6c5601c58e88b28fac59017841c3e7373a3f489fdd68cc4ec6607800c3e106",
+  "mode": "semantic-head",
+  "steps": 2000,
+  "shots_per_class": 5,
+  "seed": 3407,
+  "support_images": 40,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.18761244298201252,
+    "foreground_mIoU": 0.1329299956417038,
+    "pixel_accuracy": 0.4691263485983346,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.5703895743641737,
+      "HD_human_divers": 0.074200757672509,
+      "PF_plants_seagrass": 0.07812765314290726,
+      "WR_wrecks_ruins": 0.17314645095189424,
+      "RO_robots_instruments": 0.0465203309056283,
+      "RI_reefs_invertebrates": 0.4148556587598508,
+      "FV_fish_vertebrates": 0.10652930944954228,
+      "SR_sand_seafloor_rocks": 0.037129808609594625
+    },
+    "confusion": [
+      [
+        10667719,
+        1942756,
+        133345,
+        1889181,
+        722861,
+        939965,
+        167670,
+        14781
+      ],
+      [
+        200755,
+        467706,
+        2539,
+        101959,
+        82102,
+        204817,
+        377725,
+        16446
+      ],
+      [
+        23281,
+        15650,
+        167481,
+        214739,
+        1468,
+        742878,
+        31541,
+        18579
+      ],
+      [
+        188679,
+        84333,
+        57348,
+        1392183,
+        31927,
+        768775,
+        175636,
+        172135
+      ],
+      [
+        53799,
+        105168,
+        80,
+        42878,
+        81050,
+        14718,
+        56039,
+        567
+      ],
+      [
+        111080,
+        284037,
+        437556,
+        1131822,
+        3450,
+        5027459,
+        217005,
+        461981
+      ],
+      [
+        268125,
+        448526,
+        15140,
+        345802,
+        62469,
+        1068282,
+        410718,
+        47642
+      ],
+      [
+        1378517,
+        1968732,
+        282059,
+        1443097,
+        483673,
+        704749,
+        163126,
+        275950
+      ]
+    ]
+  }
+}
+DONE semantic_head_2000 K=5 seed=3407
+
+START semantic_head_2000 K=10 seed=3407
+{
+  "shots_per_class": 10,
+  "support_images": 78,
+  "evaluation_images": 110,
+  "protocol_sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540"
+}
+step 20/2000: loss=2.0080
+step 40/2000: loss=1.6305
+step 60/2000: loss=1.7563
+step 80/2000: loss=1.7550
+step 100/2000: loss=1.3957
+step 120/2000: loss=1.4548
+step 140/2000: loss=1.5298
+step 160/2000: loss=1.5834
+step 180/2000: loss=1.6785
+step 200/2000: loss=1.6471
+step 220/2000: loss=1.5472
+step 240/2000: loss=1.6348
+step 260/2000: loss=1.7391
+step 280/2000: loss=1.5154
+step 300/2000: loss=1.7108
+step 320/2000: loss=1.6275
+step 340/2000: loss=1.3755
+step 360/2000: loss=1.5662
+step 380/2000: loss=1.4249
+step 400/2000: loss=1.5371
+step 420/2000: loss=1.4709
+step 440/2000: loss=1.3035
+step 460/2000: loss=1.7874
+step 480/2000: loss=1.6413
+step 500/2000: loss=1.4174
+step 520/2000: loss=1.3664
+step 540/2000: loss=1.3852
+step 560/2000: loss=1.5080
+step 580/2000: loss=1.7344
+step 600/2000: loss=1.5266
+step 620/2000: loss=1.3928
+step 640/2000: loss=1.3982
+step 660/2000: loss=1.6225
+step 680/2000: loss=1.6356
+step 700/2000: loss=1.4889
+step 720/2000: loss=1.2710
+step 740/2000: loss=1.5156
+step 760/2000: loss=1.6831
+step 780/2000: loss=1.2908
+step 800/2000: loss=1.4908
+step 820/2000: loss=1.4762
+step 840/2000: loss=1.4722
+step 860/2000: loss=1.5558
+step 880/2000: loss=1.5571
+step 900/2000: loss=1.4442
+step 920/2000: loss=1.3198
+step 940/2000: loss=1.3554
+step 960/2000: loss=1.4996
+step 980/2000: loss=1.3889
+step 1000/2000: loss=1.4990
+step 1020/2000: loss=1.4359
+step 1040/2000: loss=1.3637
+step 1060/2000: loss=1.6800
+step 1080/2000: loss=1.2424
+step 1100/2000: loss=1.2559
+step 1120/2000: loss=1.4033
+step 1140/2000: loss=1.4765
+step 1160/2000: loss=1.1485
+step 1180/2000: loss=1.2512
+step 1200/2000: loss=1.5780
+step 1220/2000: loss=1.4903
+step 1240/2000: loss=1.4729
+step 1260/2000: loss=1.3336
+step 1280/2000: loss=1.3826
+step 1300/2000: loss=1.2397
+step 1320/2000: loss=1.4591
+step 1340/2000: loss=1.3491
+step 1360/2000: loss=1.5707
+step 1380/2000: loss=1.4254
+step 1400/2000: loss=1.2477
+step 1420/2000: loss=1.4707
+step 1440/2000: loss=1.3362
+step 1460/2000: loss=1.5787
+step 1480/2000: loss=1.4056
+step 1500/2000: loss=1.3562
+step 1520/2000: loss=1.3277
+step 1540/2000: loss=1.4040
+step 1560/2000: loss=1.4119
+step 1580/2000: loss=1.5323
+step 1600/2000: loss=1.3349
+step 1620/2000: loss=1.1567
+step 1640/2000: loss=1.4355
+step 1660/2000: loss=1.4379
+step 1680/2000: loss=1.5495
+step 1700/2000: loss=1.2431
+step 1720/2000: loss=1.4160
+step 1740/2000: loss=1.2198
+step 1760/2000: loss=1.2807
+step 1780/2000: loss=1.2393
+step 1800/2000: loss=1.4581
+step 1820/2000: loss=1.3629
+step 1840/2000: loss=1.3333
+step 1860/2000: loss=1.1788
+step 1880/2000: loss=1.2427
+step 1900/2000: loss=1.5371
+step 1920/2000: loss=1.3926
+step 1940/2000: loss=1.2871
+step 1960/2000: loss=1.2883
+step 1980/2000: loss=1.3595
+step 2000/2000: loss=1.3285
+/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/conv.py:456: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return F.conv2d(input, weight, bias, self.stride,
+evaluation 25/110
+evaluation 50/110
+evaluation 75/110
+evaluation 100/110
+evaluation 110/110
+{
+  "signature": "94e3c24897f3e5d938a7371bb8bf9fedd100703c34e3d1c76d987e7bce58235d",
+  "mode": "semantic-head",
+  "steps": 2000,
+  "shots_per_class": 10,
+  "seed": 3407,
+  "support_images": 78,
+  "evaluation_images": 110,
+  "metrics": {
+    "mIoU": 0.1937971480151967,
+    "foreground_mIoU": 0.13096797837763594,
+    "pixel_accuracy": 0.48294566311235204,
+    "per_class_iou": {
+      "BW_background_waterbody": 0.633601335478122,
+      "HD_human_divers": 0.08816329492180627,
+      "PF_plants_seagrass": 0.0878864470708033,
+      "WR_wrecks_ruins": 0.17820954168129743,
+      "RO_robots_instruments": 0.031270840221697925,
+      "RI_reefs_invertebrates": 0.28735250802088963,
+      "FV_fish_vertebrates": 0.17308801625498282,
+      "SR_sand_seafloor_rocks": 0.07080520047197426
+    },
+    "confusion": [
+      [
+        12702029,
+        1013652,
+        430399,
+        1001801,
+        159,
+        374597,
+        673320,
+        282321
+      ],
+      [
+        248662,
+        403402,
+        18541,
+        46822,
+        8,
+        89841,
+        569866,
+        76907
+      ],
+      [
+        30080,
+        1376,
+        420841,
+        131705,
+        0,
+        482173,
+        76341,
+        73101
+      ],
+      [
+        258148,
+        72218,
+        243237,
+        1001335,
+        1358,
+        496778,
+        420822,
+        377120
+      ],
+      [
+        117201,
+        102179,
+        508,
+        12312,
+        11160,
+        6552,
+        82307,
+        22080
+      ],
+      [
+        140589,
+        180850,
+        2123482,
+        621644,
+        0,
+        2869176,
+        884859,
+        853790
+      ],
+      [
+        386953,
+        345669,
+        107685,
+        137303,
+        1058,
+        550033,
+        1025304,
+        112699
+      ],
+      [
+        2387441,
+        1405630,
+        648994,
+        796260,
+        0,
+        310501,
+        549380,
+        601697
+      ]
+    ]
+  }
+}
+DONE semantic_head_2000 K=10 seed=3407
+ALL_DONE

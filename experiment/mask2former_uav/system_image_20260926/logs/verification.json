@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "project": "/root/hyperseg",
+  "data": "/root/hyperseg/dataset/low_altitude_2026",
+  "image_counts": {
+    "train/images": 6996,
+    "train/masks": 6996,
+    "images": 500,
+    "test_2/images": 1300
+  },
+  "split_counts": {
+    "train": 5598,
+    "val": 699,
+    "test": 699
+  },
+  "checkpoint_sha256": "83f68e034efee4e8563436f80b90e48d8af2d7260316b1caad82f06be3c62d16",
+  "checkpoint_bytes": 2369198126,
+  "runtime_check": "passed",
+  "h3_preflight": "passed"
+}

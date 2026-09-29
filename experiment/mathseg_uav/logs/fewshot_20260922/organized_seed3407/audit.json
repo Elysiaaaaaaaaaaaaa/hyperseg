@@ -1,0 +1,19 @@
+{
+  "updated_utc": "2026-09-22T08:58:27.177130+00:00",
+  "seed": 3407,
+  "completed": 128,
+  "expected": 128,
+  "missing": [],
+  "protocol_hashes": {
+    "suim": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540",
+    "loveda": "8184bef3aae39e2b9f01cd79a90782318f436744d14c43f108c76f56fc527ec5"
+  },
+  "server_health": {
+    "checked_utc": "2026-09-22T08:56:49.061040+00:00",
+    "queue_alive": false,
+    "gpu_exit_code": 6,
+    "gpu_output": "No devices were found",
+    "gpu_error": ""
+  },
+  "checks": "run identity, variant, budget, consecutive history steps, confusion shape, class count, protocol, ignore policy, recomputed mIoU/accuracy and identical evaluation pixel counts"
+}

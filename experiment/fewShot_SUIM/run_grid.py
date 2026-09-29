@@ -1,4 +1,4 @@
-"""Run the SUIM 200/2000-step adapter/classification-head experiment grid."""
+"""Run fixed-protocol SUIM or MathSeg LoveDA update-scope/budget grids."""
 from __future__ import annotations
 
 import argparse
@@ -23,17 +23,22 @@ SETTINGS = {
 }
 
 
-def parse_args():
+def parse_args(default_model="hyperseg-v2", default_dataset="suim"):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--data-root", type=Path, default=ROOT / "SUIM")
+    parser.add_argument("--label-policy", choices=("standard",), default="standard",
+                        help="LoveDA: seven classes, raw 0/255 ignored")
+    parser.add_argument("--dataset", choices=("suim", "loveda"), default=default_dataset)
+    parser.add_argument("--checkpoint-format", choices=("full", "compact"), default="full")
+    parser.add_argument("--model", choices=("hyperseg-v2", "mathseg"), default=default_model)
+    parser.add_argument("--data-root", type=Path, default=None)
     parser.add_argument("--manifest-dir", type=Path, required=True)
-    parser.add_argument("--init-checkpoint", type=Path, default=ROOT / "models/hyperseg_resume_best.pt")
+    parser.add_argument("--init-checkpoint", type=Path, default=None)
     parser.add_argument("--backbone-path", type=Path)
-    parser.add_argument("--output-root", type=Path, default=ROOT / "runs/suim_fewshot_v1")
+    parser.add_argument("--output-root", type=Path, default=None)
     parser.add_argument("--settings", nargs="+", choices=tuple(SETTINGS), default=list(SETTINGS))
     parser.add_argument("--shots", nargs="+", type=int, choices=(1, 2, 5, 10), default=[1, 2, 5, 10])
     parser.add_argument("--seeds", nargs="+", type=int, default=[3407, 3408, 3409])
-    parser.add_argument("--head-init", choices=("random", "semantic-map"), default="random")
+    parser.add_argument("--head-init", choices=("random", "semantic-map"), default=None)
     parser.add_argument("--crop-size", type=int, default=512)
     parser.add_argument("--batch-size", type=int, default=2)
     parser.add_argument("--num-workers", type=int, default=4)
@@ -43,6 +48,18 @@ def parse_args():
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--skip-completed", action="store_true")
     args = parser.parse_args()
+    if args.data_root is None:
+        args.data_root = ROOT / ("LoveDA" if args.dataset == "loveda" else "SUIM")
+    if args.head_init is None:
+        args.head_init = "semantic-map" if args.dataset == "loveda" else "random"
+    if args.dataset == "loveda" and (args.model != "mathseg" or args.head_init != "semantic-map"):
+        parser.error("LoveDA grid requires --model mathseg and --head-init semantic-map")
+    if args.init_checkpoint is None:
+        if args.model == "mathseg":
+            parser.error("MathSeg requires --init-checkpoint")
+        args.init_checkpoint = ROOT / "models/hyperseg_resume_best.pt"
+    if args.output_root is None:
+        args.output_root = ROOT / "runs" / (f"mathseg_{args.dataset}_fewshot" if args.model == "mathseg" else "suim_fewshot_v1")
     for field in ("settings", "shots", "seeds"):
         values = getattr(args, field)
         if len(values) != len(set(values)):
@@ -71,7 +88,22 @@ def commands(args, checkpoint_hash=None):
                     "--num-workers", str(args.num_workers), "--lr", str(args.lr),
                     "--device", args.device, "--amp" if args.amp else "--no-amp",
                 ]
-                if checkpoint_hash:
+                if getattr(args, "model", "hyperseg-v2") != "hyperseg-v2":
+                    command += ["--model", args.model]
+                if getattr(args, "dataset", "suim") == "loveda":
+                    command = [
+                        sys.executable, "-u", str(ROOT / "experiment/mathseg_uav/fewshot_loveda.py"),
+                        "--data-root", str(args.data_root), "--manifest-dir", str(args.manifest_dir),
+                        "--init-checkpoint", str(args.init_checkpoint), "--output-root", str(output),
+                        "--shots", str(shots), "--seeds", str(seed), "--modes", mode,
+                        "--steps", str(steps), "--crop-size", str(args.crop_size),
+                        "--batch-size", str(args.batch_size), "--num-workers", str(args.num_workers),
+                        "--lr", str(args.lr), "--device", args.device, "--amp" if args.amp else "--no-amp",
+                    ]
+                    command += ["--label-policy", getattr(args, "label_policy", "standard")]
+                    output = output / f"{mode}_{shots}shot_seed{seed}"
+                command += ["--checkpoint-format", getattr(args, "checkpoint_format", "full")]
+                if checkpoint_hash and getattr(args, "dataset", "suim") == "suim":
                     command += ["--checkpoint-sha256", checkpoint_hash]
                 if args.backbone_path:
                     command += ["--backbone-path", str(args.backbone_path)]
@@ -91,9 +123,11 @@ def summarize(args):
         row = {
             "setting": setting, "mode": mode, "steps": steps, "shots_per_class": shots,
             "seed": seed, "support_images": result["support_images"],
-            "mIoU": metrics["mIoU"], "foreground_mIoU": metrics["foreground_mIoU"],
+            "mIoU": metrics["mIoU"],
             "pixel_accuracy": metrics["pixel_accuracy"],
         }
+        if "foreground_mIoU" in metrics:
+            row["foreground_mIoU"] = metrics["foreground_mIoU"]
         row.update(metrics["per_class_iou"])
         rows.append(row)
     if not rows:
@@ -121,8 +155,8 @@ def summarize(args):
     )
 
 
-def main():
-    args = parse_args()
+def main(default_model="hyperseg-v2", default_dataset="suim"):
+    args = parse_args(default_model, default_dataset)
     jobs = list(commands(args))
     if args.dry_run:
         for setting, _, _, shots, seed, _, command in jobs:

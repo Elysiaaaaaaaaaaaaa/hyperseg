@@ -1,0 +1,31 @@
+{
+  "checked_at_utc": "2026-09-26T03:46:52.277008+00:00",
+  "checkpoint": "/root/autodl-tmp/work_dirs/mask2former_uav/h3_swin_l_hyperseg_160k_seed3407_fp32/best.pt",
+  "step": 137200,
+  "best_val_mIoU": 0.7765679359436035,
+  "model_config": {
+    "classes": 9,
+    "target_widths": [
+      64,
+      128,
+      320,
+      512
+    ],
+    "context_dim": 128,
+    "adapter_rank": 8,
+    "adapter_scale": 0.1,
+    "pretrained_checkpoint": "/root/autodl-tmp/hyperseg/models/swin_l/swin_large_patch4_window12_384_22k_20220412-6580f57d.pth",
+    "with_cp": true
+  },
+  "input": "/root/autodl-tmp/data/low_altitude_2026/test_2/images",
+  "output": "/root/autodl-tmp/work_dirs/mask2former_uav/h3_test2_20260926/predictions",
+  "image_count": 1300,
+  "archive_sha256": "c8784dba28f19b86e7043bced92e42f98b346ae3f3ea13326f51ef6af295b65a",
+  "size": 512,
+  "overlap": 0.5,
+  "tta": false,
+  "precision": "fp32",
+  "torch": "2.3.0+cu121",
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 4090"
+}

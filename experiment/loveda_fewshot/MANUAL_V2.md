@@ -1,3 +1,11 @@
+## 2026-09-22 标准协议更新
+
+当前 `run_manual.py` 支持 HyperSeg v2 和 MathSeg，统一输出 7 类：原始标签 1..7→训练 0..6，
+原始 0/255→Ignore=255。Background 有效；仅无效 GT 像素不参与损失、混淆矩阵及 mIoU。
+语义映射为源 UAV 1..7→目标 0..6，Forest 近似对应 Vegetation。原支持清单保持原始类别 ID，
+不改写人工选择记录。每类 K 张的嵌套支持集和固定留出评估不变。
+请使用新输出目录；历史 8 通道 checkpoint、结果和下文历史说明保留，不作为新训练恢复点。
+
 # 手动支持集：HyperSeg-UAV v2 的 0/1/2/5/10-shot 实验
 
 入口为 `experiment/loveda_fewshot/run_manual.py`。使用 `tools/model_1.py` 的 v2 结构，默认源权重为 `models/hyperseg_resume_best.pt`。旧 `train.py` / `run_sweep.py` 保留作每域 K 张的历史实验；本入口只复用其中的数据增强、损失等公共函数。

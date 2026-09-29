@@ -1,0 +1,43 @@
+Checksum tree OK: train/images
+Checksum tree OK: train/masks
+Checksum tree OK: images
+Checksum tree OK: test_2/images
+Checkpoint SHA-256 OK: 83f68e034efee4e8563436f80b90e48d8af2d7260316b1caad82f06be3c62d16
+/root/hyperseg/.venv-mask2former/lib/python3.12/site-packages/mmdet/models/backbones/trident_resnet.py:236: SyntaxWarning: invalid escape sequence '\ '
+  """The stem layer, stage 1 and stage 2 in Trident ResNet are identical to
+/root/hyperseg/.venv-mask2former/lib/python3.12/site-packages/mmdet/models/dense_heads/free_anchor_retina_head.py:288: SyntaxWarning: invalid escape sequence '\i'
+  """Compute negative bag loss.
+prefix /root/hyperseg/.venv-mask2former
+versions 2.3.0+cu121 2.1.0 0.10.7 3.3.0 1.2.2
+{
+  "checked_at_utc": "2026-09-26T07:29:57.673620+00:00",
+  "checkpoint": "/root/hyperseg/runs/mask2former_uav/h3_swin_l_hyperseg_160k_seed3407_fp32/best.pt",
+  "step": 137200,
+  "best_val_mIoU": 0.7765679359436035,
+  "model_config": {
+    "classes": 9,
+    "target_widths": [
+      64,
+      128,
+      320,
+      512
+    ],
+    "context_dim": 128,
+    "adapter_rank": 8,
+    "adapter_scale": 0.1,
+    "pretrained_checkpoint": "/root/autodl-tmp/hyperseg/models/swin_l/swin_large_patch4_window12_384_22k_20220412-6580f57d.pth",
+    "with_cp": true
+  },
+  "input": "/root/hyperseg/dataset/low_altitude_2026/test_2/images",
+  "output": "/root/hyperseg/runs/mask2former_uav/h3_test2_20260926/predictions",
+  "image_count": 1300,
+  "archive_sha256": "c8784dba28f19b86e7043bced92e42f98b346ae3f3ea13326f51ef6af295b65a",
+  "size": 512,
+  "overlap": 0.5,
+  "tta": false,
+  "precision": "fp32",
+  "torch": "2.3.0+cu121",
+  "cuda_available": false,
+  "gpu": null
+}
+System-disk migration verified: /root/hyperseg/runs/system_image_20260926/verification.json

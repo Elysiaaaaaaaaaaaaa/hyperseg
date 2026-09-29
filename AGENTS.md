@@ -28,17 +28,19 @@
 ### 数据集约定（数据集在服务器上路径与称呼对照表）
 
 当前主数据集是 `low_altitude_2026`。本地代码目录为
-`/mnt/d/myproject/hyperseg`，server2 代码目录为
-`/root/autodl-tmp/hyperseg`；server2 上的数据与代码分开存放。
+`/mnt/d/myproject/hyperseg`，server2 系统盘代码目录为
+`/root/hyperseg`；比赛数据在系统盘的 `/root/hyperseg/dataset/low_altitude_2026`。
+原始数据盘 `/root/autodl-tmp` 的文件保留作迁移核对，不作为系统镜像运行路径。
 
 | 称呼 | 本地路径 | server2 路径 | 内容与用途 |
 | --- | --- | --- | --- |
-| 有标注训练图像 | `dataset/low_altitude_2026/train/images` | `/root/autodl-tmp/data/low_altitude_2026/train/images` | 5598 张训练图片；与同名 `masks` 配对 |
-| 有标注训练掩码 | `dataset/low_altitude_2026/train/masks` | `/root/autodl-tmp/data/low_altitude_2026/train/masks` | 单通道标签，像素值 `0..8`；0 为 Ignore |
-| 固定训练划分 | `runs/splits/train.txt` | `/root/autodl-tmp/hyperseg/runs/splits/train.txt` | 5598 个样本 ID/stem，只用于训练 |
-| 固定验证划分 | `runs/splits/val.txt` | `/root/autodl-tmp/hyperseg/runs/splits/val.txt` | 699 个样本 ID/stem，用于选最佳 checkpoint |
-| 固定有标注测试划分 | `runs/splits/test.txt` | `/root/autodl-tmp/hyperseg/runs/splits/test.txt` | 699 个有标注样本；只用于最终离线 mIoU，不是比赛无标注测试集 |
-| 无标注比赛测试图像 | `dataset/low_altitude_2026/images` | `/root/autodl-tmp/data/low_altitude_2026/images` | 500 张图片；没有掩码，只用于导出提交预测 |
+| 有标注训练图像 | `dataset/low_altitude_2026/train/images` | `/root/hyperseg/dataset/low_altitude_2026/train/images` | 6996 张有标注图片，按固定划分使用；与同名 `masks` 配对 |
+| 有标注训练掩码 | `dataset/low_altitude_2026/train/masks` | `/root/hyperseg/dataset/low_altitude_2026/train/masks` | 单通道标签，像素值 `0..8`；0 为 Ignore |
+| 固定训练划分 | `runs/splits/train.txt` | `/root/hyperseg/runs/splits/train.txt` | 5598 个样本 ID/stem，只用于训练 |
+| 固定验证划分 | `runs/splits/val.txt` | `/root/hyperseg/runs/splits/val.txt` | 699 个样本 ID/stem，用于选最佳 checkpoint |
+| 固定有标注测试划分 | `runs/splits/test.txt` | `/root/hyperseg/runs/splits/test.txt` | 699 个有标注样本；只用于最终离线 mIoU，不是比赛无标注测试集 |
+| 无标注比赛测试图像 | `dataset/low_altitude_2026/images` | `/root/hyperseg/dataset/low_altitude_2026/images` | 500 张图片；没有掩码，只用于导出提交预测 |
+| 复赛无标注测试图像 | `dataset/low_altitude_2026/test_2/images` | `/root/hyperseg/dataset/low_altitude_2026/test_2/images` | 1300 张图片；没有掩码，只用于导出提交预测 |
 
 数据集的两个“test”概念必须区分：`runs/splits/test.txt` 是从有标注训练数据中固定划出的离线评估集；`low_altitude_2026/images` 是独立的无标注比赛测试集，不能用它计算 mIoU。提交预测必须与无标注输入同名，并通过 `tools/check_submission.py` 的单通道、1024×1024 和 `0..8` 检查。
 

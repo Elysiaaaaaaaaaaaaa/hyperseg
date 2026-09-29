@@ -56,11 +56,13 @@ def legacy_encoder_key(key: str) -> str | None:
     return f"encoder.backbone.encoder.block.{stage_text}.{block_text}.{block_suffix}"
 
 
-def parse_args():
+def parse_args(default_model="hyperseg-v2"):
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--checkpoint-format", choices=("full", "compact"), default="full")
+    parser.add_argument("--model", choices=("hyperseg-v2", "mathseg"), default=default_model)
     parser.add_argument("--data-root", type=Path, default=ROOT / "SUIM")
     parser.add_argument("--manifest-dir", type=Path, required=True)
-    parser.add_argument("--init-checkpoint", type=Path, default=ROOT / "models/hyperseg_resume_best.pt")
+    parser.add_argument("--init-checkpoint", type=Path, default=None)
     parser.add_argument("--checkpoint-sha256", help=argparse.SUPPRESS)
     parser.add_argument("--backbone-path", type=Path)
     parser.add_argument("--output-dir", type=Path, required=True)
@@ -80,6 +82,12 @@ def parse_args():
     parser.add_argument("--check-only", action="store_true")
     parser.add_argument("--skip-completed", action="store_true")
     args = parser.parse_args()
+    if args.checkpoint_format == "compact" and (args.model != "mathseg" or args.mode == "full"):
+        parser.error("Compact checkpoints require MathSeg with a frozen encoder")
+    if args.init_checkpoint is None:
+        if args.model == "mathseg":
+            parser.error("MathSeg requires --init-checkpoint pointing to a 9-class UAV checkpoint")
+        args.init_checkpoint = ROOT / "models/hyperseg_resume_best.pt"
     if min(args.crop_size, args.batch_size, args.steps) < 1 or args.num_workers < 0:
         parser.error("Sizes and steps must be positive; workers cannot be negative")
     if args.lr <= 0 or args.encoder_lr_multiplier <= 0 or args.weight_decay < 0:
@@ -255,8 +263,8 @@ def evaluate(model, samples, device, num_workers: int):
     }
 
 
-def main():
-    args = parse_args()
+def main(default_model="hyperseg-v2"):
+    args = parse_args(default_model)
     manifests, evaluation, protocol_hash = load_protocol(args.manifest_dir)
     support_keys = manifests[args.shots]["samples"]
     print(json.dumps({
@@ -288,12 +296,14 @@ def main():
     checkpoint.pop("optimizer", None)
     checkpoint.pop("scheduler", None)
     checkpoint.pop("scaler", None)
+    model_files = ([ROOT / "experiment/mathseg_uav/model.py", ROOT / "experiment/mathseg_uav/fewshot_backend.py"]
+                   if args.model == "mathseg" else [ROOT / "tools/model_1.py"])
     implementation_hash = digest({
         str(path.relative_to(ROOT)): path.read_text(encoding="utf-8")
         for path in (
             Path(__file__), Path(__file__).with_name("data.py"),
             Path(__file__).with_name("protocol.py"), Path(__file__).with_name("constants.py"),
-            ROOT / "tools/model_1.py",
+            *model_files,
         )
     })
     settings = {
@@ -318,8 +328,13 @@ def main():
     device = torch.device(args.device)
     amp = args.amp and device.type == "cuda"
     amp_dtype = torch.bfloat16 if amp and torch.cuda.is_bf16_supported() else torch.float16
-    model, transfer = load_v2(checkpoint, args.backbone_path, args.head_init)
-    configure_model(model, args.mode)
+    if args.model == "mathseg":
+        from experiment.mathseg_uav.fewshot_backend import load_mathseg, configure_mathseg
+        model, transfer = load_mathseg(checkpoint, args.backbone_path, args.head_init)
+        configure_mathseg(model, args.mode)
+    else:
+        model, transfer = load_v2(checkpoint, args.backbone_path, args.head_init)
+        configure_model(model, args.mode)
     model.to(device)
     class_weights, histogram = compute_class_weights(support)
     class_weights = class_weights.to(device)
@@ -396,10 +411,12 @@ def main():
             if step % 20 == 0 or step == args.steps:
                 history.flush()
                 print(f"step {step}/{args.steps}: loss={loss.item():.4f}", flush=True)
-    torch.save({
-        "model": model.state_dict(), "model_config": model.model_config, "step": args.steps,
-        "experiment": info,
-    }, output / "final.pt")
+    if args.model == "mathseg":
+        from experiment.mathseg_uav.fewshot_backend import checkpoint_payload
+        payload = checkpoint_payload(model, args.steps, info, args.init_checkpoint, checkpoint_hash, args.checkpoint_format)
+    else:
+        payload = dict(model=model.state_dict(), model_config=model.model_config, step=args.steps, experiment=info)
+    torch.save(payload, output / "final.pt")
     metrics = evaluate(model, test, device, args.num_workers)
     result = {
         "signature": signature, "mode": args.mode, "steps": args.steps, "shots_per_class": args.shots,

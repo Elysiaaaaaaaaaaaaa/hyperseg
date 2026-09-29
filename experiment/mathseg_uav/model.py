@@ -60,7 +60,7 @@ class SpatialPrior(nn.Module):
 
 
 class FusionHead(nn.Module):
-    def __init__(self, channels, width, variant, prior_channels):
+    def __init__(self, channels, width, variant, prior_channels, classes=9):
         super().__init__()
         self.variant = variant
         self.projections = nn.ModuleList([nn.Conv2d(c, width, 1) for c in channels])
@@ -69,7 +69,7 @@ class FusionHead(nn.Module):
             nn.Conv2d(width, width, 3, padding=1, bias=False), nn.GroupNorm(1, width), nn.GELU(),
             nn.Conv2d(width, width, 3, padding=1, bias=False), nn.GroupNorm(1, width), nn.GELU(),
         )
-        self.segmentation = nn.Conv2d(width, 9, 1)
+        self.segmentation = nn.Conv2d(width, classes, 1)
         self.boundary = nn.Conv2d(width, 1, 1)
         if variant == "M1":
             self.modulation = nn.Conv2d(prior_channels, width, 1)
@@ -108,11 +108,11 @@ class FusionHead(nn.Module):
 class MathSegUAV(nn.Module):
     def __init__(self, variant="M0", width=64, model_name="nvidia/mit-b3", pretrained=True,
                  local_files_only=True, encoder_config=None, prior_channels=PRIOR_NAMES,
-                 prior_mode="normal"):
+                 prior_mode="normal", classes=9):
         super().__init__()
         from transformers import SegformerConfig, SegformerModel
 
-        if variant not in VARIANTS or width < 1:
+        if variant not in VARIANTS or width < 1 or classes < 1:
             raise ValueError("Invalid variant or decoder width")
         local = Path(__file__).resolve().parents[2] / "models" / model_name.replace("/", "--")
         source = str(local) if local.is_dir() else model_name
@@ -130,14 +130,14 @@ class MathSegUAV(nn.Module):
         if len(channels) != 4 or not self.encoder.config.reshape_last_stage:
             raise ValueError("MathSeg requires four spatial feature maps (reshape_last_stage=True)")
         self.prior = SpatialPrior(prior_channels, prior_mode)
-        self.head = FusionHead(channels, width, variant, len(prior_channels))
+        self.head = FusionHead(channels, width, variant, len(prior_channels), classes)
         self.variant = variant
         self.register_buffer("rgb_mean", torch.tensor([0.485, 0.456, 0.406]).view(1, 3, 1, 1))
         self.register_buffer("rgb_std", torch.tensor([0.229, 0.224, 0.225]).view(1, 3, 1, 1))
         self.model_config = dict(
             variant=variant, width=width, model_name=model_name, pretrained=False,
             local_files_only=True, encoder_config=self.encoder.config.to_dict(),
-            prior_channels=list(prior_channels), prior_mode=prior_mode,
+            prior_channels=list(prior_channels), prior_mode=prior_mode, classes=classes,
         )
 
     def encode_features(self, image):

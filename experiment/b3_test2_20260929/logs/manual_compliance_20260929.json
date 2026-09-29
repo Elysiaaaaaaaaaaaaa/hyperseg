@@ -1,0 +1,41 @@
+{
+  "submission": "D:\\myproject\\hyperseg\\experiment\\b3_test2_20260929\\hyperseg_b3_test2_predictions.zip",
+  "source": "D:\\myproject\\hyperseg\\test_2.zip",
+  "bytes": 12655462,
+  "sha256": "ff0a2fb0e0580bafb1b7f41f82d29861ad42bf181689f7efff43df3e84b0ef8a",
+  "crc_ok": true,
+  "entries": 1300,
+  "non_png_entries": [],
+  "nested_or_dir_entries": [],
+  "duplicate_entries": [],
+  "name_set_matches_test_set_2": true,
+  "missing_names": [],
+  "extra_names": [],
+  "counts": {
+    "files": 1300,
+    "color_type_gray": 1300
+  },
+  "failures": [],
+  "failure_count": 0,
+  "class_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "pixel_share": {
+    "1": 0.339424,
+    "2": 0.185237,
+    "3": 0.068922,
+    "4": 0.073448,
+    "5": 0.014527,
+    "6": 0.209443,
+    "7": 0.10302,
+    "8": 0.005978
+  },
+  "verdict": "PASS: zip matches the manual section 13 requirements"
+}

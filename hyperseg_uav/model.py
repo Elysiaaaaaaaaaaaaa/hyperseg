@@ -6,6 +6,65 @@ import torch.nn.functional as F
 from torch import nn
 
 
+def legacy_encoder_key(key: str) -> str | None:
+    """Map Transformers 5 SegFormer state keys to their Transformers 4 names.
+
+    ``models/hyperseg_b3_best.pt`` was saved with a Transformers 5 backbone whose
+    encoder exposes ``stages[i].blocks[j]``. Older Transformers 4 releases name
+    the same tensors ``encoder.block[i][j]``, so the checkpoint cannot be loaded
+    without translating the keys. Keys that are not part of the backbone encoder
+    return ``None`` and are used unchanged.
+    """
+    prefix = "encoder.backbone.stages."
+    if not key.startswith(prefix):
+        return None
+    stage_text, separator, suffix = key[len(prefix):].partition(".")
+    if not separator or not stage_text.isdigit():
+        return None
+    if suffix.startswith("patch_embeddings."):
+        suffix = suffix.removeprefix("patch_embeddings.")
+        return f"encoder.backbone.encoder.patch_embeddings.{stage_text}.{suffix}"
+    if suffix.startswith("layer_norm."):
+        suffix = suffix.removeprefix("layer_norm.")
+        return f"encoder.backbone.encoder.layer_norm.{stage_text}.{suffix}"
+    if not suffix.startswith("blocks."):
+        return None
+    block_text, separator, block_suffix = suffix.removeprefix("blocks.").partition(".")
+    if not separator or not block_text.isdigit():
+        return None
+    replacements = (
+        ("layernorm_before.", "layer_norm_1."),
+        ("layernorm_after.", "layer_norm_2."),
+        ("attention.q_proj.", "attention.self.query."),
+        ("attention.k_proj.", "attention.self.key."),
+        ("attention.v_proj.", "attention.self.value."),
+        ("attention.sequence_reduction.sequence_reduction.", "attention.self.sr."),
+        ("attention.sequence_reduction.layer_norm.", "attention.self.layer_norm."),
+        ("attention.o_proj.", "attention.output.dense."),
+        ("mlp.fc1.", "mlp.dense1."),
+        ("mlp.fc2.", "mlp.dense2."),
+    )
+    for current, legacy in replacements:
+        if block_suffix.startswith(current):
+            block_suffix = legacy + block_suffix.removeprefix(current)
+            break
+    return f"encoder.backbone.encoder.block.{stage_text}.{block_text}.{block_suffix}"
+
+
+def translate_legacy_keys(state):
+    """Return ``(state_dict, translated_count)`` with Transformers 5 keys renamed."""
+    translated = {}
+    count = 0
+    for key, value in state.items():
+        replacement = legacy_encoder_key(key)
+        if replacement is None:
+            translated[key] = value
+        else:
+            translated[replacement] = value
+            count += 1
+    return translated, count
+
+
 class MLP(nn.Module):
     def __init__(self, in_dim, out_dim, hidden=None):
         super().__init__()

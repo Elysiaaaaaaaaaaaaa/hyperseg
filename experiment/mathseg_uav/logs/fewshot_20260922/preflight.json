@@ -1,0 +1,258 @@
+{
+  "protocols": {
+    "loveda": {
+      "sha256": "8184bef3aae39e2b9f01cd79a90782318f436744d14c43f108c76f56fc527ec5",
+      "evaluation_images": 1599,
+      "support_images": {
+        "0": 0,
+        "1": 7,
+        "2": 14,
+        "5": 35,
+        "10": 70
+      },
+      "histogram_1shot": [
+        2099619,
+        726037,
+        470878,
+        1056471,
+        784472,
+        1070380,
+        1132175
+      ]
+    },
+    "suim": {
+      "sha256": "16da76ae8e9677aec5f30b09dad79b23402cfee6964f31ede28bf1d72bf52540",
+      "evaluation_images": 110,
+      "support_images": {
+        "1": 8,
+        "2": 16,
+        "5": 40,
+        "10": 78
+      },
+      "histogram_1shot": [
+        1462812,
+        139341,
+        250209,
+        298801,
+        359310,
+        417973,
+        336525,
+        329269
+      ]
+    }
+  },
+  "checks": [
+    {
+      "variant": "m0",
+      "dataset": "loveda",
+      "loss": 0.38147467374801636,
+      "source_sha256": "2b590382bfaa6d23dbd74a256ba7fd11b7c3a8bff62734cbd3aae76f6d48adac",
+      "peak_gpu_gib": 0.9643330574035645,
+      "compact_bytes": 561328,
+      "transfer": {
+        "model": "mathseg",
+        "dataset": "loveda",
+        "variant": "M0",
+        "head_init": "semantic-map",
+        "head_mapping_target_to_source": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 4,
+          "4": 5,
+          "5": 6,
+          "6": 7
+        },
+        "head_random_channels": [],
+        "loaded_non_head_tensors": 648
+      },
+      "compact_roundtrip": "passed"
+    },
+    {
+      "variant": "m0",
+      "dataset": "suim",
+      "loss": 1.5913772583007812,
+      "source_sha256": "2b590382bfaa6d23dbd74a256ba7fd11b7c3a8bff62734cbd3aae76f6d48adac",
+      "peak_gpu_gib": 0.5261454582214355,
+      "compact_bytes": 561588,
+      "transfer": {
+        "model": "mathseg",
+        "dataset": "suim",
+        "variant": "M0",
+        "head_init": "random",
+        "head_mapping_target_to_source": {},
+        "head_random_channels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "loaded_non_head_tensors": 648
+      },
+      "compact_roundtrip": "passed"
+    },
+    {
+      "variant": "m1",
+      "dataset": "loveda",
+      "loss": 0.37702473998069763,
+      "source_sha256": "3815c5707c9cbb87c5937f54e36236ceaf2b88057785ef98fb6c0a3da08fba09",
+      "peak_gpu_gib": 0.9641265869140625,
+      "compact_bytes": 562608,
+      "transfer": {
+        "model": "mathseg",
+        "dataset": "loveda",
+        "variant": "M1",
+        "head_init": "semantic-map",
+        "head_mapping_target_to_source": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 4,
+          "4": 5,
+          "5": 6,
+          "6": 7
+        },
+        "head_random_channels": [],
+        "loaded_non_head_tensors": 650
+      },
+      "compact_roundtrip": "passed"
+    },
+    {
+      "variant": "m1",
+      "dataset": "suim",
+      "loss": 1.8132126331329346,
+      "source_sha256": "3815c5707c9cbb87c5937f54e36236ceaf2b88057785ef98fb6c0a3da08fba09",
+      "peak_gpu_gib": 0.5256109237670898,
+      "compact_bytes": 562868,
+      "transfer": {
+        "model": "mathseg",
+        "dataset": "suim",
+        "variant": "M1",
+        "head_init": "random",
+        "head_mapping_target_to_source": {},
+        "head_random_channels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "loaded_non_head_tensors": 650
+      },
+      "compact_roundtrip": "passed"
+    },
+    {
+      "variant": "m2",
+      "dataset": "loveda",
+      "loss": 0.4005293846130371,
+      "source_sha256": "d0faa9df80a17016775517cfc02777b0f51b436b879b2abd3d349a37f8421b6a",
+      "peak_gpu_gib": 0.9649882316589355,
+      "compact_bytes": 629184,
+      "transfer": {
+        "model": "mathseg",
+        "dataset": "loveda",
+        "variant": "M2",
+        "head_init": "semantic-map",
+        "head_mapping_target_to_source": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 4,
+          "4": 5,
+          "5": 6,
+          "6": 7
+        },
+        "head_random_channels": [],
+        "loaded_non_head_tensors": 652
+      },
+      "compact_roundtrip": "passed"
+    },
+    {
+      "variant": "m2",
+      "dataset": "suim",
+      "loss": 1.7338839769363403,
+      "source_sha256": "d0faa9df80a17016775517cfc02777b0f51b436b879b2abd3d349a37f8421b6a",
+      "peak_gpu_gib": 0.5270142555236816,
+      "compact_bytes": 629444,
+      "transfer": {
+        "model": "mathseg",
+        "dataset": "suim",
+        "variant": "M2",
+        "head_init": "random",
+        "head_mapping_target_to_source": {},
+        "head_random_channels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "loaded_non_head_tensors": 652
+      },
+      "compact_roundtrip": "passed"
+    },
+    {
+      "variant": "m3",
+      "dataset": "loveda",
+      "loss": 0.40515607595443726,
+      "source_sha256": "cef2316b6429a14a12c90411432552af1303065683fb492dec73d02157dc5aa5",
+      "peak_gpu_gib": 0.9649882316589355,
+      "compact_bytes": 629184,
+      "transfer": {
+        "model": "mathseg",
+        "dataset": "loveda",
+        "variant": "M3",
+        "head_init": "semantic-map",
+        "head_mapping_target_to_source": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "3": 4,
+          "4": 5,
+          "5": 6,
+          "6": 7
+        },
+        "head_random_channels": [],
+        "loaded_non_head_tensors": 652
+      },
+      "compact_roundtrip": "passed"
+    },
+    {
+      "variant": "m3",
+      "dataset": "suim",
+      "loss": 1.592450499534607,
+      "source_sha256": "cef2316b6429a14a12c90411432552af1303065683fb492dec73d02157dc5aa5",
+      "peak_gpu_gib": 0.5270142555236816,
+      "compact_bytes": 629444,
+      "transfer": {
+        "model": "mathseg",
+        "dataset": "suim",
+        "variant": "M3",
+        "head_init": "random",
+        "head_mapping_target_to_source": {},
+        "head_random_channels": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "loaded_non_head_tensors": 652
+      },
+      "compact_roundtrip": "passed"
+    }
+  ]
+}
