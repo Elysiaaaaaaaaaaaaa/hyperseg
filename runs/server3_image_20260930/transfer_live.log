@@ -1,0 +1,134 @@
+autodl-container-51bc499713-29f504bc
+overlay          30G   20G   11G  65% /
+Warning: Permanently added '[connect.bjb1.seetacloud.com]:31067' (ED25519) to the list of known hosts.
+staged helper /root/autodl-tmp/export_rootfs.py
+{"stage": "source_manifest", "updated_utc": "2026-09-29T16:16:53.157322+00:00"}
+excluded 13 paths; critical 13 files
+{"stage": "downloading", "bytes": 0, "expected_total_bytes": null, "updated_utc": "2026-09-29T16:16:55.357172+00:00"}
+Warning: Permanently added '[connect.bjb1.seetacloud.com]:31067' (ED25519) to the list of known hosts.
+{"stage": "downloading", "bytes": 184549376, "elapsed_seconds": 30, "average_mib_s": 5.79, "updated_utc": "2026-09-29T16:17:25.735278+00:00"}
+autodl-container-51bc499713-29f504bc
+overlay          30G   20G   11G  65% /
+helper /root/autodl-tmp/export_rootfs.py already current; mtime left untouched
+{"stage": "source_manifest", "updated_utc": "2026-09-29T16:18:23.084763+00:00"}
+excluded 13 paths; critical 13 files
+{"stage": "downloading", "bytes": 0, "expected_total_bytes": null, "updated_utc": "2026-09-29T16:18:25.378554+00:00"}
+Warning: Permanently added '[connect.bjb1.seetacloud.com]:31067' (ED25519) to the list of known hosts.
+{"stage": "downloading", "bytes": 192937984, "elapsed_seconds": 30, "average_mib_s": 6.03, "updated_utc": "2026-09-29T16:18:55.854763+00:00"}
+{"stage": "downloading", "bytes": 327155712, "elapsed_seconds": 61, "average_mib_s": 5.11, "updated_utc": "2026-09-29T16:19:26.430764+00:00"}
+{"stage": "downloading", "bytes": 457179136, "elapsed_seconds": 92, "average_mib_s": 4.75, "updated_utc": "2026-09-29T16:19:57.117800+00:00"}
+{"stage": "downloading", "bytes": 641728512, "elapsed_seconds": 122, "average_mib_s": 5.02, "updated_utc": "2026-09-29T16:20:27.232396+00:00"}
+{"stage": "downloading", "bytes": 843055104, "elapsed_seconds": 152, "average_mib_s": 5.28, "updated_utc": "2026-09-29T16:20:57.623687+00:00"}
+{"stage": "downloading", "bytes": 1006632960, "elapsed_seconds": 183, "average_mib_s": 5.26, "updated_utc": "2026-09-29T16:21:28.029378+00:00"}
+{"stage": "downloading", "bytes": 1166016512, "elapsed_seconds": 213, "average_mib_s": 5.22, "updated_utc": "2026-09-29T16:21:58.236359+00:00"}
+{"stage": "downloading", "bytes": 1325400064, "elapsed_seconds": 243, "average_mib_s": 5.2, "updated_utc": "2026-09-29T16:22:28.635065+00:00"}
+{"stage": "downloading", "bytes": 1451229184, "elapsed_seconds": 274, "average_mib_s": 5.05, "updated_utc": "2026-09-29T16:22:59.438563+00:00"}
+{"stage": "downloading", "bytes": 1589641216, "elapsed_seconds": 304, "average_mib_s": 4.98, "updated_utc": "2026-09-29T16:23:29.753475+00:00"}
+{"stage": "downloading", "bytes": 1749024768, "elapsed_seconds": 335, "average_mib_s": 4.98, "updated_utc": "2026-09-29T16:24:00.143623+00:00"}
+{"stage": "downloading", "bytes": 1908408320, "elapsed_seconds": 365, "average_mib_s": 4.98, "updated_utc": "2026-09-29T16:24:30.634296+00:00"}
+{"stage": "downloading", "bytes": 2067791872, "elapsed_seconds": 396, "average_mib_s": 4.98, "updated_utc": "2026-09-29T16:25:01.329432+00:00"}
+{"stage": "downloading", "bytes": 2222981120, "elapsed_seconds": 426, "average_mib_s": 4.97, "updated_utc": "2026-09-29T16:25:31.627857+00:00"}
+{"stage": "downloading", "bytes": 2382364672, "elapsed_seconds": 457, "average_mib_s": 4.97, "updated_utc": "2026-09-29T16:26:02.439941+00:00"}
+{"stage": "downloading", "bytes": 2541748224, "elapsed_seconds": 487, "average_mib_s": 4.97, "updated_utc": "2026-09-29T16:26:32.638883+00:00"}
+{"stage": "downloading", "bytes": 2705326080, "elapsed_seconds": 518, "average_mib_s": 4.98, "updated_utc": "2026-09-29T16:27:02.942895+00:00"}
+{"stage": "downloading", "bytes": 2877292544, "elapsed_seconds": 548, "average_mib_s": 5.0, "updated_utc": "2026-09-29T16:27:33.638855+00:00"}
+{"stage": "downloading", "bytes": 3049259008, "elapsed_seconds": 579, "average_mib_s": 5.03, "updated_utc": "2026-09-29T16:28:03.943191+00:00"}
+{"stage": "downloading", "bytes": 3212836864, "elapsed_seconds": 609, "average_mib_s": 5.03, "updated_utc": "2026-09-29T16:28:34.308650+00:00"}
+{"stage": "downloading", "bytes": 3384803328, "elapsed_seconds": 639, "average_mib_s": 5.05, "updated_utc": "2026-09-29T16:29:04.538858+00:00"}
+{"stage": "downloading", "bytes": 3548381184, "elapsed_seconds": 669, "average_mib_s": 5.06, "updated_utc": "2026-09-29T16:29:34.623746+00:00"}
+{"stage": "downloading", "bytes": 3707764736, "elapsed_seconds": 700, "average_mib_s": 5.05, "updated_utc": "2026-09-29T16:30:04.928775+00:00"}
+{"stage": "downloading", "bytes": 3862953984, "elapsed_seconds": 730, "average_mib_s": 5.04, "updated_utc": "2026-09-29T16:30:35.602726+00:00"}
+{"stage": "downloading", "bytes": 4009754624, "elapsed_seconds": 761, "average_mib_s": 5.03, "updated_utc": "2026-09-29T16:31:06.021524+00:00"}
+{"stage": "downloading", "bytes": 4164943872, "elapsed_seconds": 791, "average_mib_s": 5.02, "updated_utc": "2026-09-29T16:31:36.139436+00:00"}
+{"stage": "downloading", "bytes": 4336910336, "elapsed_seconds": 821, "average_mib_s": 5.04, "updated_utc": "2026-09-29T16:32:06.627053+00:00"}
+{"stage": "downloading", "bytes": 4504682496, "elapsed_seconds": 852, "average_mib_s": 5.04, "updated_utc": "2026-09-29T16:32:37.204915+00:00"}
+{"stage": "downloading", "bytes": 4668260352, "elapsed_seconds": 882, "average_mib_s": 5.05, "updated_utc": "2026-09-29T16:33:07.337220+00:00"}
+{"stage": "downloading", "bytes": 4840226816, "elapsed_seconds": 913, "average_mib_s": 5.06, "updated_utc": "2026-09-29T16:33:37.933564+00:00"}
+{"stage": "downloading", "bytes": 4961861632, "elapsed_seconds": 943, "average_mib_s": 5.02, "updated_utc": "2026-09-29T16:34:08.311798+00:00"}
+{"stage": "downloading", "bytes": 5075107840, "elapsed_seconds": 973, "average_mib_s": 4.97, "updated_utc": "2026-09-29T16:34:38.832921+00:00"}
+{"stage": "downloading", "bytes": 5192548352, "elapsed_seconds": 1004, "average_mib_s": 4.93, "updated_utc": "2026-09-29T16:35:09.442603+00:00"}
+{"stage": "downloading", "bytes": 5309988864, "elapsed_seconds": 1035, "average_mib_s": 4.89, "updated_utc": "2026-09-29T16:35:40.023105+00:00"}
+{"stage": "downloading", "bytes": 5427429376, "elapsed_seconds": 1065, "average_mib_s": 4.86, "updated_utc": "2026-09-29T16:36:10.643813+00:00"}
+{"stage": "downloading", "bytes": 5544869888, "elapsed_seconds": 1096, "average_mib_s": 4.83, "updated_utc": "2026-09-29T16:36:41.014295+00:00"}
+{"stage": "downloading", "bytes": 5666504704, "elapsed_seconds": 1126, "average_mib_s": 4.8, "updated_utc": "2026-09-29T16:37:11.031765+00:00"}
+{"stage": "downloading", "bytes": 5783945216, "elapsed_seconds": 1156, "average_mib_s": 4.77, "updated_utc": "2026-09-29T16:37:41.320134+00:00"}
+{"stage": "downloading", "bytes": 5909774336, "elapsed_seconds": 1186, "average_mib_s": 4.75, "updated_utc": "2026-09-29T16:38:11.808193+00:00"}
+{"stage": "downloading", "bytes": 6027214848, "elapsed_seconds": 1217, "average_mib_s": 4.72, "updated_utc": "2026-09-29T16:38:42.330302+00:00"}
+{"stage": "downloading", "bytes": 6144655360, "elapsed_seconds": 1248, "average_mib_s": 4.7, "updated_utc": "2026-09-29T16:39:13.108067+00:00"}
+{"stage": "downloading", "bytes": 6262095872, "elapsed_seconds": 1278, "average_mib_s": 4.67, "updated_utc": "2026-09-29T16:39:43.245464+00:00"}
+{"stage": "downloading", "bytes": 6404702208, "elapsed_seconds": 1309, "average_mib_s": 4.67, "updated_utc": "2026-09-29T16:40:14.128351+00:00"}
+{"stage": "downloading", "bytes": 6543114240, "elapsed_seconds": 1339, "average_mib_s": 4.66, "updated_utc": "2026-09-29T16:40:44.828447+00:00"}
+{"stage": "downloading", "bytes": 6664749056, "elapsed_seconds": 1370, "average_mib_s": 4.64, "updated_utc": "2026-09-29T16:41:15.596362+00:00"}
+{"stage": "downloading", "bytes": 6786383872, "elapsed_seconds": 1401, "average_mib_s": 4.62, "updated_utc": "2026-09-29T16:41:46.330950+00:00"}
+{"stage": "downloading", "bytes": 6908018688, "elapsed_seconds": 1431, "average_mib_s": 4.6, "updated_utc": "2026-09-29T16:42:16.802636+00:00"}
+{"stage": "downloading", "bytes": 7025459200, "elapsed_seconds": 1461, "average_mib_s": 4.58, "updated_utc": "2026-09-29T16:42:46.820753+00:00"}
+{"stage": "downloading", "bytes": 7134511104, "elapsed_seconds": 1492, "average_mib_s": 4.56, "updated_utc": "2026-09-29T16:43:17.735365+00:00"}
+{"stage": "downloading", "bytes": 7251951616, "elapsed_seconds": 1524, "average_mib_s": 4.54, "updated_utc": "2026-09-29T16:43:49.129506+00:00"}
+{"stage": "downloading", "bytes": 7369392128, "elapsed_seconds": 1555, "average_mib_s": 4.52, "updated_utc": "2026-09-29T16:44:19.905546+00:00"}
+{"stage": "downloading", "bytes": 7491026944, "elapsed_seconds": 1585, "average_mib_s": 4.51, "updated_utc": "2026-09-29T16:44:50.029896+00:00"}
+{"stage": "downloading", "bytes": 7608467456, "elapsed_seconds": 1615, "average_mib_s": 4.49, "updated_utc": "2026-09-29T16:45:20.418035+00:00"}
+{"stage": "downloading", "bytes": 7725907968, "elapsed_seconds": 1646, "average_mib_s": 4.48, "updated_utc": "2026-09-29T16:45:51.521032+00:00"}
+{"stage": "downloading", "bytes": 7855931392, "elapsed_seconds": 1677, "average_mib_s": 4.47, "updated_utc": "2026-09-29T16:46:22.420932+00:00"}
+{"stage": "downloading", "bytes": 7998537728, "elapsed_seconds": 1708, "average_mib_s": 4.47, "updated_utc": "2026-09-29T16:46:53.196651+00:00"}
+{"stage": "downloading", "bytes": 8149532672, "elapsed_seconds": 1739, "average_mib_s": 4.47, "updated_utc": "2026-09-29T16:47:24.214634+00:00"}
+{"stage": "downloading", "bytes": 8271167488, "elapsed_seconds": 1770, "average_mib_s": 4.46, "updated_utc": "2026-09-29T16:47:55.115085+00:00"}
+{"stage": "downloading", "bytes": 8388608000, "elapsed_seconds": 1800, "average_mib_s": 4.44, "updated_utc": "2026-09-29T16:48:25.200966+00:00"}
+{"stage": "downloading", "bytes": 8506048512, "elapsed_seconds": 1830, "average_mib_s": 4.43, "updated_utc": "2026-09-29T16:48:55.807155+00:00"}
+{"stage": "downloading", "bytes": 8627683328, "elapsed_seconds": 1861, "average_mib_s": 4.42, "updated_utc": "2026-09-29T16:49:26.421497+00:00"}
+{"stage": "downloading", "bytes": 8749318144, "elapsed_seconds": 1891, "average_mib_s": 4.41, "updated_utc": "2026-09-29T16:49:56.794619+00:00"}
+{"stage": "downloading", "bytes": 8870952960, "elapsed_seconds": 1922, "average_mib_s": 4.4, "updated_utc": "2026-09-29T16:50:27.473521+00:00"}
+{"stage": "downloading", "bytes": 9000976384, "elapsed_seconds": 1953, "average_mib_s": 4.4, "updated_utc": "2026-09-29T16:50:58.272782+00:00"}
+{"stage": "downloading", "bytes": 9118416896, "elapsed_seconds": 1984, "average_mib_s": 4.38, "updated_utc": "2026-09-29T16:51:29.183619+00:00"}
+{"stage": "downloading", "bytes": 9235857408, "elapsed_seconds": 2015, "average_mib_s": 4.37, "updated_utc": "2026-09-29T16:51:59.885395+00:00"}
+{"stage": "downloading", "bytes": 9365880832, "elapsed_seconds": 2045, "average_mib_s": 4.37, "updated_utc": "2026-09-29T16:52:30.722926+00:00"}
+{"stage": "downloading", "bytes": 9483321344, "elapsed_seconds": 2076, "average_mib_s": 4.36, "updated_utc": "2026-09-29T16:53:01.011030+00:00"}
+{"stage": "downloading", "bytes": 9600761856, "elapsed_seconds": 2106, "average_mib_s": 4.35, "updated_utc": "2026-09-29T16:53:31.605762+00:00"}
+{"stage": "downloading", "bytes": 9714008064, "elapsed_seconds": 2136, "average_mib_s": 4.34, "updated_utc": "2026-09-29T16:54:01.794955+00:00"}
+{"stage": "downloading", "bytes": 9835642880, "elapsed_seconds": 2167, "average_mib_s": 4.33, "updated_utc": "2026-09-29T16:54:32.192565+00:00"}
+{"stage": "downloading", "bytes": 9957277696, "elapsed_seconds": 2197, "average_mib_s": 4.32, "updated_utc": "2026-09-29T16:55:02.478888+00:00"}
+{"stage": "downloading", "bytes": 10074718208, "elapsed_seconds": 2228, "average_mib_s": 4.31, "updated_utc": "2026-09-29T16:55:33.370617+00:00"}
+{"stage": "downloading", "bytes": 10192158720, "elapsed_seconds": 2258, "average_mib_s": 4.3, "updated_utc": "2026-09-29T16:56:03.593003+00:00"}
+{"stage": "downloading", "bytes": 10309599232, "elapsed_seconds": 2289, "average_mib_s": 4.3, "updated_utc": "2026-09-29T16:56:34.286974+00:00"}
+{"stage": "downloading", "bytes": 10427039744, "elapsed_seconds": 2320, "average_mib_s": 4.29, "updated_utc": "2026-09-29T16:57:05.096444+00:00"}
+{"stage": "downloading", "bytes": 10540285952, "elapsed_seconds": 2350, "average_mib_s": 4.28, "updated_utc": "2026-09-29T16:57:35.563352+00:00"}
+{"stage": "downloading", "bytes": 10657726464, "elapsed_seconds": 2380, "average_mib_s": 4.27, "updated_utc": "2026-09-29T16:58:05.761215+00:00"}
+{"stage": "downloading", "bytes": 10770972672, "elapsed_seconds": 2411, "average_mib_s": 4.26, "updated_utc": "2026-09-29T16:58:36.681349+00:00"}
+{"stage": "downloading", "bytes": 10880024576, "elapsed_seconds": 2442, "average_mib_s": 4.25, "updated_utc": "2026-09-29T16:59:07.085418+00:00"}
+{"stage": "downloading", "bytes": 11005853696, "elapsed_seconds": 2472, "average_mib_s": 4.25, "updated_utc": "2026-09-29T16:59:37.476955+00:00"}
+{"stage": "downloading", "bytes": 11135877120, "elapsed_seconds": 2502, "average_mib_s": 4.24, "updated_utc": "2026-09-29T17:00:07.651776+00:00"}
+{"stage": "downloading", "bytes": 11278483456, "elapsed_seconds": 2533, "average_mib_s": 4.25, "updated_utc": "2026-09-29T17:00:37.974657+00:00"}
+{"stage": "downloading", "bytes": 11400118272, "elapsed_seconds": 2563, "average_mib_s": 4.24, "updated_utc": "2026-09-29T17:01:08.559114+00:00"}
+{"stage": "downloading", "bytes": 11517558784, "elapsed_seconds": 2594, "average_mib_s": 4.23, "updated_utc": "2026-09-29T17:01:39.366225+00:00"}
+{"stage": "downloading", "bytes": 11634999296, "elapsed_seconds": 2624, "average_mib_s": 4.23, "updated_utc": "2026-09-29T17:02:09.684582+00:00"}
+{"stage": "downloading", "bytes": 11756634112, "elapsed_seconds": 2655, "average_mib_s": 4.22, "updated_utc": "2026-09-29T17:02:40.378033+00:00"}
+{"stage": "downloading", "bytes": 11869880320, "elapsed_seconds": 2685, "average_mib_s": 4.22, "updated_utc": "2026-09-29T17:03:10.489525+00:00"}
+{"stage": "downloading", "bytes": 11987320832, "elapsed_seconds": 2715, "average_mib_s": 4.21, "updated_utc": "2026-09-29T17:03:40.771992+00:00"}
+{"stage": "downloading", "bytes": 12104761344, "elapsed_seconds": 2746, "average_mib_s": 4.2, "updated_utc": "2026-09-29T17:04:11.688379+00:00"}
+{"stage": "downloading", "bytes": 12238979072, "elapsed_seconds": 2777, "average_mib_s": 4.2, "updated_utc": "2026-09-29T17:04:42.293138+00:00"}
+{"stage": "downloading", "bytes": 12377391104, "elapsed_seconds": 2807, "average_mib_s": 4.2, "updated_utc": "2026-09-29T17:05:12.585809+00:00"}
+{"stage": "downloading", "bytes": 12499025920, "elapsed_seconds": 2837, "average_mib_s": 4.2, "updated_utc": "2026-09-29T17:05:42.673622+00:00"}
+{"stage": "downloading", "bytes": 12616466432, "elapsed_seconds": 2868, "average_mib_s": 4.2, "updated_utc": "2026-09-29T17:06:12.866233+00:00"}
+{"stage": "downloading", "bytes": 12733906944, "elapsed_seconds": 2898, "average_mib_s": 4.19, "updated_utc": "2026-09-29T17:06:43.567166+00:00"}
+{"stage": "downloading", "bytes": 12855541760, "elapsed_seconds": 2929, "average_mib_s": 4.19, "updated_utc": "2026-09-29T17:07:14.573137+00:00"}
+{"stage": "downloading", "bytes": 13002342400, "elapsed_seconds": 2960, "average_mib_s": 4.19, "updated_utc": "2026-09-29T17:07:44.888872+00:00"}
+Total bytes written: 21178439680 (20GiB, 6.8MiB/s)
+{"stage": "verifying", "archive_bytes": 13079718593, "updated_utc": "2026-09-29T17:08:06.851506+00:00"}
+  critical ok: /root/hyperseg/.venv-mask2former/pyvenv.cfg
+  critical ok: /root/hyperseg/hyperseg_uav/__init__.py
+  critical ok: /root/hyperseg/hyperseg_uav/model.py
+  critical ok: /root/hyperseg/models/nvidia--mit-b3/config.json
+  critical ok: /root/hyperseg/models/hyperseg_b3_best.pt
+{"stage": "verifying", "members": 11176, "file_bytes": 5974565197, "updated_utc": "2026-09-29T17:08:41.042275+00:00"}
+  critical ok: /root/hyperseg/runs/splits/test.txt
+  critical ok: /root/hyperseg/runs/splits/train.txt
+  critical ok: /root/hyperseg/runs/splits/val.txt
+  critical ok: /root/hyperseg/tools/check_submission.py
+  critical ok: /root/hyperseg/tools/infer_hyperseg.py
+  critical ok: /root/hyperseg/tools/test_hyperseg.py
+  critical ok: /root/miniconda3/bin/python3.12
+{"stage": "verifying", "members": 56483, "file_bytes": 10047626742, "updated_utc": "2026-09-29T17:09:11.107824+00:00"}
+  critical ok: /usr/bin/bash
+{"stage": "verifying", "members": 90200, "file_bytes": 14650478348, "updated_utc": "2026-09-29T17:09:41.176088+00:00"}
+{"stage": "verifying", "members": 92281, "file_bytes": 19537799206, "updated_utc": "2026-09-29T17:10:12.044042+00:00"}
+{"stage": "failed", "error": "could not rename server3-system-no-dataset-20260930.rootfs.tar.gz.partial to server3-system-no-dataset-20260930.rootfs.tar.gz; the partial is intact, rename it by hand", "updated_utc": "2026-09-29T17:13:02.720460+00:00"}
+could not rename server3-system-no-dataset-20260930.rootfs.tar.gz.partial to server3-system-no-dataset-20260930.rootfs.tar.gz; the partial is intact, rename it by hand

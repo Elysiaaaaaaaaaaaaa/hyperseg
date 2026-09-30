@@ -1,0 +1,90 @@
+{
+  "created_utc": "2026-09-29T12:56:19.914126+00:00",
+  "format": "gzip-compressed rootfs tar; use docker import, not docker load",
+  "platform": "linux/amd64",
+  "dataset_excluded": "/root/hyperseg/dataset",
+  "excluded_paths": [
+    "/.dockerenv",
+    "/autodl-pub",
+    "/dev",
+    "/etc/hostname",
+    "/etc/hosts",
+    "/etc/resolv.conf",
+    "/init",
+    "/proc",
+    "/root/autodl-tmp",
+    "/root/hyperseg/dataset",
+    "/run/*",
+    "/sys",
+    "/tmp/*"
+  ],
+  "critical_files": {
+    "/usr/bin/bash": {
+      "requested_path": "/bin/bash",
+      "size": 1396520,
+      "sha256": "2c336c63e26881d2f02f34379024e7c314bce572c08cbaa319bacbbec29f93ed"
+    },
+    "/root/miniconda3/bin/python3.12": {
+      "requested_path": "/root/miniconda3/bin/python3.12",
+      "size": 30627224,
+      "sha256": "0c05a22b0b180580a76437114a95cf138f67c8f46245acad26017c803b42b8c1"
+    },
+    "/root/hyperseg/.venv-mask2former/pyvenv.cfg": {
+      "requested_path": "/root/hyperseg/.venv-mask2former/pyvenv.cfg",
+      "size": 228,
+      "sha256": "eae8d62731aaaedd0ebc969835fc5ff9f317aedad06a1fa4f973046fe3ca2ead"
+    },
+    "/root/hyperseg/hyperseg_uav/model.py": {
+      "requested_path": "/root/hyperseg/hyperseg_uav/model.py",
+      "size": 10403,
+      "sha256": "5a69c25e317f9b480cd2addfc2c0d35b69597514cdef4a1d96efa689503d1d03"
+    },
+    "/root/hyperseg/hyperseg_uav/__init__.py": {
+      "requested_path": "/root/hyperseg/hyperseg_uav/__init__.py",
+      "size": 352,
+      "sha256": "e0eb9325fd8e56e0f1fa84df345fbc8cf8783c44b51672f1388d33bb86293412"
+    },
+    "/root/hyperseg/tools/infer_hyperseg.py": {
+      "requested_path": "/root/hyperseg/tools/infer_hyperseg.py",
+      "size": 3276,
+      "sha256": "08b892361940c8084a1bba9cc34b34db91bb88f4e9920df6c2d0576fd5f81654"
+    },
+    "/root/hyperseg/tools/test_hyperseg.py": {
+      "requested_path": "/root/hyperseg/tools/test_hyperseg.py",
+      "size": 3587,
+      "sha256": "1ff4c148b28afbbc074d5c5a5d9240d7c9310725bedc20c49943a6bd11fe0aee"
+    },
+    "/root/hyperseg/tools/check_submission.py": {
+      "requested_path": "/root/hyperseg/tools/check_submission.py",
+      "size": 603,
+      "sha256": "4b8246f9cf4d0a5a5f5fc5bdd299f1d1d19c054a0da20434566922beffb8f621"
+    },
+    "/root/hyperseg/models/hyperseg_b3_best.pt": {
+      "requested_path": "/root/hyperseg/models/hyperseg_b3_best.pt",
+      "size": 179657463,
+      "sha256": "fb124302bafaec18aaa3f695dc021efead7bd00f710348d040888bb270148968"
+    },
+    "/root/hyperseg/models/nvidia--mit-b3/config.json": {
+      "requested_path": "/root/hyperseg/models/nvidia--mit-b3/config.json",
+      "size": 70045,
+      "sha256": "7a10fb664fa9f10a32361cb7191298e977b3f80a259b65682d2854c15bfc3345"
+    },
+    "/root/hyperseg/runs/splits/train.txt": {
+      "requested_path": "/root/hyperseg/runs/splits/train.txt",
+      "size": 27990,
+      "sha256": "4d19ea1ece87be870f17fb04d760475f68a5344cfcb674386e1f37c5fc484622"
+    },
+    "/root/hyperseg/runs/splits/val.txt": {
+      "requested_path": "/root/hyperseg/runs/splits/val.txt",
+      "size": 3495,
+      "sha256": "39d349bffd31a2dd7bdccd03dac3225a5a30aa11c5e2c97fe7f0367a7ef940f8"
+    },
+    "/root/hyperseg/runs/splits/test.txt": {
+      "requested_path": "/root/hyperseg/runs/splits/test.txt",
+      "size": 3495,
+      "sha256": "09068e956dd175da0f417ba590844876ea542ec7f210261f5647272b34635e4f"
+    }
+  },
+  "missing_critical": [],
+  "os_release": "PRETTY_NAME=\"Ubuntu 22.04.3 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"22.04\"\nVERSION=\"22.04.3 LTS (Jammy Jellyfish)\"\nVERSION_CODENAME=jammy\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=jammy\n"
+}

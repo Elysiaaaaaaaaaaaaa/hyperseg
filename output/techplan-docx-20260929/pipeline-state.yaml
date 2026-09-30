@@ -1,0 +1,65 @@
+request_id: techplan-docx-20260929
+created_at: "2026-09-29T21:12:00+08:00"
+entry_type: html_to_docx_only
+user_query_length: 12
+decision_note: >
+  长尾组合：技术方案内容已定稿并已排版为 HTML（dist/技术方案_源.html），
+  用户要求以 docx 形式交付。无创作（S1 不派）与重新美化（S2 不派）需求，
+  内容来源即既有 HTML，因此链路组合为 S3 单跳。
+
+content_source:
+  html_path: dist/技术方案_源.html
+  staged_html_path: dist/_build/techplan_for_docx.html
+  transformation: 内嵌 SVG 结构图已栅格化为 dist/_build/fig1.png（1360x352）后以 img 引用
+
+output_docx_path: "D:\\myproject\\hyperseg\\dist\\低空航拍语义分割_复赛_队伍名_20260929\\02_技术方案\\队伍名_技术方案_无人机低空航拍图像语义分割.docx"
+output_docx_user_specified: true
+
+convert_options:
+  page_size: A4
+  orientation: portrait
+  margin_top: 2.54
+  margin_bottom: 2.54
+  margin_left: 3.17
+  margin_right: 3.17
+
+stages:
+  stage_1:
+    status: skipped
+    reason: 内容已定稿，无创作需求
+  stage_2:
+    status: skipped
+    reason: 版式已定稿（既有 HTML），无重新美化需求
+    output_format: html
+    output_path: dist/_build/techplan_for_docx.html
+  stage_3:
+    status: completed
+    executor: doc-converter
+    input_format: html
+    output_path: "D:\\myproject\\hyperseg\\dist\\低空航拍语义分割_复赛_队伍名_20260929\\02_技术方案\\队伍名_技术方案_无人机低空航拍图像语义分割.docx"
+    output_bytes: 87630
+    skill_used: ["html-to-docx"]
+    present_files_opened: true
+    fallback: false
+    fallback_reason: null
+    warnings: []
+    verification:
+      paragraphs: 90
+      headings: {h1: 1, h2: 11, h3: 16, h4: 2}
+      tables: 13
+      inline_images: 1
+      image_size_cm: [13.97, 3.62]
+      notes: 标题层级与源 HTML 一一对应；表格、伪代码 pre、列表均保留
+
+environment_note: >
+  插件自带的 setup-html-to-docx.sh 在 Windows 上按 Unix 布局探测 $VENV/bin/python，
+  而 uv 在 Windows 建的是 Scripts/python.exe，导致脚本判定 venv 缺失后 rm -rf 重建，
+  随后的 uv pip install 因解释器路径不存在而静默失败并被 set -e 中断。
+  本次绕过脚本，直接对该 venv 执行：
+    uv pip install --python <venv>/Scripts/python.exe --only-binary=:all: -r requirements.txt
+
+reference:
+  failed_attempts: 技术方案 PDF 经 Edge 无头模式多次尝试均静默失败（独立 user-data-dir 与 headless=new 后仍失败）
+  decision: 本轮改用 docx 交付，PDF 生成链路待后续单独排查
+
+consistency_check: pass

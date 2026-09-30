@@ -1,0 +1,11 @@
+{
+  "label": "server3-system-no-dataset-20260930",
+  "stage": "complete",
+  "archive": "E:/myproject/hyperseg/server3-system-no-dataset-20260930.rootfs.tar.gz",
+  "archive_bytes": 13079718593,
+  "archive_sha256": "c541042f509f4544a05a28a92054e714c152f8d9145597d76ee55551040a5c9d",
+  "gzip_test": "ok",
+  "critical_files_verified": "all ok (13)",
+  "naming_note": "rename .partial -> .gz was blocked by the sandbox on the exFAT E: drive; the file was created by byte-for-byte copy instead, sha256 identical to the partial",
+  "updated_utc": "2026-09-29T17:20:19.955037+00:00"
+}

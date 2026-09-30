@@ -1,0 +1,171 @@
+{
+  "deliverable": "complete system-disk image (round-2 extra requirement)",
+  "reassembled": {
+    "name": "hyperseg-rootfs-20260930.tar.gz",
+    "source_name_on_export_host": "server3-system-no-dataset-20260930.rootfs.tar.gz",
+    "bytes": 13079718593,
+    "sha256": "c541042f509f4544a05a28a92054e714c152f8d9145597d76ee55551040a5c9d",
+    "format": "gzip-compressed rootfs tar (tar --format=pax | gzip -3 -n); import with docker import, NOT docker load",
+    "reassemble": "cat hyperseg-rootfs-20260930.tar.gz.part_* > hyperseg-rootfs-20260930.tar.gz"
+  },
+  "split": {
+    "chunk_bytes": 3984588000,
+    "chunk_label": "3800 MiB",
+    "volume_count": 4,
+    "reason": "Baidu Netdisk caps single files (4 GB for a free account on the desktop client); a rootfs export is one gzip stream and cannot be split internally.",
+    "volumes": [
+      {
+        "name": "hyperseg-rootfs-20260930.tar.gz.part_01",
+        "bytes": 3984588800,
+        "sha256": "dfd17b59b7fb6164b7f79c42c4726a4761447f21ba8d5d3b7a3ed342deedd3d2"
+      },
+      {
+        "name": "hyperseg-rootfs-20260930.tar.gz.part_02",
+        "bytes": 3984588800,
+        "sha256": "a0d14e54bb443c0d3289a59b70b89c0215c79f1cf18dbf7ed1c0ee8947b8229c"
+      },
+      {
+        "name": "hyperseg-rootfs-20260930.tar.gz.part_03",
+        "bytes": 3984588800,
+        "sha256": "38e9639123988fa217a4aec4ebf67149d1c217bb5806a0286563d8b1677ebc53"
+      },
+      {
+        "name": "hyperseg-rootfs-20260930.tar.gz.part_04",
+        "bytes": 1125952193,
+        "sha256": "db2662f43b881e4376fa211be801033faeb9e707d5b28da209b649554f60c878"
+      }
+    ]
+  },
+  "provenance": {
+    "export_host": "AutoDL container autodl-container-51bc499713-29f504bc (referred to as server3), RTX 4090",
+    "exported_local": "2026-09-30 01:08 (UTC+8)",
+    "exported_utc": "2026-09-29T17:08:00Z",
+    "os_release": "Ubuntu 22.04.3 LTS",
+    "platform": "linux/amd64"
+  },
+  "contents": {
+    "worktree": "/root/hyperseg",
+    "venv": "/root/hyperseg/.venv-mask2former (torch 2.3.0+cu121, transformers 4.57.6)",
+    "checkpoint": "/root/hyperseg/models/hyperseg_b3_best.pt",
+    "backbone_config": "/root/hyperseg/models/nvidia--mit-b3/",
+    "splits": "/root/hyperseg/runs/splits/{train,val,test}.txt",
+    "includes_legacy_key_fix": true,
+    "note": "the key-name compatibility fix (legacy_encoder_key / translate_legacy_keys) is present; this is why an earlier 09-26 image cannot be substituted"
+  },
+  "dataset_excluded": true,
+  "excluded_paths": [
+    "/.dockerenv",
+    "/autodl-pub",
+    "/dev",
+    "/etc/hostname",
+    "/etc/hosts",
+    "/etc/resolv.conf",
+    "/init",
+    "/proc",
+    "/root/autodl-tmp",
+    "/root/hyperseg/dataset",
+    "/run/*",
+    "/sys",
+    "/tmp/*"
+  ],
+  "critical_files": {
+    "/usr/bin/bash": {
+      "requested_path": "/bin/bash",
+      "size": 1396520,
+      "sha256": "2c336c63e26881d2f02f34379024e7c314bce572c08cbaa319bacbbec29f93ed"
+    },
+    "/root/miniconda3/bin/python3.12": {
+      "requested_path": "/root/miniconda3/bin/python3.12",
+      "size": 30627224,
+      "sha256": "0c05a22b0b180580a76437114a95cf138f67c8f46245acad26017c803b42b8c1"
+    },
+    "/root/hyperseg/.venv-mask2former/pyvenv.cfg": {
+      "requested_path": "/root/hyperseg/.venv-mask2former/pyvenv.cfg",
+      "size": 228,
+      "sha256": "eae8d62731aaaedd0ebc969835fc5ff9f317aedad06a1fa4f973046fe3ca2ead"
+    },
+    "/root/hyperseg/hyperseg_uav/model.py": {
+      "requested_path": "/root/hyperseg/hyperseg_uav/model.py",
+      "size": 10403,
+      "sha256": "5a69c25e317f9b480cd2addfc2c0d35b69597514cdef4a1d96efa689503d1d03"
+    },
+    "/root/hyperseg/hyperseg_uav/__init__.py": {
+      "requested_path": "/root/hyperseg/hyperseg_uav/__init__.py",
+      "size": 352,
+      "sha256": "e0eb9325fd8e56e0f1fa84df345fbc8cf8783c44b51672f1388d33bb86293412"
+    },
+    "/root/hyperseg/tools/infer_hyperseg.py": {
+      "requested_path": "/root/hyperseg/tools/infer_hyperseg.py",
+      "size": 3276,
+      "sha256": "08b892361940c8084a1bba9cc34b34db91bb88f4e9920df6c2d0576fd5f81654"
+    },
+    "/root/hyperseg/tools/test_hyperseg.py": {
+      "requested_path": "/root/hyperseg/tools/test_hyperseg.py",
+      "size": 3587,
+      "sha256": "1ff4c148b28afbbc074d5c5a5d9240d7c9310725bedc20c49943a6bd11fe0aee"
+    },
+    "/root/hyperseg/tools/check_submission.py": {
+      "requested_path": "/root/hyperseg/tools/check_submission.py",
+      "size": 603,
+      "sha256": "4b8246f9cf4d0a5a5f5fc5bdd299f1d1d19c054a0da20434566922beffb8f621"
+    },
+    "/root/hyperseg/models/hyperseg_b3_best.pt": {
+      "requested_path": "/root/hyperseg/models/hyperseg_b3_best.pt",
+      "size": 179657463,
+      "sha256": "fb124302bafaec18aaa3f695dc021efead7bd00f710348d040888bb270148968"
+    },
+    "/root/hyperseg/models/nvidia--mit-b3/config.json": {
+      "requested_path": "/root/hyperseg/models/nvidia--mit-b3/config.json",
+      "size": 70045,
+      "sha256": "7a10fb664fa9f10a32361cb7191298e977b3f80a259b65682d2854c15bfc3345"
+    },
+    "/root/hyperseg/runs/splits/train.txt": {
+      "requested_path": "/root/hyperseg/runs/splits/train.txt",
+      "size": 27990,
+      "sha256": "4d19ea1ece87be870f17fb04d760475f68a5344cfcb674386e1f37c5fc484622"
+    },
+    "/root/hyperseg/runs/splits/val.txt": {
+      "requested_path": "/root/hyperseg/runs/splits/val.txt",
+      "size": 3495,
+      "sha256": "39d349bffd31a2dd7bdccd03dac3225a5a30aa11c5e2c97fe7f0367a7ef940f8"
+    },
+    "/root/hyperseg/runs/splits/test.txt": {
+      "requested_path": "/root/hyperseg/runs/splits/test.txt",
+      "size": 3495,
+      "sha256": "09068e956dd175da0f417ba590844876ea542ec7f210261f5647272b34635e4f"
+    }
+  },
+  "expected_data_mount_in_container": "/root/hyperseg/dataset/low_altitude_2026/test_2/images",
+  "verification": {
+    "gzip_test": "ok",
+    "critical_files_checked": 13,
+    "critical_files_missing": [],
+    "local_copy_sha256_recomputed": "c541042f509f4544a05a28a92054e714c152f8d9145597d76ee55551040a5c9d",
+    "split_reassembly_sha256": "c541042f509f4544a05a28a92054e714c152f8d9145597d76ee55551040a5c9d",
+    "note": "reassembly hash was verified by streaming the parts through sha256sum without writing a merged copy",
+    "container_import_smoke_test": "PASS 2026-09-30",
+    "container_import_smoke_detail": {
+      "daemon": "Docker Desktop 29.3.1 (desktop-linux) on the packaging host",
+      "import_command": "docker import server3-system-no-dataset-20260930.rootfs.tar.gz hyperseg-uav:submit",
+      "image_id": "sha256:9b65ec6f91219c9406ebfe6b23a74ec00d15dfa41c9362481916cef55585fca0",
+      "image_size_bytes": 13079719289,
+      "platform": "linux/amd64",
+      "preflight": {
+        "translated_legacy_encoder_keys": 628,
+        "checkpoint_epoch": 141,
+        "checkpoint_val_miou": 0.7420226665631505,
+        "checkpoint_sha256": "fb124302bafaec18aaa3f695dc021efead7bd00f710348d040888bb270148968",
+        "image_count": 1300,
+        "image_side": 1024,
+        "torch": "2.3.0+cu121",
+        "cuda_available": false,
+        "note": "CPU-only smoke: verifies the archive imports, the legacy-key translation fires (628), the checkpoint loads strictly and the input manifest is read"
+      },
+      "requires_pythonpath_inside_image": "/root/hyperseg",
+      "requires_pythonpath_reason": "the run_inference.py baked into the image predates the sys.path bootstrap that the package copy carries, so `import hyperseg_uav` needs the project root on PYTHONPATH inside the container",
+      "transcript": "05_实验证据/logs/container_smoke_20260930.log (package) / runs/container_smoke_20260930.log (repository)",
+      "not_tested": "Dockerfile clean rebuild (the docker import path is the recommended one)"
+    }
+  },
+  "generated_utc": "2026-09-30T02:15:00+00:00"
+}

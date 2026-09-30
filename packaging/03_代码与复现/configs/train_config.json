@@ -1,0 +1,47 @@
+{
+  "entry_point": "tools/train_hyperseg.py",
+  "argument_defaults_in_code": {
+    "epochs": 60,
+    "size": 768,
+    "batch_size": 2,
+    "num_workers": 2,
+    "lr": 0.0001,
+    "encoder_lr_multiplier": 0.1,
+    "seed": 3407,
+    "amp": false,
+    "pretrained": true
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "weight_decay": 0.01,
+    "param_groups": [
+      {"group": "encoder", "lr": "lr * encoder_lr_multiplier"},
+      {"group": "head_and_dynamic_modules", "lr": "lr"}
+    ]
+  },
+  "loss": {
+    "function": "hyperseg_uav.losses.hyperseg_loss",
+    "formula": "0.55 * focal_cross_entropy + 0.30 * dice + 0.025 * rare + 0.10 * boundary",
+    "focal_gamma": 1.5,
+    "rare_classes": [5, 7, 8],
+    "ignore_index": 0,
+    "class_counts": 9
+  },
+  "augmentation": {
+    "random_scale": [0.5, 0.75, 1.0, 1.25, 1.5],
+    "random_crop": "size x size",
+    "scene_crop_prob": 0.3,
+    "horizontal_flip": 0.5,
+    "vertical_flip": 0.5,
+    "photometric": "brightness / contrast / colour jitter",
+    "image_resample": "bilinear",
+    "mask_resample": "nearest"
+  },
+  "uncertain": [
+    "The submitted checkpoint stores only model / model_config / epoch / val_miou, so the",
+    "effective --epochs and every non-default argument of the original run cannot be",
+    "recovered from it. epoch=141 exceeds the 60-epoch default, so --epochs was raised;",
+    "the original training log was not kept in this repository.",
+    "Inference and evaluation are fully reproducible regardless (see REPRODUCE.md)."
+  ]
+}

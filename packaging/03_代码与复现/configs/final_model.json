@@ -1,0 +1,22 @@
+{
+  "role": "the single checkpoint used to produce the submitted predictions",
+  "file": "models/hyperseg_b3_best.pt",
+  "bytes": 179657463,
+  "sha256": "fb124302bafaec18aaa3f695dc021efead7bd00f710348d040888bb270148968",
+  "checkpoint_epoch": 141,
+  "recorded_val_miou": 0.7420226665631505,
+  "val_split": "runs/splits/val.txt (699 labelled images, no overlap with train or test splits)",
+  "model": "HyperSegUAV (MiT-B3 backbone + scene-conditioned dynamic decoding)",
+  "model_config": {
+    "classes": 9,
+    "widths": [64, 128, 320, 512],
+    "context_dim": 128,
+    "pretrained": false,
+    "model_name": "nvidia/mit-b3",
+    "adapter_rank": 8,
+    "adapter_scale": 0.1
+  },
+  "loader_note": "written by a transformers 5 release; hyperseg_uav.model.translate_legacy_keys renames 628 backbone keys to the transformers 4 names before load_state_dict. Translation is in-memory only, so this hash stays valid.",
+  "ensemble": false,
+  "note": "No other checkpoint is part of the submission. models/hyperseg_resume_best.pt and the Swin-L H3 run exist in the development history but are not used here."
+}

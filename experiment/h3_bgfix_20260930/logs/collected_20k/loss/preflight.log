@@ -1,0 +1,20 @@
+preset=loss tag=loss_20k
+2026-09-30T11:25:52+08:00
+torch 2.3.0+cu121 cuda_available=True device_count=1
+device: NVIDIA GeForce RTX 4090
+name, memory.total [MiB], memory.used [MiB]
+NVIDIA GeForce RTX 4090, 24564 MiB, 5638 MiB
+dc532f0ad8f98b71e0c88e8d673512b1526af9cba2cf0ab71130478423ffb3ff  /root/hyperseg/models/swin_l/swin_large_patch4_window12_384_22k_20220412-6580f57d.pth
+smoke test passed
+starting training
+--- wrapper ---
+#!/usr/bin/env bash
+cd /root/hyperseg
+export PYTHONPATH=/root/hyperseg/../mmsegmentation:/root/hyperseg
+export OMP_NUM_THREADS=4
+export MKL_NUM_THREADS=4
+/root/hyperseg/.venv-mask2former/bin/python -u experiment/h3_bgfix_20260930/train_h3_bgfix.py --preset loss --data-root /root/hyperseg/dataset/low_altitude_2026 --split-dir /root/hyperseg/runs/splits --work-dir /root/hyperseg/runs/mask2former_uav/h3_bgfix_loss_20k_seed3407 --backbone-checkpoint /root/hyperseg/models/swin_l/swin_large_patch4_window12_384_22k_20220412-6580f57d.pth --batch-size 2 --accumulative-counts 1 --size 512 --max-iters 160000 --val-interval 2800 --num-workers 4 --seed 3407 --with-checkpointing --max-iters 20000 --val-interval 1000 --drop-optimizer-state
+status=$?
+printf "%s\n" "$status" > /root/hyperseg/runs/mask2former_uav/h3_bgfix_loss_20k_seed3407/exit_code
+date -Is >> /root/hyperseg/runs/mask2former_uav/h3_bgfix_loss_20k_seed3407/exit_code
+---------------

@@ -1,0 +1,8 @@
+2026-09-30T11:25:52+08:00  parallel screening start: budget=20000 val_interval=1000 slots=2 arms=loss aug full
+2026-09-30T11:25:52+08:00  START loss -> /root/hyperseg/runs/mask2former_uav/h3_bgfix_loss_20k_seed3407
+2026-09-30T11:26:01+08:00  START aug -> /root/hyperseg/runs/mask2former_uav/h3_bgfix_aug_20k_seed3407
+2026-09-30T15:29:11+08:00  DONE aug after 20 validations
+2026-09-30T15:29:56+08:00  START full -> /root/hyperseg/runs/mask2former_uav/h3_bgfix_full_20k_seed3407
+2026-09-30T15:30:06+08:00  DONE loss after 20 validations
+2026-09-30T16:58:36+08:00  DONE full after 20 validations
+2026-09-30T16:58:36+08:00  screening complete: all arms finished

@@ -1,0 +1,9 @@
+{
+  "label": "server3-system-no-dataset-20260929",
+  "partial": "E:/myproject/hyperseg/server3-system-no-dataset-20260929.rootfs.tar.gz.partial",
+  "bytes": 6124826624,
+  "partial_sha256": "aa436a77bcd044fc9d3e9f3435ba628a9f40825e16501af0807de7bc254a5cba",
+  "stage": "paused",
+  "expected_total_bytes": null,
+  "updated_utc": "2026-09-29T13:29:11.313361+00:00"
+}

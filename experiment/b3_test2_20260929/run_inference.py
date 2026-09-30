@@ -20,6 +20,13 @@ from pathlib import Path
 import torch
 
 ROOT = Path(__file__).resolve().parents[2]
+# Running this file as ``python experiment/.../run_inference.py`` puts only the
+# script's own directory on sys.path, so ``import hyperseg_uav`` would fail unless
+# PYTHONPATH already points at the project root (``launch_server3.sh`` exports it).
+# val_sanity.py and tools/infer_hyperseg.py bootstrap the same way; do it here too
+# so the documented bare command works.
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 WORK = ROOT / 'runs/b3_test2_20260929'
 CHECKPOINT = ROOT / 'models/hyperseg_b3_best.pt'
 INPUT = ROOT / 'dataset/low_altitude_2026/test_2/images'

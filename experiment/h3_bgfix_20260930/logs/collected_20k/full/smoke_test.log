@@ -1,0 +1,159 @@
+synthetic dataset: /tmp/bgfix_smoke_ki9fhutn
+
+[1] spatial alignment through crop / flip / pad
+  [PASS] trial 0 image shape -- (3, 64, 64)
+  [PASS] trial 0 mask shape -- (64, 64)
+  [PASS] trial 0 image range -- [0.118, 0.863]
+  [PASS] trial 0 mask labels in 0..8 -- [1, 2, 6]
+  [PASS] trial 0 red region is Background(1) -- got 1
+  [PASS] trial 0 blue region is Building(2) -- got 2
+  [PASS] trial 0 green band is Vegetation(6) -- got 6
+  [PASS] trial 1 image shape -- (3, 64, 64)
+  [PASS] trial 1 mask shape -- (64, 64)
+  [PASS] trial 1 image range -- [0.118, 0.863]
+  [PASS] trial 1 mask labels in 0..8 -- [1, 2, 6]
+  [PASS] trial 1 red region is Background(1) -- got 1
+  [PASS] trial 1 blue region is Building(2) -- got 2
+  [PASS] trial 1 green band is Vegetation(6) -- got 6
+  [PASS] trial 2 image shape -- (3, 64, 64)
+  [PASS] trial 2 mask shape -- (64, 64)
+  [PASS] trial 2 image range -- [0.118, 0.863]
+  [PASS] trial 2 mask labels in 0..8 -- [1, 2, 6]
+  [PASS] trial 2 red region is Background(1) -- got 1
+  [PASS] trial 2 blue region is Building(2) -- got 2
+  [PASS] trial 2 green band is Vegetation(6) -- got 6
+  [PASS] trial 3 image shape -- (3, 64, 64)
+  [PASS] trial 3 mask shape -- (64, 64)
+  [PASS] trial 3 image range -- [0.078, 0.898]
+  [PASS] trial 3 mask labels in 0..8 -- [2, 6]
+  [PASS] trial 3 blue region is Building(2) -- got 2
+  [PASS] trial 3 green band is Vegetation(6) -- got 6
+  [PASS] trial 4 image shape -- (3, 64, 64)
+  [PASS] trial 4 mask shape -- (64, 64)
+  [PASS] trial 4 image range -- [0.118, 0.863]
+  [PASS] trial 4 mask labels in 0..8 -- [0, 1, 2, 6]
+  [PASS] trial 4 red region is Background(1) -- got 1
+  [PASS] trial 4 blue region is Building(2) -- got 2
+  [PASS] trial 4 green band is Vegetation(6) -- got 6
+  [PASS] trial 5 image shape -- (3, 64, 64)
+  [PASS] trial 5 mask shape -- (64, 64)
+  [PASS] trial 5 image range -- [0.118, 0.863]
+  [PASS] trial 5 mask labels in 0..8 -- [1, 2, 6]
+  [PASS] trial 5 red region is Background(1) -- got 1
+  [PASS] trial 5 blue region is Building(2) -- got 2
+  [PASS] trial 5 green band is Vegetation(6) -- got 6
+  [PASS] trial 6 image shape -- (3, 64, 64)
+  [PASS] trial 6 mask shape -- (64, 64)
+  [PASS] trial 6 image range -- [0.118, 0.863]
+  [PASS] trial 6 mask labels in 0..8 -- [1, 2, 6]
+  [PASS] trial 6 red region is Background(1) -- got 1
+  [PASS] trial 6 blue region is Building(2) -- got 2
+  [PASS] trial 6 green band is Vegetation(6) -- got 6
+  [PASS] trial 7 image shape -- (3, 64, 64)
+  [PASS] trial 7 mask shape -- (64, 64)
+  [PASS] trial 7 image range -- [0.078, 0.898]
+  [PASS] trial 7 mask labels in 0..8 -- [0, 1, 2, 6]
+  [PASS] trial 7 red region is Background(1) -- got 1
+  [PASS] trial 7 blue region is Building(2) -- got 2
+  [PASS] trial 7 green band is Vegetation(6) -- got 6
+
+[2] zoom-out branch really fires (scale below crop/source ratio)
+  [PASS] trial 0 pad region is ignore(0)
+  [PASS] trial 0 content region keeps labels
+  [PASS] trial 0 canvas not fully covered or no padding
+  [PASS] trial 1 pad region is ignore(0)
+  [PASS] trial 1 content region keeps labels
+  [PASS] trial 1 canvas not fully covered or no padding
+  [PASS] trial 2 pad region is ignore(0)
+  [PASS] trial 2 content region keeps labels
+  [PASS] trial 2 canvas not fully covered or no padding
+  [PASS] trial 3 pad region is ignore(0)
+  [PASS] trial 3 content region keeps labels
+  [PASS] trial 3 canvas not fully covered or no padding
+  [PASS] trial 4 pad region is ignore(0)
+  [PASS] trial 4 content region keeps labels
+  [PASS] trial 4 canvas not fully covered or no padding
+  [PASS] trial 5 pad region is ignore(0)
+  [PASS] trial 5 content region keeps labels
+  [PASS] trial 5 canvas not fully covered or no padding
+  [PASS] padding path was actually exercised
+    (legacy clamp branch for comparison)
+  [PASS] legacy clamp still yields a full crop
+
+[3] GSD and photometric randomisation keep geometry
+  [PASS] trial 0 shape after GSD+photo
+  [PASS] trial 0 mask untouched by GSD
+  [PASS] trial 0 labels still valid
+  [PASS] trial 1 shape after GSD+photo
+  [PASS] trial 1 mask untouched by GSD
+  [PASS] trial 1 labels still valid
+  [PASS] trial 2 shape after GSD+photo
+  [PASS] trial 2 mask untouched by GSD
+  [PASS] trial 2 labels still valid
+  [PASS] trial 3 shape after GSD+photo
+  [PASS] trial 3 mask untouched by GSD
+  [PASS] trial 3 labels still valid
+  [PASS] trial 4 shape after GSD+photo
+  [PASS] trial 4 mask untouched by GSD
+  [PASS] trial 4 labels still valid
+  [PASS] trial 5 shape after GSD+photo
+  [PASS] trial 5 mask untouched by GSD
+  [PASS] trial 5 labels still valid
+
+    photometric bounds on a constant patch
+  [PASS] photometric output stays in [0,1] and finite over 200 draws
+
+    directional colour cast must be able to reach the measured shift
+  [PASS] cast direction at full strength reproduces the measured deficit -- gains=[0.7658, 0.8321, 0.9112] measured=[0.7658, 0.8321, 0.9112]
+  [PASS] cast augmentation reaches the observed G-R > 8 direction -- 175/600 draws, best delta=8.29
+  [PASS] strongest reachable G-R delta approaches the measured +6.9 -- best delta=8.29
+
+[4] loss terms
+  [PASS] false-background term equals 0.25 * -log(1 - p_bg) -- delta=0.029446 expected=0.029446
+  [PASS] penalty does not fire on Background-labelled pixels -- delta=0.00e+00
+  [PASS] ignore_index=0 pixels are excluded from every term
+  [PASS] unit class weights reproduce the unweighted loss -- delta=0.00e+00
+  [PASS] raising the Background weight increases loss on a Background-labelled batch
+  [PASS] Background weight is inert on a batch with no Background labels
+  [PASS] penalty grows when Background dominates the logits -- delta=0.5143
+  [PASS] loss finite (false_bg_weight=0) -- 1.321644
+  [PASS] loss finite (false_bg_weight=0.25) -- 1.351090
+
+[5] inverse-frequency class weights
+  [PASS] mode 'none' returns ones
+  [PASS] rarer class (Vehicle) outweighs Background -- 2.820 vs 0.700
+  [PASS] Background is floored, not suppressed -- 0.700
+  [PASS] cap respected -- max=2.820
+  [PASS] median mode is more aggressive than mild -- 7.953 vs 2.820
+  [PASS] ignore class weight neutralised
+
+[6] confusion-matrix metrics
+  [PASS] background false-positive rate -- 0.5000
+  [PASS] background false-negative rate -- 0.5000
+  [PASS] mIoU over the two observed classes -- 0.3250
+  [PASS] hand-computed mIoU matches -- 0.3250
+  [PASS] ignore pixels excluded from the confusion matrix -- 1
+  [PASS] valid label predicted as class 0 is recorded as an error (row 3, col 0)
+  [PASS] confident correct predictions land on the diagonal
+  [PASS] confident wrong predictions land off the diagonal
+
+[7] proxy eval renders labels at the reduced detail scale
+  [PASS] scale 0.5 aligned to 32 -- 64x64
+  [PASS] scale 0.5 width near target -- 64
+  [PASS] scale 0.5 image and mask agree -- (64, 64) vs (64, 64)
+  [PASS] scale 0.5 labels valid after nearest-neighbour resize
+  [PASS] scale 0.625 aligned to 32 -- 64x64
+  [PASS] scale 0.625 width near target -- 64
+  [PASS] scale 0.625 image and mask agree -- (64, 64) vs (64, 64)
+  [PASS] scale 0.625 labels valid after nearest-neighbour resize
+  [PASS] scale 0.75 aligned to 32 -- 96x96
+  [PASS] scale 0.75 width near target -- 96
+  [PASS] scale 0.75 image and mask agree -- (96, 96) vs (96, 96)
+  [PASS] scale 0.75 labels valid after nearest-neighbour resize
+
+[8] seeding gives reproducible augmentations
+  [PASS] same seed reproduces the same sample
+  [PASS] different seed changes the sample
+
+============================================================
+ALL CHECKS PASSED

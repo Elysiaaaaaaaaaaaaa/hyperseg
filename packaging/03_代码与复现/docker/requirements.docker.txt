@@ -1,0 +1,20 @@
+# Installable subset of the recorded environment.
+#
+# docker/requirements.lock.txt is the raw `pip freeze` from the machine that
+# produced the submission (179 entries). Some of those entries are conda artifacts
+# (`name @ file:///croot/...`) that cannot be installed with pip, so this file lists
+# the direct dependencies with the exact versions that were imported at run time.
+#
+# torch wheels come from the cu121 index:
+#   pip install --extra-index-url https://download.pytorch.org/whl/cu121 \
+#       -r docker/requirements.docker.txt
+
+torch==2.3.0
+torchvision==0.18.0
+transformers==4.57.6
+tokenizers==0.22.2
+huggingface_hub==0.36.2
+safetensors==0.8.0
+numpy==2.5.3
+pillow==10.3.0
+opencv-python==5.0.0.93

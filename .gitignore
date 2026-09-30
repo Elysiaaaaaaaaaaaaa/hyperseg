@@ -1,7 +1,9 @@
 SUIM/
 dataset/
 LoveDA/
+models/
 __pycache__/
 results/
 *.zip
 *.pt
+dist/
