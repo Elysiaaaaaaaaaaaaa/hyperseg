@@ -1,0 +1,125 @@
+{
+  "v1_package": "experiment\\b3_test2_20260929\\hyperseg_b3_test2_predictions.zip",
+  "v2_package": "experiment\\b3_resume_test2_20260930\\hyperseg_b3_resume_test2_predictions.zip",
+  "images": 1300,
+  "class_share_v1": {
+    "1": 0.33942386920635514,
+    "2": 0.18523680393512432,
+    "3": 0.06892226659334623,
+    "4": 0.07344836528484638,
+    "5": 0.014527036960308368,
+    "6": 0.20944296983572153,
+    "7": 0.10302042227524977,
+    "8": 0.005978265909048227
+  },
+  "class_share_v2": {
+    "1": 0.33828741000248835,
+    "2": 0.18042073323176458,
+    "3": 0.0688854298224816,
+    "4": 0.07742027649512657,
+    "5": 0.010115428337684045,
+    "6": 0.2106561257289006,
+    "7": 0.1082151904472938,
+    "8": 0.005999405934260442
+  },
+  "pixel_count_ratio_v2_over_v1": {
+    "1": 0.9966517993960646,
+    "2": 0.974000465344638,
+    "3": 0.9994655316389698,
+    "4": 1.054077598526208,
+    "5": 0.6963173815363737,
+    "6": 1.0057922970349906,
+    "7": 1.0504246445249918,
+    "8": 1.0035361466910027
+  },
+  "class_names": {
+    "1": "Background",
+    "2": "Building",
+    "3": "Road",
+    "4": "Water",
+    "5": "Barren",
+    "6": "Vegetation",
+    "7": "Agricultural",
+    "8": "Vehicle"
+  },
+  "changed_pixel_fraction": 0.08899199045621432,
+  "images_with_any_change": 1295,
+  "mean_changed_fraction": 0.08899199045621432,
+  "top_changed_images": [
+    {
+      "name": "test2_1010.png",
+      "changed_pixels": 872461,
+      "changed_fraction": 0.8320436477661133
+    },
+    {
+      "name": "test2_710.png",
+      "changed_pixels": 805893,
+      "changed_fraction": 0.768559455871582
+    },
+    {
+      "name": "test2_881.png",
+      "changed_pixels": 733588,
+      "changed_fraction": 0.6996040344238281
+    },
+    {
+      "name": "test2_58.png",
+      "changed_pixels": 712278,
+      "changed_fraction": 0.6792812347412109
+    },
+    {
+      "name": "test2_1033.png",
+      "changed_pixels": 660366,
+      "changed_fraction": 0.6297740936279297
+    },
+    {
+      "name": "test2_663.png",
+      "changed_pixels": 629316,
+      "changed_fraction": 0.6001625061035156
+    },
+    {
+      "name": "test2_466.png",
+      "changed_pixels": 610901,
+      "changed_fraction": 0.5826005935668945
+    },
+    {
+      "name": "test2_571.png",
+      "changed_pixels": 605476,
+      "changed_fraction": 0.5774269104003906
+    },
+    {
+      "name": "test2_1295.png",
+      "changed_pixels": 604543,
+      "changed_fraction": 0.5765371322631836
+    },
+    {
+      "name": "test2_548.png",
+      "changed_pixels": 603380,
+      "changed_fraction": 0.5754280090332031
+    },
+    {
+      "name": "test2_749.png",
+      "changed_pixels": 602174,
+      "changed_fraction": 0.5742778778076172
+    },
+    {
+      "name": "test2_1249.png",
+      "changed_pixels": 588566,
+      "changed_fraction": 0.5613002777099609
+    },
+    {
+      "name": "test2_31.png",
+      "changed_pixels": 586478,
+      "changed_fraction": 0.5593090057373047
+    },
+    {
+      "name": "test2_1233.png",
+      "changed_pixels": 580425,
+      "changed_fraction": 0.5535364151000977
+    },
+    {
+      "name": "test2_665.png",
+      "changed_pixels": 570568,
+      "changed_fraction": 0.5441360473632812
+    }
+  ]
+}

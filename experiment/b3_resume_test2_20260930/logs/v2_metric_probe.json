@@ -1,0 +1,77 @@
+{
+  "checkpoint": "/root/hyperseg/models/hyperseg_resume_best.pt",
+  "checkpoint_epoch": 134,
+  "recorded_val_miou": 0.7631595244109886,
+  "trials": [
+    {
+      "size": 768,
+      "samples": 699,
+      "batches": 350,
+      "batch_class_mean": 0.740311526732018,
+      "dataset_class_mean": 0.7941081930530991,
+      "image_class_mean": 0.7194719885312656,
+      "dataset_class_mean_with_ignore": 0.7941081930530991,
+      "elapsed_seconds": 16.370283469557762,
+      "recorded_val_miou": 0.7631595244109886,
+      "candidates": {
+        "batch_class_mean": {
+          "value": 0.740311526732018,
+          "absolute_difference": 0.0228479976789705,
+          "matches": false
+        },
+        "dataset_class_mean": {
+          "value": 0.7941081930530991,
+          "absolute_difference": 0.030948668642110544,
+          "matches": false
+        },
+        "image_class_mean": {
+          "value": 0.7194719885312656,
+          "absolute_difference": 0.04368753587972296,
+          "matches": false
+        },
+        "dataset_class_mean_with_ignore": {
+          "value": 0.7941081930530991,
+          "absolute_difference": 0.030948668642110544,
+          "matches": false
+        }
+      },
+      "matching_definitions": []
+    },
+    {
+      "size": 1024,
+      "samples": 699,
+      "batches": 350,
+      "batch_class_mean": 0.7426046243960122,
+      "dataset_class_mean": 0.7945006038309544,
+      "image_class_mean": 0.721698281843778,
+      "dataset_class_mean_with_ignore": 0.7945006038309544,
+      "elapsed_seconds": 31.80520237982273,
+      "recorded_val_miou": 0.7631595244109886,
+      "candidates": {
+        "batch_class_mean": {
+          "value": 0.7426046243960122,
+          "absolute_difference": 0.020554900014976396,
+          "matches": false
+        },
+        "dataset_class_mean": {
+          "value": 0.7945006038309544,
+          "absolute_difference": 0.03134107941996589,
+          "matches": false
+        },
+        "image_class_mean": {
+          "value": 0.721698281843778,
+          "absolute_difference": 0.04146124256721051,
+          "matches": false
+        },
+        "dataset_class_mean_with_ignore": {
+          "value": 0.7945006038309544,
+          "absolute_difference": 0.03134107941996589,
+          "matches": false
+        }
+      },
+      "matching_definitions": []
+    }
+  ],
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 4090"
+}

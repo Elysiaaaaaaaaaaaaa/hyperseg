@@ -1,23 +1,31 @@
-"""复赛预测掩码叠加查看器（tkinter GUI，仅依赖 Pillow + 标准库）。
+"""掩码叠加查看器（tkinter GUI，仅依赖 Pillow + 标准库）。
+
+掩码来源既可以是**模型预测**，也可以是**训练集真值掩码**（两者都是单通道 0..8 PNG）。
 
 功能
 ----
-* 从预测 zip / tar.gz / 目录读取单通道掩码（像素 0..8），按固定调色板映射成彩色；
-* 与 test_2.zip / 图像目录里的原图叠加，叠加比例用滑杆实时调整；
+* 从 zip / tar.gz / 目录读取单通道掩码（像素 0..8），按固定调色板映射成彩色；
+* 与原图叠加，叠加比例用滑杆实时调整；
 * 逐类开关（只看建筑+道路等）、Ignore 类可单独高亮；
-* 滚轮缩放 / 拖拽平移 / 左右键翻页 / 搜索过滤；
+* 滚轮缩放 / 拖拽平移 / 左右键翻页 / 搜索过滤 / 跳到第 N 张；
+* 按 runs/splits/{train,val,test}.txt 过滤，直接浏览整个训练集的某个划分；
 * 显示当前图的类别像素占比，可导出当前叠加图。
 
 用法
 ----
     python tools/view_predictions_gui.py
     python tools/view_predictions_gui.py --predictions <zip|tar.gz|目录> --images <zip|tar.gz|目录>
-    python tools/view_predictions_gui.py --list                            # 只列候选包，不开界面
-    python tools/view_predictions_gui.py --selftest --out <目录>     # 无界面自检 + 导出样张
+    python tools/view_predictions_gui.py --train                      # 直接看整个训练集（6996 张真值掩码 + 原图）
+    python tools/view_predictions_gui.py --train --split val          # 只看 val 划分那 699 张
+    python tools/view_predictions_gui.py --list                       # 只列候选来源，不开界面
+    python tools/view_predictions_gui.py --selftest --out <目录>      # 无界面自检 + 导出样张
 
 约定：掩码为单通道灰度 PNG，像素值 0..8，0 为 Ignore（默认不上色）。
       调色板直接复用 tools/visualize_predictions.py 的 PALETTE，保证与既有可视化一致。
       实验目录里的预测包常以「目录 + tar.gz」两种形态并存，两种都要能被发现和读取。
+      训练集：dataset/low_altitude_2026/train/{images,masks}，6996 对，文件名一一对应；
+      划分文件每行一个不带 .png 的 stem，与训练集文件名相同，因此划分过滤只对训练集有意义
+      （对 test_2 这类无标注预测包会自动忽略并提示）。
 """
 
 from __future__ import annotations
@@ -68,6 +76,13 @@ CLASS_NAMES = {
 NUM_CLASSES = len(CLASS_COLORS)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+# 训练集（main dataset）：6996 对同名 images/masks，掩码与预测同格式（L, 0..8）
+TRAIN_IMAGES = PROJECT_ROOT / "dataset" / "low_altitude_2026" / "train" / "images"
+TRAIN_MASKS = PROJECT_ROOT / "dataset" / "low_altitude_2026" / "train" / "masks"
+SPLIT_DIR = PROJECT_ROOT / "runs" / "splits"
+SPLIT_ORDER = ("train", "val", "test")
+SPLIT_ALL = "全部"
 
 
 # ---------------------------------------------------------------------------
@@ -218,6 +233,55 @@ def _natural_key(name: str):
                  for part in re.split(r"(\d+)", stem))
 
 
+def read_split(path) -> set:
+    """读 runs/splits/*.txt：每行一个不带 .png 的 stem。
+
+    容错：忽略空行与 `#` 注释，容忍带 `.png` 后缀或带子目录前缀的写法。
+    """
+    stems = set()
+    for line in Path(path).read_text(encoding="utf-8", errors="ignore").splitlines():
+        s = line.strip()
+        if not s or s.startswith("#"):
+            continue
+        s = s.replace("\\", "/").rsplit("/", 1)[-1]
+        if s.lower().endswith(".png"):
+            s = s[:-4]
+        stems.add(s)
+    return stems
+
+
+def discover_splits() -> dict:
+    """返回 {"train": Path, "val": Path, "test": Path}，缺哪个少哪个。"""
+    out = {}
+    for name in SPLIT_ORDER:
+        p = SPLIT_DIR / f"{name}.txt"
+        if p.is_file():
+            out[name] = p
+    return out
+
+
+def sibling_images(path):
+    """掩码来源 -> 同级原图目录（`.../train/masks` -> `.../train/images`）。
+
+    找不到返回 None。选中训练集掩码后自动配上原图，靠的就是它。
+    """
+    p = Path(path)
+    if not p.is_dir():
+        return None
+    candidates = [p / "images", p.parent / "images"]
+    try:
+        here = p.resolve()
+    except OSError:
+        here = p
+    for cand in candidates:
+        try:
+            if cand.is_dir() and cand.resolve() != here:
+                return cand.resolve()
+        except OSError:
+            continue
+    return None
+
+
 def decode_image(data: bytes) -> Image.Image:
     return Image.open(io.BytesIO(data))
 
@@ -297,11 +361,14 @@ def _first_positions(mask: Image.Image, values) -> dict:
 # 候选路径自动发现
 # ---------------------------------------------------------------------------
 def discover_predictions() -> list[Path]:
-    """列出候选预测掩码包（zip / tar.gz / 目录三种形态都收）。
+    """列出候选掩码来源（zip / tar.gz / 目录三种形态都收）。
 
     只按 zip 后缀找会漏掉实验目录里以「目录 + tar.gz」回传的预测结果
     （例如 `experiment/<exp>/results/predictions/pred_test2_*_20k`），
     这里改成「先按位置 glob，再用 looks_like_source 预检内容」。
+
+    另外把训练集真值掩码目录 `dataset/low_altitude_2026/train/masks` 也收进来，
+    这样直接选它就能浏览整个训练集（6996 张），配合划分下拉框可只看 train/val/test。
     """
     out = []
     for pat in (
@@ -315,6 +382,8 @@ def discover_predictions() -> list[Path]:
         "runs/**/pred_*",
     ):
         out.extend(PROJECT_ROOT.glob(pat))
+    if TRAIN_MASKS.is_dir():
+        out.append(TRAIN_MASKS)
     return sorted({p.resolve() for p in out if looks_like_source(p)},
                   key=lambda p: p.stat().st_mtime, reverse=True)
 
@@ -322,7 +391,8 @@ def discover_predictions() -> list[Path]:
 def discover_images() -> list[Path]:
     out = []
     for rel in ("test_2.zip", "dataset/low_altitude_2026/test_2/images",
-                "dataset/low_altitude_2026/test_2", "dataset/low_altitude_2026/images"):
+                "dataset/low_altitude_2026/test_2", "dataset/low_altitude_2026/images",
+                "dataset/low_altitude_2026/train/images"):
         p = PROJECT_ROOT / rel
         if p.exists():
             out.append(p.resolve())
@@ -333,18 +403,27 @@ def discover_images() -> list[Path]:
 # GUI
 # ---------------------------------------------------------------------------
 class ViewerApp:
-    def __init__(self, root: tk.Tk, pred_default=None, image_default=None):
+    def __init__(self, root: tk.Tk, pred_default=None, image_default=None,
+                 split_default: str = SPLIT_ALL):
         self.root = root
-        root.title("复赛预测掩码叠加查看器")
+        root.title("掩码叠加查看器（预测包 / 训练集真值）")
         root.geometry("1440x900")
         root.minsize(1000, 640)
 
         self.pred_src = None
         self.img_src = None
+        self.img_src_path = None
         self._img_names: set[str] = set()
-        self.names: list[str] = []
-        self.view_names: list[str] = []
+        self.source_names: list[str] = []   # 掩码来源里的全部样本
+        self.names: list[str] = []          # 划分过滤后
+        self.view_names: list[str] = []     # 再经搜索过滤后
         self.index = 0
+
+        # 固定划分（runs/splits/*.txt）：只在掩码来源与划分有交集时才生效
+        self._splits = discover_splits()
+        self._split_cache: dict = {}
+        self.split_var = tk.StringVar(value=split_default)
+        self._search_job = None
 
         self.base: Image.Image | None = None
         self.mask: Image.Image | None = None
@@ -384,7 +463,7 @@ class ViewerApp:
         top = ttk.Frame(self.root, padding=(8, 6))
         top.pack(side="top", fill="x")
 
-        ttk.Label(top, text="预测掩码包").grid(row=0, column=0, sticky="w")
+        ttk.Label(top, text="掩码来源").grid(row=0, column=0, sticky="w")
         self.pred_var = tk.StringVar()
         self.pred_combo = ttk.Combobox(top, textvariable=self.pred_var, width=58,
                                        values=[str(p) for p in discover_predictions()])
@@ -426,17 +505,28 @@ class ViewerApp:
 
         top.columnconfigure(1, weight=1)
 
+        # 已加载来源的实况（目录/zp 里到底有多少张），6996 张的训练集靠它确认
+        self.src_lbl = ttk.Label(top, text="", foreground="#666666")
+        self.src_lbl.grid(row=2, column=0, columnspan=3, sticky="w", pady=(4, 0))
+
         body = ttk.Frame(self.root, padding=(8, 0))
         body.pack(side="top", fill="both", expand=True)
 
         # 左：列表
         left = ttk.Frame(body)
         left.pack(side="left", fill="y")
-        ttk.Label(left, text="搜索（空格分隔多个关键词）").pack(anchor="w")
+        ttk.Label(left, text="划分过滤（runs/splits）").pack(anchor="w")
+        self.split_combo = ttk.Combobox(left, textvariable=self.split_var, width=24,
+                                        state="readonly", values=self._split_values())
+        self.split_combo.pack(fill="x")
+        self.split_combo.bind("<<ComboboxSelected>>", lambda e: self._on_split_change())
+
+        ttk.Label(left, text="搜索（空格分隔多个关键词）").pack(anchor="w", pady=(6, 0))
         self.search_var = tk.StringVar()
         entry = ttk.Entry(left, textvariable=self.search_var, width=26)
         entry.pack(fill="x")
-        entry.bind("<KeyRelease>", lambda e: self._refresh_list())
+        entry.bind("<KeyRelease>", self._on_search_key)   # 7000 张时防抖，避免每次按键重建列表
+        entry.bind("<Return>", self._do_search)
 
         self.count_lbl = ttk.Label(left, text="0 / 0")
         self.count_lbl.pack(anchor="w", pady=(4, 2))
@@ -454,6 +544,16 @@ class ViewerApp:
         nav.pack(fill="x", pady=4)
         ttk.Button(nav, text="◀ 上一张", command=lambda: self.step(-1)).pack(side="left")
         ttk.Button(nav, text="下一张 ▶", command=lambda: self.step(1)).pack(side="right")
+
+        # 7000 张时翻页不够用，给个直接跳号（1 基，与列表行号一致）
+        jump = ttk.Frame(left)
+        jump.pack(fill="x")
+        ttk.Label(jump, text="跳到第").pack(side="left")
+        self.jump_var = tk.StringVar()
+        jump_entry = ttk.Entry(jump, textvariable=self.jump_var, width=8)
+        jump_entry.pack(side="left", padx=3)
+        jump_entry.bind("<Return>", lambda e: self._jump())
+        ttk.Button(jump, text="张", width=3, command=self._jump).pack(side="left")
 
         # 中：画布
         mid = ttk.Frame(body)
@@ -502,28 +602,75 @@ class ViewerApp:
         self.root.bind("<Control-s>", lambda e: self.export_current())
 
     # ---------------- 数据加载 ----------------
+    def _split_values(self):
+        return [SPLIT_ALL] + [n for n in SPLIT_ORDER if n in self._splits]
+
+    def _split_stems(self):
+        """当前划分的 stem 集合；选「全部」或划分文件缺失时返回 None。"""
+        name = self.split_var.get()
+        if name not in self._splits:
+            return None
+        if name not in self._split_cache:
+            self._split_cache[name] = read_split(self._splits[name])
+        return self._split_cache[name]
+
     def _load_pred(self, path):
         try:
             self.pred_src = open_source(path)
         except Exception as exc:
-            messagebox.showerror("无法打开预测掩码包", str(exc))
+            messagebox.showerror("无法打开掩码来源", str(exc))
             return
         self.pred_var.set(str(path))
         self._refresh_list()
+        self._autopair_images(path)
+        self._update_src_label()
         if self.names:
             self.show_index(0)
 
-    def _load_images(self, path):
+    def _load_images(self, path, auto=False):
         try:
             self.img_src = open_source(path)
         except Exception as exc:
             messagebox.showerror("无法打开原图来源", str(exc))
             return
         self._img_names = set(self.img_src.names())
+        self.img_src_path = Path(path)
         self.img_var.set(str(path))
+        self._update_src_label()
+        if auto:
+            self.status.config(text=f"已自动配对原图来源：{path}")
+
+    def _autopair_images(self, pred_path):
+        """掩码来源换了之后，若原图源与它没有任何同名样本，自动挑同级的 images 目录。
+
+        典型场景：选 `dataset/low_altitude_2026/train/masks` → 自动配上
+        `dataset/low_altitude_2026/train/images`，不用手动再选一次。
+        """
+        if not self.names:
+            return
+        if self.img_src is not None and (set(self.names) & self._img_names):
+            return
+        cand = sibling_images(pred_path)
+        if cand is None:
+            return
+        if self.img_src_path is not None:
+            try:
+                if Path(self.img_src_path).resolve() == cand:
+                    return
+            except OSError:
+                pass
+        self._load_images(cand, auto=True)
+
+    def _update_src_label(self):
+        parts = []
+        if self.pred_src is not None:
+            parts.append("掩码 " + self.pred_src.describe())
+        if self.img_src is not None:
+            parts.append("原图 " + self.img_src.describe())
+        self.src_lbl.config(text="    |    ".join(parts))
 
     def _refresh_candidates(self):
-        """重新扫描候选预测包 / 原图来源，保留当前选中项。"""
+        """重新扫描候选掩码来源 / 原图来源 / 划分文件，保留当前选中项。"""
         pred_now, img_now = self.pred_var.get(), self.img_var.get()
         preds = [str(p) for p in discover_predictions()]
         images = [str(p) for p in discover_images()]
@@ -533,17 +680,25 @@ class ViewerApp:
             self.pred_var.set(pred_now)
         if img_now in images:
             self.img_var.set(img_now)
+
+        self._splits = discover_splits()
+        self._split_cache.clear()
+        values = self._split_values()
+        self.split_combo.configure(values=values)
+        if self.split_var.get() not in values:
+            self.split_var.set(SPLIT_ALL)
+        self._refresh_list()
         self.status.config(
-            text=f"候选包已刷新：预测 {len(preds)} 个 / 原图 {len(images)} 个")
+            text=f"候选已刷新：掩码 {len(preds)} 个 / 原图 {len(images)} 个 / 划分 {len(self._splits)} 个")
 
     def _browse_pred(self):
         path = filedialog.askopenfilename(
-            title="选择预测掩码包（zip / tar.gz）",
+            title="选择掩码包（zip / tar.gz）",
             filetypes=[("掩码包", "*.zip *.tar.gz *.tgz *.tar"),
                        ("zip", "*.zip"), ("tar.gz", "*.tar.gz *.tgz"),
                        ("所有文件", "*.*")])
         if not path:
-            path = filedialog.askdirectory(title="或选择预测掩码目录")
+            path = filedialog.askdirectory(title="或选择掩码目录")
             if not path:
                 return
         self._load_pred(path)
@@ -561,19 +716,72 @@ class ViewerApp:
         self._load_images(path)
 
     def _refresh_list(self):
-        self.names = self.pred_src.names() if self.pred_src else []
+        self.source_names = self.pred_src.names() if self.pred_src else []
+        # 划分过滤：只保留 stem 出现在 runs/splits/<name>.txt 里的样本。
+        # 若该划分与当前掩码来源毫无交集（例如拿 test_2 预测包看 val 划分），
+        # 不静默清空列表，而是忽略这次过滤并在计数里提示。
+        stems = self._split_stems()
+        split_note = ""
+        if stems is not None:
+            kept = [n for n in self.source_names if Path(n).stem in stems]
+            if kept or not self.source_names:
+                self.names = kept
+            else:
+                self.names = list(self.source_names)
+                split_note = f"，该划分无交集已忽略"
+        else:
+            self.names = list(self.source_names)
+
         tokens = [t for t in self.search_var.get().lower().split() if t]
-        self.view_names = [n for n in self.names if all(t in n.lower() for t in tokens)]
-        self.listbox.delete(0, "end")
-        for n in self.view_names:
-            self.listbox.insert("end", n)
-        self.count_lbl.config(text=f"{len(self.view_names)} / {len(self.names)}")
+        view = [n for n in self.names if all(t in n.lower() for t in tokens)]
+        # 6996 张时，列表内容没变就不重建（否则每次刷新要插 7000 行）
+        if view != self.view_names:
+            self.view_names = view
+            self.listbox.delete(0, "end")
+            for n in view:
+                self.listbox.insert("end", n)
+
+        suffix = ""
+        if len(self.names) != len(self.source_names) or split_note:
+            suffix = f"（源 {len(self.source_names)} 张{split_note}）"
+        self.count_lbl.config(text=f"{len(self.view_names)} / {len(self.names)}{suffix}")
         if self.view_names:
             cur = self.current_name()
             if cur in self.view_names:
                 self._highlight(cur)
             else:
                 self.listbox.selection_clear(0, "end")
+
+    def _on_split_change(self):
+        self._refresh_list()
+        if self.view_names:
+            self.show_index(0)
+        else:
+            self.status.config(
+                text=f"划分 {self.split_var.get()} 在当前掩码来源里没有匹配样本")
+
+    def _on_search_key(self, _event=None):
+        """搜索防抖：连打时只在停手 200 ms 后重建一次列表。"""
+        if self._search_job is not None:
+            self.root.after_cancel(self._search_job)
+        self._search_job = self.root.after(200, self._do_search)
+
+    def _do_search(self, _event=None):
+        self._search_job = None
+        self._refresh_list()
+
+    def _jump(self):
+        raw = self.jump_var.get().strip()
+        if not raw or not self.view_names:
+            return
+        try:
+            n = int(raw)
+        except ValueError:
+            self.status.config(text=f"跳转失败：{raw!r} 不是数字")
+            return
+        n = max(1, min(n, len(self.view_names)))
+        self.jump_var.set(str(n))
+        self.show_index(n - 1)
 
     def _highlight(self, name):
         try:
@@ -744,7 +952,8 @@ class ViewerApp:
         self.canvas.create_image(px, py, anchor="nw", image=self._photo)
 
         self.status.config(text=(
-            f"{self.current_name()}  |  {iw}×{ih}  |  叠加 {int(round(alpha*100))}%  |  "
+            f"{self.current_name()}  |  {iw}×{ih}  |  划分 {self.split_var.get()}  |  "
+            f"叠加 {int(round(alpha*100))}%  |  "
             f"{self.mode.get()}  |  上色类别 {sorted(visible) if len(visible) <= 9 else '全部'}"
             f"  |  缩放 {s*100:.0f}%"
             + ("  |  ⚠ 原图与掩码尺寸不一致，已按掩码尺寸缩放原图" if self.mask_size_mismatch else "")
@@ -773,7 +982,10 @@ def run_selftest(pred, images, out_dir: Path, samples=4):
     out_dir.mkdir(parents=True, exist_ok=True)
     pred_src = open_source(pred)
     img_src = open_source(images) if images else None
-    names = [n for n in pred_src.names() if img_src is None or n in img_src.names()]
+    # 先把原图名做成 set：训练集 6996 张时，`n in img_src.names()` 会在每次循环里
+    # 重新取一次名字并排序，是 O(n² log n)，直接跑不完。
+    img_names = set(img_src.names()) if img_src is not None else None
+    names = [n for n in pred_src.names() if img_names is None or n in img_names]
     if not names:
         raise RuntimeError("预测包与原图没有同名文件")
     picks = names[:samples]
@@ -832,18 +1044,22 @@ def run_selftest(pred, images, out_dir: Path, samples=4):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="复赛预测掩码叠加查看器")
+    ap = argparse.ArgumentParser(description="掩码叠加查看器（预测包 / 训练集真值）")
     ap.add_argument("--predictions", type=Path, default=None, help="掩码 zip / tar.gz / 目录")
     ap.add_argument("--images", type=Path, default=None, help="原图 zip / tar.gz / 目录")
+    ap.add_argument("--train", action="store_true",
+                    help="直接加载整个训练集：dataset/low_altitude_2026/train/{masks,images}")
+    ap.add_argument("--split", choices=["all", "train", "val", "test"], default="all",
+                    help="只查看某个固定划分（runs/splits/*.txt），默认 all")
     ap.add_argument("--selftest", action="store_true", help="无界面自检并导出样张")
-    ap.add_argument("--list", action="store_true", help="只列出候选掩码包与原图来源，不开界面")
+    ap.add_argument("--list", action="store_true", help="只列出候选掩码来源与原图来源，不开界面")
     ap.add_argument("--out", type=Path, default=PROJECT_ROOT / "runs" / "gui_overlays")
     ap.add_argument("--samples", type=int, default=4)
     args = ap.parse_args(argv)
 
     if args.list:
         preds = discover_predictions()
-        print(f"候选预测掩码包（{len(preds)} 个）:")
+        print(f"候选掩码来源（{len(preds)} 个，含训练集真值 masks）:")
         for p in preds:
             try:
                 print(f"  [{open_source(p).kind:<4}] {p.relative_to(PROJECT_ROOT)}")
@@ -853,20 +1069,42 @@ def main(argv=None):
         print(f"候选原图来源（{len(images)} 个）:")
         for p in images:
             print(f"  {p.relative_to(PROJECT_ROOT)}")
+        splits = discover_splits()
+        print(f"固定划分（{len(splits)} 个）:")
+        for name, sp in splits.items():
+            n = len(read_split(sp))
+            print(f"  {name:<6} {n:>5} stems  {sp.relative_to(PROJECT_ROOT)}")
+        if TRAIN_MASKS.is_dir():
+            print(f"训练集（--train 加载）: {TRAIN_MASKS.relative_to(PROJECT_ROOT)}"
+                  f" + {TRAIN_IMAGES.relative_to(PROJECT_ROOT)}")
         return 0
 
     pred = args.predictions
     images = args.images
+    if args.train:
+        if not TRAIN_MASKS.is_dir():
+            print(f"找不到训练集掩码目录：{TRAIN_MASKS}", file=sys.stderr)
+            return 2
+        pred = pred or TRAIN_MASKS
+        images = images or (TRAIN_IMAGES if TRAIN_IMAGES.is_dir() else None)
     if pred is None:
         cands = discover_predictions()
         if not cands:
-            print("未发现预测掩码包，请用 --predictions 指定", file=sys.stderr)
+            print("未发现掩码来源，请用 --predictions 指定，或用 --train 看训练集",
+                  file=sys.stderr)
             return 2
         # 优先正式提交包（dist 内的那份），否则用最新
         pred = next((p for p in cands if "01_预测结果" in str(p)), cands[0])
     if images is None:
         cands = discover_images()
         images = cands[0] if cands else None
+
+    split_default = SPLIT_ALL
+    if args.split != "all":
+        if args.split in discover_splits():
+            split_default = args.split
+        else:
+            print(f"警告：runs/splits/{args.split}.txt 不存在，已忽略 --split", file=sys.stderr)
 
     if args.selftest:
         run_selftest(pred, images, args.out, args.samples)
@@ -878,7 +1116,7 @@ def main(argv=None):
         windll.shcore.SetProcessDpiAwareness(1)
     except Exception:
         pass
-    ViewerApp(root, pred_default=pred, image_default=images)
+    ViewerApp(root, pred_default=pred, image_default=images, split_default=split_default)
     root.mainloop()
     return 0
 

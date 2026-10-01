@@ -12,13 +12,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
-MODELS = ('mask2former', 'segformer')
+MODELS = ('mask2former', 'segformer', 'mask2former_swin_l')
 SPLITS = ('train', 'val', 'test')
 H3_SCRIPT = HERE / 'train_h3_hyperseg.py'
 
 
 def config_path(model: str, submission: bool = False) -> Path:
     suffix = '_submission' if submission else ''
+    if model == 'mask2former_swin_l':
+        return HERE / f'mask2former_swin_l_512{suffix}.py'
     return HERE / f'{model}_mit_b3_512{suffix}.py'
 
 
@@ -88,6 +90,7 @@ def runtime_env(args) -> dict[str, str]:
         if not checkpoint.is_file():
             raise FileNotFoundError(f'Missing backbone checkpoint: {checkpoint}')
         env['HYPERSEG_MIT_B3_CHECKPOINT'] = str(checkpoint)
+        env['HYPERSEG_SWIN_L_CHECKPOINT'] = str(checkpoint)
     if getattr(args, 'input', None):
         env['HYPERSEG_TEST_IMAGE_DIR'] = str(args.input.resolve())
     current = env.get('PYTHONPATH', '')
@@ -109,7 +112,12 @@ def check_runtime(python: Path, mmseg_root: Path, env: dict[str, str]) -> None:
 
 
 def cfg_options(args) -> list[str]:
-    return [
+    # `param_scheduler.0.end` normally mirrors `max_iters`, but a *resumed* run
+    # needs them to differ: the scheduler counter restarts at 0 while the
+    # iteration counter continues, so a re-anchored schedule uses a shorter
+    # `end` (see prepare_resume_checkpoint.py).
+    scheduler_end = getattr(args, 'scheduler_end', None) or args.max_iters
+    options = [
         f'train_dataloader.batch_size={args.batch_size}',
         f'train_dataloader.num_workers={args.num_workers}',
         f'val_dataloader.num_workers={args.num_workers}',
@@ -118,9 +126,21 @@ def cfg_options(args) -> list[str]:
         f'randomness.seed={args.seed}',
         f'train_cfg.max_iters={args.max_iters}',
         f'train_cfg.val_interval={args.val_interval}',
-        f'param_scheduler.0.end={args.max_iters}',
+        f'param_scheduler.0.end={scheduler_end}',
         f'default_hooks.checkpoint.interval={args.val_interval}',
+        f'default_hooks.checkpoint.max_keep_ckpts={args.max_keep_ckpts}',
+        f'default_hooks.checkpoint.save_optimizer={args.save_optimizer}',
     ]
+    if getattr(args, 'base_lr', None) is not None:
+        options.append(f'optim_wrapper.optimizer.lr={args.base_lr}')
+    if getattr(args, 'resume_from', None) is not None:
+        # MMSeg 1.2.2 `--resume` is a flag with no path argument: it can only
+        # auto-resume from `<work_dir>/last_checkpoint`. `load_from` is the
+        # documented escape hatch that makes it resume from a chosen file
+        # (Runner.load_or_resume: `resume and load_from is not None`).
+        options.append(f'load_from={args.resume_from}')
+    options.extend(args.extra_cfg_options or [])
+    return options
 
 
 def show_or_run(command: list[str], env: dict[str, str], dry_run: bool) -> None:
@@ -161,11 +181,19 @@ def prepare_splits(args) -> None:
 def train(args) -> None:
     if not args.dry_run:
         check_dataset(args.data_root, args.split_dir, scan_masks=False)
+    resume_from = getattr(args, 'resume_from', None)
+    if resume_from is not None:
+        resume_from = Path(resume_from).resolve()
+        if not args.dry_run and not resume_from.is_file():
+            raise FileNotFoundError(f'Missing resume checkpoint: {resume_from}')
+        if not args.resume:
+            args.resume = True
+        args.resume_from = resume_from
     env = runtime_env(args)
     if not args.dry_run:
         check_runtime(args.python, args.mmseg_root, env)
     work_dir = args.work_dir or (
-        ROOT / 'runs' / 'mask2former_uav' / f'{args.model}_mit_b3_512')
+        ROOT / 'runs' / 'mask2former_uav' / config_path(args.model).stem)
     command = [
         str(args.python), '-u', str(args.mmseg_root / 'tools' / 'train.py'),
         str(config_path(args.model)), '--work-dir', str(work_dir),
@@ -175,6 +203,11 @@ def train(args) -> None:
         command.append('--amp')
     if args.resume:
         command.append('--resume')
+    if resume_from is not None:
+        print(f'resume source: {resume_from}', flush=True)
+        print('note: the param-scheduler state stored in the checkpoint is '
+              'ignored by design (it pins the old `end`); the LR comes from '
+              '--base-lr/--scheduler-end.', flush=True)
     show_or_run(command, env, args.dry_run)
 
 
@@ -281,13 +314,41 @@ def parse_args():
     train_parser.add_argument('--model', choices=MODELS, default='mask2former')
     train_parser.add_argument(
         '--work-dir', type=Path,
-        help='Defaults to runs/mask2former_uav/<model>_mit_b3_512')
+        help='Defaults to runs/mask2former_uav/<config stem>')
     train_parser.add_argument('--backbone-checkpoint', type=Path)
     train_parser.add_argument('--batch-size', type=int, default=2)
     train_parser.add_argument('--accumulative-counts', type=int, default=1)
     train_parser.add_argument('--max-iters', type=int, default=160000)
     train_parser.add_argument('--val-interval', type=int, default=2800)
+    train_parser.add_argument(
+        '--scheduler-end', type=int, default=None,
+        help='Overrides param_scheduler.0.end, which otherwise follows '
+             '--max-iters. A resumed run needs a shorter end, because the '
+             'scheduler counter restarts at 0 while the iteration counter '
+             'continues.')
+    train_parser.add_argument(
+        '--base-lr', type=float, default=None,
+        help='Overrides optim_wrapper.optimizer.lr (defaults to the config, '
+             '1e-4). Per-group multipliers such as the backbone 0.1x are kept.')
+    train_parser.add_argument(
+        '--resume-from', type=Path, default=None,
+        help='Resume from this exact checkpoint (weights + iteration counter). '
+             'Implies --resume and injects load_from, which is the only way to '
+             'choose the file: MMSeg 1.2.2 --resume takes no path and only '
+             'auto-picks <work_dir>/last_checkpoint.')
     train_parser.add_argument('--seed', type=int, default=3407)
+    train_parser.add_argument(
+        '--max-keep-ckpts', type=int, default=3,
+        help='How many periodic checkpoints to retain (best is kept on top).')
+    train_parser.add_argument(
+        '--save-optimizer', action=argparse.BooleanOptionalAction, default=True,
+        help='Keep optimizer state in checkpoints. Disable for screening runs: '
+             'Swin-L Mask2Former checkpoints drop from ~2.6 GB to ~0.9 GB, at the '
+             'cost of resume.')
+    train_parser.add_argument(
+        '--extra-cfg-option', action='append', default=[],
+        dest='extra_cfg_options',
+        help='Extra MMSeg --cfg-options entry, e.g. model.backbone.with_cp=True')
     train_parser.add_argument(
         '--amp', action=argparse.BooleanOptionalAction, default=False)
     train_parser.add_argument('--resume', action='store_true')
@@ -335,9 +396,13 @@ def parse_args():
 
     args = parser.parse_args()
     for name in ('num_workers', 'batch_size', 'accumulative_counts',
-                 'max_iters', 'val_interval'):
+                 'max_iters', 'val_interval', 'max_keep_ckpts'):
         if hasattr(args, name) and getattr(args, name) < (0 if name == 'num_workers' else 1):
             parser.error(f'--{name.replace("_", "-")} has an invalid value')
+    if getattr(args, 'scheduler_end', None) is not None and args.scheduler_end < 1:
+        parser.error('--scheduler-end has an invalid value')
+    if getattr(args, 'base_lr', None) is not None and args.base_lr <= 0:
+        parser.error('--base-lr has an invalid value')
     return args
 
 

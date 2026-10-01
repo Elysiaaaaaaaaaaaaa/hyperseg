@@ -1,0 +1,268 @@
+{
+  "checkpoint": "/root/hyperseg/models/hyperseg_resume_best.pt",
+  "checkpoint_epoch": 134,
+  "recorded_val_miou": 0.7631595244109886,
+  "tolerance": 0.001,
+  "note": "hflip_tta averages raw logits with the mirror image, matching tools/infer_hyperseg.py",
+  "hits": [
+    {
+      "size": 768,
+      "variant": "plain",
+      "batch_size": 8,
+      "replayed_val_miou": 0.763158596268784,
+      "absolute_difference": 9.281422045370746e-07,
+      "matches": true
+    },
+    {
+      "size": 768,
+      "variant": "hflip",
+      "batch_size": 8,
+      "replayed_val_miou": 0.7628692189093385,
+      "absolute_difference": 0.00029030550165010105,
+      "matches": true
+    }
+  ],
+  "trials": [
+    {
+      "size": 768,
+      "variant": "plain",
+      "batch_size": 1,
+      "replayed_val_miou": 0.7194729834422285,
+      "absolute_difference": 0.04368654096876001,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "plain",
+      "batch_size": 2,
+      "replayed_val_miou": 0.7403121969156392,
+      "absolute_difference": 0.022847327495349345,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "plain",
+      "batch_size": 4,
+      "replayed_val_miou": 0.7515752636495331,
+      "absolute_difference": 0.011584260761455467,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "plain",
+      "batch_size": 8,
+      "replayed_val_miou": 0.763158596268784,
+      "absolute_difference": 9.281422045370746e-07,
+      "matches": true
+    },
+    {
+      "size": 768,
+      "variant": "plain",
+      "batch_size": 16,
+      "replayed_val_miou": 0.7833007036833365,
+      "absolute_difference": 0.02014117927234793,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "plain",
+      "batch_size": 32,
+      "replayed_val_miou": 0.7914738640839186,
+      "absolute_difference": 0.028314339672930067,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "plain",
+      "batch_size": 64,
+      "replayed_val_miou": 0.7943164649081716,
+      "absolute_difference": 0.031156940497183094,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "plain",
+      "batch_size": 128,
+      "replayed_val_miou": 0.7983962561337282,
+      "absolute_difference": 0.03523673172273967,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "plain",
+      "batch_size": 256,
+      "replayed_val_miou": 0.7968122933076788,
+      "absolute_difference": 0.03365276889669022,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "plain",
+      "batch_size": 699,
+      "replayed_val_miou": 0.7941093406058011,
+      "absolute_difference": 0.03094981619481252,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip",
+      "batch_size": 1,
+      "replayed_val_miou": 0.7202398347848006,
+      "absolute_difference": 0.04291968962618797,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip",
+      "batch_size": 2,
+      "replayed_val_miou": 0.7405841004808192,
+      "absolute_difference": 0.022575423930169314,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip",
+      "batch_size": 4,
+      "replayed_val_miou": 0.7512518773239265,
+      "absolute_difference": 0.011907647087062045,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip",
+      "batch_size": 8,
+      "replayed_val_miou": 0.7628692189093385,
+      "absolute_difference": 0.00029030550165010105,
+      "matches": true
+    },
+    {
+      "size": 768,
+      "variant": "hflip",
+      "batch_size": 16,
+      "replayed_val_miou": 0.7823714322848432,
+      "absolute_difference": 0.019211907873854628,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip",
+      "batch_size": 32,
+      "replayed_val_miou": 0.7925163156008407,
+      "absolute_difference": 0.029356791189852127,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip",
+      "batch_size": 64,
+      "replayed_val_miou": 0.7957239916126216,
+      "absolute_difference": 0.032564467201633085,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip",
+      "batch_size": 128,
+      "replayed_val_miou": 0.8003523291655287,
+      "absolute_difference": 0.03719280475454012,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip",
+      "batch_size": 256,
+      "replayed_val_miou": 0.798853766238759,
+      "absolute_difference": 0.03569424182777048,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip",
+      "batch_size": 699,
+      "replayed_val_miou": 0.7963410586294832,
+      "absolute_difference": 0.03318153421849468,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip_tta",
+      "batch_size": 1,
+      "replayed_val_miou": 0.7226251958545576,
+      "absolute_difference": 0.04053432855643091,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip_tta",
+      "batch_size": 2,
+      "replayed_val_miou": 0.7445530754369598,
+      "absolute_difference": 0.018606448974028744,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip_tta",
+      "batch_size": 4,
+      "replayed_val_miou": 0.754255852244872,
+      "absolute_difference": 0.008903672166116539,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip_tta",
+      "batch_size": 8,
+      "replayed_val_miou": 0.7646094988054597,
+      "absolute_difference": 0.001449974394471143,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip_tta",
+      "batch_size": 16,
+      "replayed_val_miou": 0.7849185672841041,
+      "absolute_difference": 0.021759042873115586,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip_tta",
+      "batch_size": 32,
+      "replayed_val_miou": 0.794223205934549,
+      "absolute_difference": 0.031063681523560427,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip_tta",
+      "batch_size": 64,
+      "replayed_val_miou": 0.7970057213368148,
+      "absolute_difference": 0.033846196925826244,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip_tta",
+      "batch_size": 128,
+      "replayed_val_miou": 0.8012213169763323,
+      "absolute_difference": 0.0380617925653437,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip_tta",
+      "batch_size": 256,
+      "replayed_val_miou": 0.7997581534539577,
+      "absolute_difference": 0.03659862904296918,
+      "matches": false
+    },
+    {
+      "size": 768,
+      "variant": "hflip_tta",
+      "batch_size": 699,
+      "replayed_val_miou": 0.7970240679072134,
+      "absolute_difference": 0.03386454349622481,
+      "matches": false
+    }
+  ],
+  "device": "cuda"
+}

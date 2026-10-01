@@ -1,0 +1,43 @@
+{
+  "checked_at_utc": "2026-09-30T12:14:48.214488+00:00",
+  "checkpoint": "/root/hyperseg/models/hyperseg_resume_best.pt",
+  "checkpoint_sha256": "026b21d99ee6befc357b3e93fe78adefc4dfd457e249d1ff69e5bc581b2b3b48",
+  "checkpoint_epoch": 134,
+  "checkpoint_val_miou": 0.7631595244109886,
+  "architecture": "HyperSeg-UAV v2 (tools/model_1.py)",
+  "tensors_loaded": 730,
+  "translated_legacy_encoder_keys": 628,
+  "model_config": {
+    "classes": 9,
+    "widths": [
+      64,
+      128,
+      320,
+      512
+    ],
+    "context_dim": 128,
+    "pretrained": false,
+    "model_name": "nvidia/mit-b3",
+    "adapter_rank": 8,
+    "adapter_scale": 0.1,
+    "version": "v2"
+  },
+  "input": "/root/hyperseg/dataset/low_altitude_2026/test_2/images",
+  "output": "/root/hyperseg/runs/b3_resume_test2_20260930/predictions",
+  "image_count": 1300,
+  "image_side": 1024,
+  "first_image": "test2_1.png",
+  "last_image": "test2_999.png",
+  "size": 768,
+  "overlap": 0.5,
+  "tta": false,
+  "precision": "fp32",
+  "torch": "2.3.0+cu121",
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "status": "complete",
+  "submission_check": "passed",
+  "submission": "/root/hyperseg/runs/b3_resume_test2_20260930/hyperseg_b3_resume_test2_predictions.zip",
+  "submission_sha256": "07d3b396ad45c11bb8d587d05823a35944e7d3bf9868998d832c92ce2db31e1e",
+  "elapsed_seconds": 201.2728647440672
+}

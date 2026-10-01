@@ -233,10 +233,17 @@ def main() -> int:
             print(f"{name:<12}" + "".join(f"{row[str(c)]:>8.4f}" for c in range(1, CLASSES)))
 
     if len(predictions) > 1:
-        base_name = predictions[0][0]
+        # Honour --reference for the delta/bucket tables too.  It used to be read only by the
+        # montage picker while these two silently fell back to `predictions[0]`, so
+        # `--reference baseline` looked accepted but every number stayed h3-referenced.
+        base_name = args.reference or predictions[0][0]
+        if base_name not in backgrounds:
+            raise SystemExit(f"--reference {base_name} 不在给出的预测集里：{list(backgrounds)}")
         print(f"\nper-image background delta vs {base_name} (negative = less collapsed)")
         base = {n: background_share(c) for n, c in backgrounds[base_name]["per_image_counts"]}
-        for name, _ in predictions[1:]:
+        for name, _ in predictions:
+            if name == base_name:
+                continue
             current = {n: background_share(c) for n, c in backgrounds[name]["per_image_counts"]}
             common = sorted(set(base) & set(current))
             delta = np.array([current[k] - base[k] for k in common])

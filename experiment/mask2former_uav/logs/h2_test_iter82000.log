@@ -1,0 +1,1902 @@
+2026-10-01T09:16:30+08:00  === ckpt test: label=iter82000 ===
+2026-10-01T09:16:30+08:00  checkpoint: /root/hyperseg/runs/mask2former_uav/h2_swin_l_mask2former_160k_seed3407_fp32/best_mIoU_iter_82000.pth
+2026-10-01T09:16:34+08:00  ckpt size=879M sha256=64975b96c8b739c8
+2026-10-01T09:16:34+08:00  free before: 11G  gpu: 9712 MiB
+2026-10-01T09:16:34+08:00  --- EVAL test.txt (699 labelled images) ---
+Dataset preflight OK: train=5598, val=699, test=699
+runtime: torch=2.3.0+cu121 mmcv=2.1.0 mmengine=0.10.7 mmdet=3.3.0 mmseg=1.2.2
+command: /root/hyperseg/.venv-mask2former/bin/python -u /root/mmsegmentation/tools/test.py /root/hyperseg/experiment/mask2former_uav/mask2former_swin_l_512.py /root/hyperseg/runs/mask2former_uav/h2_swin_l_mask2former_160k_seed3407_fp32/best_mIoU_iter_82000.pth --work-dir /root/hyperseg/runs/mask2former_uav/h2_test_iter82000_eval --cfg-options test_dataloader.num_workers=2 model.backbone.init_cfg=None
+HYPERSEG_PROJECT_ROOT=/root/hyperseg
+HYPERSEG_DATA_ROOT=/root/autodl-tmp/data/low_altitude_2026
+HYPERSEG_SPLIT_DIR=/root/hyperseg/runs/splits
+10/01 09:16:40 - mmengine - INFO - Using env variable `HYPERSEG_PROJECT_ROOT` with value of /root/hyperseg to replace item in config.
+10/01 09:16:40 - mmengine - INFO - Using env variable `HYPERSEG_DATA_ROOT` with value of /root/autodl-tmp/data/low_altitude_2026 to replace item in config.
+10/01 09:16:40 - mmengine - INFO - Using env variable `HYPERSEG_SPLIT_DIR` with value of /root/hyperseg/runs/splits to replace item in config.
+10/01 09:16:42 - mmengine - INFO - 
+------------------------------------------------------------
+System environment:
+    sys.platform: linux
+    Python: 3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0]
+    CUDA available: True
+    MUSA available: False
+    numpy_random_seed: 3407
+    GPU 0: NVIDIA GeForce RTX 4090
+    CUDA_HOME: /usr/local/cuda
+    NVCC: Cuda compilation tools, release 12.1, V12.1.105
+    GCC: gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+    PyTorch: 2.3.0+cu121
+    PyTorch compiling details: PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2022.2-Product Build 20220804 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.3.6 (Git Hash 86e6af5974177e513fd3fee58425e1063e7f1361)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX512
+  - CUDA Runtime 12.1
+  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90
+  - CuDNN 8.9.2
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=12.1, CUDNN_VERSION=8.9.2, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=2.3.0, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, 
+
+    TorchVision: 0.18.0+cu121
+    OpenCV: 5.0.0
+    MMEngine: 0.10.7
+
+Runtime environment:
+    cudnn_benchmark: True
+    mp_cfg: {'mp_start_method': 'fork', 'opencv_num_threads': 0}
+    dist_cfg: {'backend': 'nccl'}
+    seed: 3407
+    deterministic: False
+    Distributed launcher: none
+    Distributed training: False
+    GPU number: 1
+------------------------------------------------------------
+
+10/01 09:16:42 - mmengine - INFO - Config:
+auto_scale_lr = dict(base_batch_size=16, enable=False)
+class_names = (
+    'Background',
+    'Building',
+    'Road',
+    'Water',
+    'Barren',
+    'Vegetation',
+    'Agricultural',
+    'Vehicle',
+)
+crop_size = (
+    512,
+    512,
+)
+custom_imports = dict(allow_failed_imports=False, imports='mmdet.models')
+data_preprocessor = dict(
+    bgr_to_rgb=True,
+    mean=[
+        123.675,
+        116.28,
+        103.53,
+    ],
+    pad_val=0,
+    seg_pad_val=255,
+    size=(
+        512,
+        512,
+    ),
+    std=[
+        58.395,
+        57.12,
+        57.375,
+    ],
+    test_cfg=dict(size_divisor=32),
+    type='SegDataPreProcessor')
+data_root = '/root/autodl-tmp/data/low_altitude_2026'
+dataset_common = dict(
+    data_prefix=dict(
+        img_path='/root/autodl-tmp/data/low_altitude_2026/train/images',
+        seg_map_path='/root/autodl-tmp/data/low_altitude_2026/train/masks'),
+    img_suffix='.png',
+    metainfo=dict(
+        classes=(
+            'Background',
+            'Building',
+            'Road',
+            'Water',
+            'Barren',
+            'Vegetation',
+            'Agricultural',
+            'Vehicle',
+        ),
+        palette=[
+            [
+                128,
+                128,
+                128,
+            ],
+            [
+                220,
+                20,
+                60,
+            ],
+            [
+                255,
+                255,
+                255,
+            ],
+            [
+                0,
+                0,
+                255,
+            ],
+            [
+                160,
+                82,
+                45,
+            ],
+            [
+                0,
+                128,
+                0,
+            ],
+            [
+                255,
+                215,
+                0,
+            ],
+            [
+                255,
+                0,
+                255,
+            ],
+        ]),
+    reduce_zero_label=True,
+    seg_map_suffix='.png',
+    type='BaseSegDataset')
+dataset_type = 'ADE20KDataset'
+default_hooks = dict(
+    checkpoint=dict(
+        by_epoch=False,
+        interval=1000,
+        max_keep_ckpts=3,
+        rule='greater',
+        save_best='mIoU',
+        type='CheckpointHook'),
+    logger=dict(interval=50, log_metric_by_epoch=False, type='LoggerHook'),
+    param_scheduler=dict(type='ParamSchedulerHook'),
+    sampler_seed=dict(type='DistSamplerSeedHook'),
+    timer=dict(type='IterTimerHook'),
+    visualization=dict(type='SegVisualizationHook'))
+default_scope = 'mmseg'
+embed_multi = dict(decay_mult=0.0, lr_mult=1.0)
+env_cfg = dict(
+    cudnn_benchmark=True,
+    dist_cfg=dict(backend='nccl'),
+    mp_cfg=dict(mp_start_method='fork', opencv_num_threads=0))
+img_ratios = [
+    0.5,
+    0.75,
+    1.0,
+    1.25,
+    1.5,
+    1.75,
+]
+launcher = 'none'
+load_from = '/root/hyperseg/runs/mask2former_uav/h2_swin_l_mask2former_160k_seed3407_fp32/best_mIoU_iter_82000.pth'
+log_level = 'INFO'
+log_processor = dict(by_epoch=False)
+metainfo = dict(
+    classes=(
+        'Background',
+        'Building',
+        'Road',
+        'Water',
+        'Barren',
+        'Vegetation',
+        'Agricultural',
+        'Vehicle',
+    ),
+    palette=[
+        [
+            128,
+            128,
+            128,
+        ],
+        [
+            220,
+            20,
+            60,
+        ],
+        [
+            255,
+            255,
+            255,
+        ],
+        [
+            0,
+            0,
+            255,
+        ],
+        [
+            160,
+            82,
+            45,
+        ],
+        [
+            0,
+            128,
+            0,
+        ],
+        [
+            255,
+            215,
+            0,
+        ],
+        [
+            255,
+            0,
+            255,
+        ],
+    ])
+model = dict(
+    backbone=dict(
+        attn_drop_rate=0.0,
+        depths=[
+            2,
+            2,
+            18,
+            2,
+        ],
+        drop_path_rate=0.3,
+        drop_rate=0.0,
+        embed_dims=192,
+        frozen_stages=-1,
+        init_cfg=None,
+        mlp_ratio=4,
+        num_heads=[
+            6,
+            12,
+            24,
+            48,
+        ],
+        out_indices=(
+            0,
+            1,
+            2,
+            3,
+        ),
+        patch_norm=True,
+        pretrain_img_size=384,
+        qk_scale=None,
+        qkv_bias=True,
+        type='SwinTransformer',
+        window_size=12,
+        with_cp=False),
+    data_preprocessor=dict(
+        bgr_to_rgb=True,
+        mean=[
+            123.675,
+            116.28,
+            103.53,
+        ],
+        pad_val=0,
+        seg_pad_val=255,
+        size=(
+            512,
+            512,
+        ),
+        std=[
+            58.395,
+            57.12,
+            57.375,
+        ],
+        test_cfg=dict(size_divisor=32),
+        type='SegDataPreProcessor'),
+    decode_head=dict(
+        align_corners=False,
+        enforce_decoder_input_project=False,
+        feat_channels=256,
+        ignore_index=255,
+        in_channels=[
+            192,
+            384,
+            768,
+            1536,
+        ],
+        loss_cls=dict(
+            class_weight=[
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.1,
+            ],
+            loss_weight=2.0,
+            reduction='mean',
+            type='mmdet.CrossEntropyLoss',
+            use_sigmoid=False),
+        loss_dice=dict(
+            activate=True,
+            eps=1.0,
+            loss_weight=5.0,
+            naive_dice=True,
+            reduction='mean',
+            type='mmdet.DiceLoss',
+            use_sigmoid=True),
+        loss_mask=dict(
+            loss_weight=5.0,
+            reduction='mean',
+            type='mmdet.CrossEntropyLoss',
+            use_sigmoid=True),
+        num_classes=8,
+        num_queries=100,
+        num_transformer_feat_level=3,
+        out_channels=256,
+        pixel_decoder=dict(
+            act_cfg=dict(type='ReLU'),
+            encoder=dict(
+                init_cfg=None,
+                layer_cfg=dict(
+                    ffn_cfg=dict(
+                        act_cfg=dict(inplace=True, type='ReLU'),
+                        embed_dims=256,
+                        feedforward_channels=1024,
+                        ffn_drop=0.0,
+                        num_fcs=2),
+                    self_attn_cfg=dict(
+                        batch_first=True,
+                        dropout=0.0,
+                        embed_dims=256,
+                        im2col_step=64,
+                        init_cfg=None,
+                        norm_cfg=None,
+                        num_heads=8,
+                        num_levels=3,
+                        num_points=4)),
+                num_layers=6),
+            init_cfg=None,
+            norm_cfg=dict(num_groups=32, type='GN'),
+            num_outs=3,
+            positional_encoding=dict(normalize=True, num_feats=128),
+            type='mmdet.MSDeformAttnPixelDecoder'),
+        positional_encoding=dict(normalize=True, num_feats=128),
+        strides=[
+            4,
+            8,
+            16,
+            32,
+        ],
+        train_cfg=dict(
+            assigner=dict(
+                match_costs=[
+                    dict(type='mmdet.ClassificationCost', weight=2.0),
+                    dict(
+                        type='mmdet.CrossEntropyLossCost',
+                        use_sigmoid=True,
+                        weight=5.0),
+                    dict(
+                        eps=1.0,
+                        pred_act=True,
+                        type='mmdet.DiceCost',
+                        weight=5.0),
+                ],
+                type='mmdet.HungarianAssigner'),
+            importance_sample_ratio=0.75,
+            num_points=12544,
+            oversample_ratio=3.0,
+            sampler=dict(type='mmdet.MaskPseudoSampler')),
+        transformer_decoder=dict(
+            init_cfg=None,
+            layer_cfg=dict(
+                cross_attn_cfg=dict(
+                    attn_drop=0.0,
+                    batch_first=True,
+                    dropout_layer=None,
+                    embed_dims=256,
+                    num_heads=8,
+                    proj_drop=0.0),
+                ffn_cfg=dict(
+                    act_cfg=dict(inplace=True, type='ReLU'),
+                    add_identity=True,
+                    dropout_layer=None,
+                    embed_dims=256,
+                    feedforward_channels=2048,
+                    ffn_drop=0.0,
+                    num_fcs=2),
+                self_attn_cfg=dict(
+                    attn_drop=0.0,
+                    batch_first=True,
+                    dropout_layer=None,
+                    embed_dims=256,
+                    num_heads=8,
+                    proj_drop=0.0)),
+            num_layers=9,
+            return_intermediate=True),
+        type='Mask2FormerHead'),
+    test_cfg=dict(mode='whole'),
+    train_cfg=dict(),
+    type='EncoderDecoder')
+num_classes = 8
+optim_wrapper = dict(
+    accumulative_counts=1,
+    clip_grad=dict(max_norm=0.01, norm_type=2),
+    optimizer=dict(
+        betas=(
+            0.9,
+            0.999,
+        ),
+        eps=1e-08,
+        lr=0.0001,
+        type='AdamW',
+        weight_decay=0.05),
+    paramwise_cfg=dict(
+        custom_keys=dict(
+            absolute_pos_embed=dict(decay_mult=0.0),
+            backbone=dict(decay_mult=1.0, lr_mult=0.1),
+            level_embed=dict(decay_mult=0.0, lr_mult=1.0),
+            query_embed=dict(decay_mult=0.0, lr_mult=1.0),
+            query_feat=dict(decay_mult=0.0, lr_mult=1.0),
+            relative_position_bias_table=dict(decay_mult=0.0)),
+        norm_decay_mult=0.0),
+    type='OptimWrapper')
+optimizer = dict(
+    betas=(
+        0.9,
+        0.999,
+    ),
+    eps=1e-08,
+    lr=0.0001,
+    type='AdamW',
+    weight_decay=0.05)
+palette = [
+    [
+        128,
+        128,
+        128,
+    ],
+    [
+        220,
+        20,
+        60,
+    ],
+    [
+        255,
+        255,
+        255,
+    ],
+    [
+        0,
+        0,
+        255,
+    ],
+    [
+        160,
+        82,
+        45,
+    ],
+    [
+        0,
+        128,
+        0,
+    ],
+    [
+        255,
+        215,
+        0,
+    ],
+    [
+        255,
+        0,
+        255,
+    ],
+]
+param_scheduler = [
+    dict(
+        begin=0,
+        by_epoch=False,
+        end=20000,
+        eta_min=0.0,
+        power=0.9,
+        type='PolyLR'),
+]
+pretrained_checkpoint = 'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/swin/swin_large_patch4_window12_384_22k_20220412-6580f57d.pth'
+project_root = '/root/hyperseg'
+randomness = dict(deterministic=False, seed=3407)
+resume = False
+split_dir = '/root/hyperseg/runs/splits'
+test_cfg = dict(type='TestLoop')
+test_dataloader = dict(
+    batch_size=1,
+    dataset=dict(
+        ann_file='/root/hyperseg/runs/splits/test.txt',
+        data_prefix=dict(
+            img_path='/root/autodl-tmp/data/low_altitude_2026/train/images',
+            seg_map_path='/root/autodl-tmp/data/low_altitude_2026/train/masks'
+        ),
+        img_suffix='.png',
+        metainfo=dict(
+            classes=(
+                'Background',
+                'Building',
+                'Road',
+                'Water',
+                'Barren',
+                'Vegetation',
+                'Agricultural',
+                'Vehicle',
+            ),
+            palette=[
+                [
+                    128,
+                    128,
+                    128,
+                ],
+                [
+                    220,
+                    20,
+                    60,
+                ],
+                [
+                    255,
+                    255,
+                    255,
+                ],
+                [
+                    0,
+                    0,
+                    255,
+                ],
+                [
+                    160,
+                    82,
+                    45,
+                ],
+                [
+                    0,
+                    128,
+                    0,
+                ],
+                [
+                    255,
+                    215,
+                    0,
+                ],
+                [
+                    255,
+                    0,
+                    255,
+                ],
+            ]),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(reduce_zero_label=True, type='LoadAnnotations'),
+            dict(type='PackSegInputs'),
+        ],
+        reduce_zero_label=True,
+        seg_map_suffix='.png',
+        test_mode=True,
+        type='BaseSegDataset'),
+    num_workers=2,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+test_evaluator = dict(
+    ignore_index=255, iou_metrics=[
+        'mIoU',
+    ], type='IoUMetric')
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(reduce_zero_label=True, type='LoadAnnotations'),
+    dict(type='PackSegInputs'),
+]
+train_cfg = dict(max_iters=20000, type='IterBasedTrainLoop', val_interval=1000)
+train_dataloader = dict(
+    batch_size=2,
+    dataset=dict(
+        ann_file='/root/hyperseg/runs/splits/train.txt',
+        data_prefix=dict(
+            img_path='/root/autodl-tmp/data/low_altitude_2026/train/images',
+            seg_map_path='/root/autodl-tmp/data/low_altitude_2026/train/masks'
+        ),
+        img_suffix='.png',
+        metainfo=dict(
+            classes=(
+                'Background',
+                'Building',
+                'Road',
+                'Water',
+                'Barren',
+                'Vegetation',
+                'Agricultural',
+                'Vehicle',
+            ),
+            palette=[
+                [
+                    128,
+                    128,
+                    128,
+                ],
+                [
+                    220,
+                    20,
+                    60,
+                ],
+                [
+                    255,
+                    255,
+                    255,
+                ],
+                [
+                    0,
+                    0,
+                    255,
+                ],
+                [
+                    160,
+                    82,
+                    45,
+                ],
+                [
+                    0,
+                    128,
+                    0,
+                ],
+                [
+                    255,
+                    215,
+                    0,
+                ],
+                [
+                    255,
+                    0,
+                    255,
+                ],
+            ]),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(reduce_zero_label=True, type='LoadAnnotations'),
+            dict(
+                keep_ratio=True,
+                ratio_range=(
+                    0.5,
+                    1.5,
+                ),
+                scale=(
+                    1024,
+                    1024,
+                ),
+                type='RandomResize'),
+            dict(cat_max_ratio=0.9, crop_size=(
+                512,
+                512,
+            ), type='RandomCrop'),
+            dict(direction='horizontal', prob=0.5, type='RandomFlip'),
+            dict(direction='vertical', prob=0.5, type='RandomFlip'),
+            dict(type='PhotoMetricDistortion'),
+            dict(type='PackSegInputs'),
+        ],
+        reduce_zero_label=True,
+        seg_map_suffix='.png',
+        type='BaseSegDataset'),
+    num_workers=4,
+    persistent_workers=True,
+    sampler=dict(shuffle=True, type='InfiniteSampler'))
+train_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(reduce_zero_label=True, type='LoadAnnotations'),
+    dict(
+        keep_ratio=True,
+        ratio_range=(
+            0.5,
+            1.5,
+        ),
+        scale=(
+            1024,
+            1024,
+        ),
+        type='RandomResize'),
+    dict(cat_max_ratio=0.9, crop_size=(
+        512,
+        512,
+    ), type='RandomCrop'),
+    dict(direction='horizontal', prob=0.5, type='RandomFlip'),
+    dict(direction='vertical', prob=0.5, type='RandomFlip'),
+    dict(type='PhotoMetricDistortion'),
+    dict(type='PackSegInputs'),
+]
+tta_model = dict(type='SegTTAModel')
+tta_pipeline = [
+    dict(backend_args=None, type='LoadImageFromFile'),
+    dict(
+        transforms=[
+            [
+                dict(keep_ratio=True, scale_factor=0.5, type='Resize'),
+                dict(keep_ratio=True, scale_factor=0.75, type='Resize'),
+                dict(keep_ratio=True, scale_factor=1.0, type='Resize'),
+                dict(keep_ratio=True, scale_factor=1.25, type='Resize'),
+                dict(keep_ratio=True, scale_factor=1.5, type='Resize'),
+                dict(keep_ratio=True, scale_factor=1.75, type='Resize'),
+            ],
+            [
+                dict(direction='horizontal', prob=0.0, type='RandomFlip'),
+                dict(direction='horizontal', prob=1.0, type='RandomFlip'),
+            ],
+            [
+                dict(type='LoadAnnotations'),
+            ],
+            [
+                dict(type='PackSegInputs'),
+            ],
+        ],
+        type='TestTimeAug'),
+]
+val_cfg = dict(type='ValLoop')
+val_dataloader = dict(
+    batch_size=1,
+    dataset=dict(
+        ann_file='/root/hyperseg/runs/splits/val.txt',
+        data_prefix=dict(
+            img_path='/root/autodl-tmp/data/low_altitude_2026/train/images',
+            seg_map_path='/root/autodl-tmp/data/low_altitude_2026/train/masks'
+        ),
+        img_suffix='.png',
+        metainfo=dict(
+            classes=(
+                'Background',
+                'Building',
+                'Road',
+                'Water',
+                'Barren',
+                'Vegetation',
+                'Agricultural',
+                'Vehicle',
+            ),
+            palette=[
+                [
+                    128,
+                    128,
+                    128,
+                ],
+                [
+                    220,
+                    20,
+                    60,
+                ],
+                [
+                    255,
+                    255,
+                    255,
+                ],
+                [
+                    0,
+                    0,
+                    255,
+                ],
+                [
+                    160,
+                    82,
+                    45,
+                ],
+                [
+                    0,
+                    128,
+                    0,
+                ],
+                [
+                    255,
+                    215,
+                    0,
+                ],
+                [
+                    255,
+                    0,
+                    255,
+                ],
+            ]),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(reduce_zero_label=True, type='LoadAnnotations'),
+            dict(type='PackSegInputs'),
+        ],
+        reduce_zero_label=True,
+        seg_map_suffix='.png',
+        test_mode=True,
+        type='BaseSegDataset'),
+    num_workers=4,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+val_evaluator = dict(
+    ignore_index=255, iou_metrics=[
+        'mIoU',
+    ], type='IoUMetric')
+vis_backends = [
+    dict(type='LocalVisBackend'),
+]
+visualizer = dict(
+    name='visualizer',
+    type='SegLocalVisualizer',
+    vis_backends=[
+        dict(type='LocalVisBackend'),
+    ])
+work_dir = '/root/hyperseg/runs/mask2former_uav/h2_test_iter82000_eval'
+
+10/01 09:16:45 - mmengine - INFO - Distributed training is not used, all SyncBatchNorm (SyncBN) layers in the model will be automatically reverted to BatchNormXd layers if they are used.
+/root/mmsegmentation/mmseg/engine/hooks/visualization_hook.py:60: UserWarning: The draw is False, it means that the hook for visualization will not take effect. The results will NOT be visualized or stored.
+  warnings.warn('The draw is False, it means that the '
+10/01 09:16:45 - mmengine - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+before_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) DistSamplerSeedHook                
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) IterTimerHook                      
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+before_val_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) SegVisualizationHook               
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_val_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_test_epoch:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+before_test_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_test_iter:
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) SegVisualizationHook               
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_run:
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+/root/mmsegmentation/mmseg/datasets/transforms/loading.py:84: UserWarning: `reduce_zero_label` will be deprecated, if you would like to ignore the zero label, please set `reduce_zero_label=True` when dataset initialized
+  warnings.warn('`reduce_zero_label` will be deprecated, '
+10/01 09:16:46 - mmengine - WARNING - The prefix is not set in metric class IoUMetric.
+Loads checkpoint by local backend from path: /root/hyperseg/runs/mask2former_uav/h2_swin_l_mask2former_160k_seed3407_fp32/best_mIoU_iter_82000.pth
+10/01 09:16:47 - mmengine - INFO - Load checkpoint from /root/hyperseg/runs/mask2former_uav/h2_swin_l_mask2former_160k_seed3407_fp32/best_mIoU_iter_82000.pth
+/root/miniconda3/lib/python3.12/site-packages/torch/functional.py:512: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3587.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+10/01 09:16:57 - mmengine - INFO - Iter(test) [ 50/699]    eta: 0:02:08  time: 0.1702  data_time: 0.0044  memory: 2029  
+10/01 09:17:06 - mmengine - INFO - Iter(test) [100/699]    eta: 0:01:51  time: 0.1756  data_time: 0.0046  memory: 2029  
+10/01 09:17:14 - mmengine - INFO - Iter(test) [150/699]    eta: 0:01:39  time: 0.1763  data_time: 0.0048  memory: 2029  
+10/01 09:17:23 - mmengine - INFO - Iter(test) [200/699]    eta: 0:01:29  time: 0.1705  data_time: 0.0046  memory: 2029  
+10/01 09:17:31 - mmengine - INFO - Iter(test) [250/699]    eta: 0:01:19  time: 0.1728  data_time: 0.0053  memory: 2029  
+10/01 09:17:40 - mmengine - INFO - Iter(test) [300/699]    eta: 0:01:10  time: 0.1710  data_time: 0.0047  memory: 2029  
+10/01 09:17:49 - mmengine - INFO - Iter(test) [350/699]    eta: 0:01:01  time: 0.1713  data_time: 0.0044  memory: 2029  
+10/01 09:17:57 - mmengine - INFO - Iter(test) [400/699]    eta: 0:00:52  time: 0.1727  data_time: 0.0045  memory: 2029  
+10/01 09:18:06 - mmengine - INFO - Iter(test) [450/699]    eta: 0:00:43  time: 0.1735  data_time: 0.0044  memory: 2029  
+10/01 09:18:14 - mmengine - INFO - Iter(test) [500/699]    eta: 0:00:34  time: 0.1742  data_time: 0.0044  memory: 2029  
+10/01 09:18:23 - mmengine - INFO - Iter(test) [550/699]    eta: 0:00:25  time: 0.1632  data_time: 0.0039  memory: 2029  
+10/01 09:18:32 - mmengine - INFO - Iter(test) [600/699]    eta: 0:00:17  time: 0.1796  data_time: 0.0038  memory: 2029  
+10/01 09:18:40 - mmengine - INFO - Iter(test) [650/699]    eta: 0:00:08  time: 0.1632  data_time: 0.0039  memory: 2029  
+10/01 09:18:48 - mmengine - INFO - per class results:
+10/01 09:18:48 - mmengine - INFO - 
++--------------+-------+-------+
+|    Class     |  IoU  |  Acc  |
++--------------+-------+-------+
+|  Background  | 69.53 | 81.45 |
+|   Building   | 84.42 | 92.33 |
+|     Road     | 79.01 | 85.15 |
+|    Water     | 89.02 |  96.2 |
+|    Barren    | 53.02 | 63.87 |
+|  Vegetation  |  88.6 | 93.83 |
+| Agricultural |  78.1 | 92.21 |
+|   Vehicle    | 79.47 | 87.21 |
++--------------+-------+-------+
+10/01 09:18:48 - mmengine - INFO - Iter(test) [699/699]    aAcc: 88.8200  mIoU: 77.6500  mAcc: 86.5300  data_time: 0.0046  time: 0.1736
+2026-10-01T09:18:50+08:00  eval exit=0 elapsed=136s
+2026-10-01T09:18:50+08:00  --- EXPORT test_2 (1300 unlabelled, whole-image 1024) ---
+runtime: torch=2.3.0+cu121 mmcv=2.1.0 mmengine=0.10.7 mmdet=3.3.0 mmseg=1.2.2
+command: /root/hyperseg/.venv-mask2former/bin/python -u /root/mmsegmentation/tools/test.py /root/hyperseg/experiment/mask2former_uav/mask2former_swin_l_512_submission.py /root/hyperseg/runs/mask2former_uav/h2_swin_l_mask2former_160k_seed3407_fp32/best_mIoU_iter_82000.pth --work-dir /root/hyperseg/runs/mask2former_uav/h2_test_iter82000_export --out /root/hyperseg/runs/mask2former_uav/pred_test2_h2_iter82000 --cfg-options test_dataloader.num_workers=2 model.backbone.init_cfg=None
+HYPERSEG_PROJECT_ROOT=/root/hyperseg
+HYPERSEG_DATA_ROOT=/root/autodl-tmp/data/low_altitude_2026
+HYPERSEG_SPLIT_DIR=/root/hyperseg/runs/splits
+HYPERSEG_TEST_IMAGE_DIR=/root/autodl-tmp/data/low_altitude_2026/test_2/images
+10/01 09:18:55 - mmengine - INFO - Using env variable `HYPERSEG_TEST_IMAGE_DIR` with value of /root/autodl-tmp/data/low_altitude_2026/test_2/images to replace item in config.
+10/01 09:18:55 - mmengine - INFO - Using env variable `HYPERSEG_PROJECT_ROOT` with value of /root/hyperseg to replace item in config.
+10/01 09:18:55 - mmengine - INFO - Using env variable `HYPERSEG_DATA_ROOT` with value of /root/autodl-tmp/data/low_altitude_2026 to replace item in config.
+10/01 09:18:55 - mmengine - INFO - Using env variable `HYPERSEG_SPLIT_DIR` with value of /root/hyperseg/runs/splits to replace item in config.
+10/01 09:18:57 - mmengine - INFO - 
+------------------------------------------------------------
+System environment:
+    sys.platform: linux
+    Python: 3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0]
+    CUDA available: True
+    MUSA available: False
+    numpy_random_seed: 3407
+    GPU 0: NVIDIA GeForce RTX 4090
+    CUDA_HOME: /usr/local/cuda
+    NVCC: Cuda compilation tools, release 12.1, V12.1.105
+    GCC: gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+    PyTorch: 2.3.0+cu121
+    PyTorch compiling details: PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2022.2-Product Build 20220804 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.3.6 (Git Hash 86e6af5974177e513fd3fee58425e1063e7f1361)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX512
+  - CUDA Runtime 12.1
+  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90
+  - CuDNN 8.9.2
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=12.1, CUDNN_VERSION=8.9.2, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=2.3.0, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, 
+
+    TorchVision: 0.18.0+cu121
+    OpenCV: 5.0.0
+    MMEngine: 0.10.7
+
+Runtime environment:
+    cudnn_benchmark: True
+    mp_cfg: {'mp_start_method': 'fork', 'opencv_num_threads': 0}
+    dist_cfg: {'backend': 'nccl'}
+    seed: 3407
+    deterministic: False
+    Distributed launcher: none
+    Distributed training: False
+    GPU number: 1
+------------------------------------------------------------
+
+10/01 09:18:57 - mmengine - INFO - Config:
+auto_scale_lr = dict(base_batch_size=16, enable=False)
+class_names = (
+    'Background',
+    'Building',
+    'Road',
+    'Water',
+    'Barren',
+    'Vegetation',
+    'Agricultural',
+    'Vehicle',
+)
+crop_size = (
+    512,
+    512,
+)
+custom_imports = dict(allow_failed_imports=False, imports='mmdet.models')
+data_preprocessor = dict(
+    bgr_to_rgb=True,
+    mean=[
+        123.675,
+        116.28,
+        103.53,
+    ],
+    pad_val=0,
+    seg_pad_val=255,
+    size=(
+        512,
+        512,
+    ),
+    std=[
+        58.395,
+        57.12,
+        57.375,
+    ],
+    test_cfg=dict(size_divisor=32),
+    type='SegDataPreProcessor')
+data_root = '/root/autodl-tmp/data/low_altitude_2026'
+dataset_common = dict(
+    data_prefix=dict(
+        img_path='/root/autodl-tmp/data/low_altitude_2026/train/images',
+        seg_map_path='/root/autodl-tmp/data/low_altitude_2026/train/masks'),
+    img_suffix='.png',
+    metainfo=dict(
+        classes=(
+            'Background',
+            'Building',
+            'Road',
+            'Water',
+            'Barren',
+            'Vegetation',
+            'Agricultural',
+            'Vehicle',
+        ),
+        palette=[
+            [
+                128,
+                128,
+                128,
+            ],
+            [
+                220,
+                20,
+                60,
+            ],
+            [
+                255,
+                255,
+                255,
+            ],
+            [
+                0,
+                0,
+                255,
+            ],
+            [
+                160,
+                82,
+                45,
+            ],
+            [
+                0,
+                128,
+                0,
+            ],
+            [
+                255,
+                215,
+                0,
+            ],
+            [
+                255,
+                0,
+                255,
+            ],
+        ]),
+    reduce_zero_label=True,
+    seg_map_suffix='.png',
+    type='BaseSegDataset')
+dataset_type = 'ADE20KDataset'
+default_hooks = dict(
+    checkpoint=dict(
+        by_epoch=False,
+        interval=1000,
+        max_keep_ckpts=3,
+        rule='greater',
+        save_best='mIoU',
+        type='CheckpointHook'),
+    logger=dict(interval=50, log_metric_by_epoch=False, type='LoggerHook'),
+    param_scheduler=dict(type='ParamSchedulerHook'),
+    sampler_seed=dict(type='DistSamplerSeedHook'),
+    timer=dict(type='IterTimerHook'),
+    visualization=dict(type='SegVisualizationHook'))
+default_scope = 'mmseg'
+embed_multi = dict(decay_mult=0.0, lr_mult=1.0)
+env_cfg = dict(
+    cudnn_benchmark=True,
+    dist_cfg=dict(backend='nccl'),
+    mp_cfg=dict(mp_start_method='fork', opencv_num_threads=0))
+img_ratios = [
+    0.5,
+    0.75,
+    1.0,
+    1.25,
+    1.5,
+    1.75,
+]
+launcher = 'none'
+load_from = '/root/hyperseg/runs/mask2former_uav/h2_swin_l_mask2former_160k_seed3407_fp32/best_mIoU_iter_82000.pth'
+log_level = 'INFO'
+log_processor = dict(by_epoch=False)
+metainfo = dict(
+    classes=(
+        'Background',
+        'Building',
+        'Road',
+        'Water',
+        'Barren',
+        'Vegetation',
+        'Agricultural',
+        'Vehicle',
+    ),
+    palette=[
+        [
+            128,
+            128,
+            128,
+        ],
+        [
+            220,
+            20,
+            60,
+        ],
+        [
+            255,
+            255,
+            255,
+        ],
+        [
+            0,
+            0,
+            255,
+        ],
+        [
+            160,
+            82,
+            45,
+        ],
+        [
+            0,
+            128,
+            0,
+        ],
+        [
+            255,
+            215,
+            0,
+        ],
+        [
+            255,
+            0,
+            255,
+        ],
+    ])
+model = dict(
+    backbone=dict(
+        attn_drop_rate=0.0,
+        depths=[
+            2,
+            2,
+            18,
+            2,
+        ],
+        drop_path_rate=0.3,
+        drop_rate=0.0,
+        embed_dims=192,
+        frozen_stages=-1,
+        init_cfg=None,
+        mlp_ratio=4,
+        num_heads=[
+            6,
+            12,
+            24,
+            48,
+        ],
+        out_indices=(
+            0,
+            1,
+            2,
+            3,
+        ),
+        patch_norm=True,
+        pretrain_img_size=384,
+        qk_scale=None,
+        qkv_bias=True,
+        type='SwinTransformer',
+        window_size=12,
+        with_cp=False),
+    data_preprocessor=dict(
+        bgr_to_rgb=True,
+        mean=[
+            123.675,
+            116.28,
+            103.53,
+        ],
+        pad_val=0,
+        seg_pad_val=255,
+        size=(
+            512,
+            512,
+        ),
+        std=[
+            58.395,
+            57.12,
+            57.375,
+        ],
+        test_cfg=dict(size_divisor=32),
+        type='SegDataPreProcessor'),
+    decode_head=dict(
+        align_corners=False,
+        enforce_decoder_input_project=False,
+        feat_channels=256,
+        ignore_index=255,
+        in_channels=[
+            192,
+            384,
+            768,
+            1536,
+        ],
+        loss_cls=dict(
+            class_weight=[
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                0.1,
+            ],
+            loss_weight=2.0,
+            reduction='mean',
+            type='mmdet.CrossEntropyLoss',
+            use_sigmoid=False),
+        loss_dice=dict(
+            activate=True,
+            eps=1.0,
+            loss_weight=5.0,
+            naive_dice=True,
+            reduction='mean',
+            type='mmdet.DiceLoss',
+            use_sigmoid=True),
+        loss_mask=dict(
+            loss_weight=5.0,
+            reduction='mean',
+            type='mmdet.CrossEntropyLoss',
+            use_sigmoid=True),
+        num_classes=8,
+        num_queries=100,
+        num_transformer_feat_level=3,
+        out_channels=256,
+        pixel_decoder=dict(
+            act_cfg=dict(type='ReLU'),
+            encoder=dict(
+                init_cfg=None,
+                layer_cfg=dict(
+                    ffn_cfg=dict(
+                        act_cfg=dict(inplace=True, type='ReLU'),
+                        embed_dims=256,
+                        feedforward_channels=1024,
+                        ffn_drop=0.0,
+                        num_fcs=2),
+                    self_attn_cfg=dict(
+                        batch_first=True,
+                        dropout=0.0,
+                        embed_dims=256,
+                        im2col_step=64,
+                        init_cfg=None,
+                        norm_cfg=None,
+                        num_heads=8,
+                        num_levels=3,
+                        num_points=4)),
+                num_layers=6),
+            init_cfg=None,
+            norm_cfg=dict(num_groups=32, type='GN'),
+            num_outs=3,
+            positional_encoding=dict(normalize=True, num_feats=128),
+            type='mmdet.MSDeformAttnPixelDecoder'),
+        positional_encoding=dict(normalize=True, num_feats=128),
+        strides=[
+            4,
+            8,
+            16,
+            32,
+        ],
+        train_cfg=dict(
+            assigner=dict(
+                match_costs=[
+                    dict(type='mmdet.ClassificationCost', weight=2.0),
+                    dict(
+                        type='mmdet.CrossEntropyLossCost',
+                        use_sigmoid=True,
+                        weight=5.0),
+                    dict(
+                        eps=1.0,
+                        pred_act=True,
+                        type='mmdet.DiceCost',
+                        weight=5.0),
+                ],
+                type='mmdet.HungarianAssigner'),
+            importance_sample_ratio=0.75,
+            num_points=12544,
+            oversample_ratio=3.0,
+            sampler=dict(type='mmdet.MaskPseudoSampler')),
+        transformer_decoder=dict(
+            init_cfg=None,
+            layer_cfg=dict(
+                cross_attn_cfg=dict(
+                    attn_drop=0.0,
+                    batch_first=True,
+                    dropout_layer=None,
+                    embed_dims=256,
+                    num_heads=8,
+                    proj_drop=0.0),
+                ffn_cfg=dict(
+                    act_cfg=dict(inplace=True, type='ReLU'),
+                    add_identity=True,
+                    dropout_layer=None,
+                    embed_dims=256,
+                    feedforward_channels=2048,
+                    ffn_drop=0.0,
+                    num_fcs=2),
+                self_attn_cfg=dict(
+                    attn_drop=0.0,
+                    batch_first=True,
+                    dropout_layer=None,
+                    embed_dims=256,
+                    num_heads=8,
+                    proj_drop=0.0)),
+            num_layers=9,
+            return_intermediate=True),
+        type='Mask2FormerHead'),
+    test_cfg=dict(mode='whole'),
+    train_cfg=dict(),
+    type='EncoderDecoder')
+num_classes = 8
+optim_wrapper = dict(
+    accumulative_counts=1,
+    clip_grad=dict(max_norm=0.01, norm_type=2),
+    optimizer=dict(
+        betas=(
+            0.9,
+            0.999,
+        ),
+        eps=1e-08,
+        lr=0.0001,
+        type='AdamW',
+        weight_decay=0.05),
+    paramwise_cfg=dict(
+        custom_keys=dict(
+            absolute_pos_embed=dict(decay_mult=0.0),
+            backbone=dict(decay_mult=1.0, lr_mult=0.1),
+            level_embed=dict(decay_mult=0.0, lr_mult=1.0),
+            query_embed=dict(decay_mult=0.0, lr_mult=1.0),
+            query_feat=dict(decay_mult=0.0, lr_mult=1.0),
+            relative_position_bias_table=dict(decay_mult=0.0)),
+        norm_decay_mult=0.0),
+    type='OptimWrapper')
+optimizer = dict(
+    betas=(
+        0.9,
+        0.999,
+    ),
+    eps=1e-08,
+    lr=0.0001,
+    type='AdamW',
+    weight_decay=0.05)
+palette = [
+    [
+        128,
+        128,
+        128,
+    ],
+    [
+        220,
+        20,
+        60,
+    ],
+    [
+        255,
+        255,
+        255,
+    ],
+    [
+        0,
+        0,
+        255,
+    ],
+    [
+        160,
+        82,
+        45,
+    ],
+    [
+        0,
+        128,
+        0,
+    ],
+    [
+        255,
+        215,
+        0,
+    ],
+    [
+        255,
+        0,
+        255,
+    ],
+]
+param_scheduler = [
+    dict(
+        begin=0,
+        by_epoch=False,
+        end=20000,
+        eta_min=0.0,
+        power=0.9,
+        type='PolyLR'),
+]
+pretrained_checkpoint = 'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/swin/swin_large_patch4_window12_384_22k_20220412-6580f57d.pth'
+project_root = '/root/hyperseg'
+randomness = dict(deterministic=False, seed=3407)
+resume = False
+split_dir = '/root/hyperseg/runs/splits'
+submission_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='PackSegInputs'),
+]
+test_cfg = dict(type='TestLoop')
+test_dataloader = dict(
+    batch_size=1,
+    dataset=dict(
+        data_prefix=dict(
+            img_path='/root/autodl-tmp/data/low_altitude_2026/test_2/images'),
+        img_suffix='.png',
+        metainfo=dict(
+            classes=(
+                'Background',
+                'Building',
+                'Road',
+                'Water',
+                'Barren',
+                'Vegetation',
+                'Agricultural',
+                'Vehicle',
+            ),
+            palette=[
+                [
+                    128,
+                    128,
+                    128,
+                ],
+                [
+                    220,
+                    20,
+                    60,
+                ],
+                [
+                    255,
+                    255,
+                    255,
+                ],
+                [
+                    0,
+                    0,
+                    255,
+                ],
+                [
+                    160,
+                    82,
+                    45,
+                ],
+                [
+                    0,
+                    128,
+                    0,
+                ],
+                [
+                    255,
+                    215,
+                    0,
+                ],
+                [
+                    255,
+                    0,
+                    255,
+                ],
+            ]),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(type='PackSegInputs'),
+        ],
+        reduce_zero_label=True,
+        seg_map_suffix='.png',
+        test_mode=True,
+        type='BaseSegDataset'),
+    num_workers=2,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+test_evaluator = dict(
+    format_only=True,
+    ignore_index=255,
+    iou_metrics=[
+        'mIoU',
+    ],
+    keep_results=True,
+    output_dir='/root/hyperseg/runs/mask2former_uav/pred_test2_h2_iter82000',
+    type='IoUMetric')
+test_image_dir = '/root/autodl-tmp/data/low_altitude_2026/test_2/images'
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(reduce_zero_label=True, type='LoadAnnotations'),
+    dict(type='PackSegInputs'),
+]
+train_cfg = dict(max_iters=20000, type='IterBasedTrainLoop', val_interval=1000)
+train_dataloader = dict(
+    batch_size=2,
+    dataset=dict(
+        ann_file='/root/hyperseg/runs/splits/train.txt',
+        data_prefix=dict(
+            img_path='/root/autodl-tmp/data/low_altitude_2026/train/images',
+            seg_map_path='/root/autodl-tmp/data/low_altitude_2026/train/masks'
+        ),
+        img_suffix='.png',
+        metainfo=dict(
+            classes=(
+                'Background',
+                'Building',
+                'Road',
+                'Water',
+                'Barren',
+                'Vegetation',
+                'Agricultural',
+                'Vehicle',
+            ),
+            palette=[
+                [
+                    128,
+                    128,
+                    128,
+                ],
+                [
+                    220,
+                    20,
+                    60,
+                ],
+                [
+                    255,
+                    255,
+                    255,
+                ],
+                [
+                    0,
+                    0,
+                    255,
+                ],
+                [
+                    160,
+                    82,
+                    45,
+                ],
+                [
+                    0,
+                    128,
+                    0,
+                ],
+                [
+                    255,
+                    215,
+                    0,
+                ],
+                [
+                    255,
+                    0,
+                    255,
+                ],
+            ]),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(reduce_zero_label=True, type='LoadAnnotations'),
+            dict(
+                keep_ratio=True,
+                ratio_range=(
+                    0.5,
+                    1.5,
+                ),
+                scale=(
+                    1024,
+                    1024,
+                ),
+                type='RandomResize'),
+            dict(cat_max_ratio=0.9, crop_size=(
+                512,
+                512,
+            ), type='RandomCrop'),
+            dict(direction='horizontal', prob=0.5, type='RandomFlip'),
+            dict(direction='vertical', prob=0.5, type='RandomFlip'),
+            dict(type='PhotoMetricDistortion'),
+            dict(type='PackSegInputs'),
+        ],
+        reduce_zero_label=True,
+        seg_map_suffix='.png',
+        type='BaseSegDataset'),
+    num_workers=4,
+    persistent_workers=True,
+    sampler=dict(shuffle=True, type='InfiniteSampler'))
+train_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(reduce_zero_label=True, type='LoadAnnotations'),
+    dict(
+        keep_ratio=True,
+        ratio_range=(
+            0.5,
+            1.5,
+        ),
+        scale=(
+            1024,
+            1024,
+        ),
+        type='RandomResize'),
+    dict(cat_max_ratio=0.9, crop_size=(
+        512,
+        512,
+    ), type='RandomCrop'),
+    dict(direction='horizontal', prob=0.5, type='RandomFlip'),
+    dict(direction='vertical', prob=0.5, type='RandomFlip'),
+    dict(type='PhotoMetricDistortion'),
+    dict(type='PackSegInputs'),
+]
+tta_model = dict(type='SegTTAModel')
+tta_pipeline = [
+    dict(backend_args=None, type='LoadImageFromFile'),
+    dict(
+        transforms=[
+            [
+                dict(keep_ratio=True, scale_factor=0.5, type='Resize'),
+                dict(keep_ratio=True, scale_factor=0.75, type='Resize'),
+                dict(keep_ratio=True, scale_factor=1.0, type='Resize'),
+                dict(keep_ratio=True, scale_factor=1.25, type='Resize'),
+                dict(keep_ratio=True, scale_factor=1.5, type='Resize'),
+                dict(keep_ratio=True, scale_factor=1.75, type='Resize'),
+            ],
+            [
+                dict(direction='horizontal', prob=0.0, type='RandomFlip'),
+                dict(direction='horizontal', prob=1.0, type='RandomFlip'),
+            ],
+            [
+                dict(type='LoadAnnotations'),
+            ],
+            [
+                dict(type='PackSegInputs'),
+            ],
+        ],
+        type='TestTimeAug'),
+]
+val_cfg = dict(type='ValLoop')
+val_dataloader = dict(
+    batch_size=1,
+    dataset=dict(
+        ann_file='/root/hyperseg/runs/splits/val.txt',
+        data_prefix=dict(
+            img_path='/root/autodl-tmp/data/low_altitude_2026/train/images',
+            seg_map_path='/root/autodl-tmp/data/low_altitude_2026/train/masks'
+        ),
+        img_suffix='.png',
+        metainfo=dict(
+            classes=(
+                'Background',
+                'Building',
+                'Road',
+                'Water',
+                'Barren',
+                'Vegetation',
+                'Agricultural',
+                'Vehicle',
+            ),
+            palette=[
+                [
+                    128,
+                    128,
+                    128,
+                ],
+                [
+                    220,
+                    20,
+                    60,
+                ],
+                [
+                    255,
+                    255,
+                    255,
+                ],
+                [
+                    0,
+                    0,
+                    255,
+                ],
+                [
+                    160,
+                    82,
+                    45,
+                ],
+                [
+                    0,
+                    128,
+                    0,
+                ],
+                [
+                    255,
+                    215,
+                    0,
+                ],
+                [
+                    255,
+                    0,
+                    255,
+                ],
+            ]),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(reduce_zero_label=True, type='LoadAnnotations'),
+            dict(type='PackSegInputs'),
+        ],
+        reduce_zero_label=True,
+        seg_map_suffix='.png',
+        test_mode=True,
+        type='BaseSegDataset'),
+    num_workers=4,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+val_evaluator = dict(
+    ignore_index=255, iou_metrics=[
+        'mIoU',
+    ], type='IoUMetric')
+vis_backends = [
+    dict(type='LocalVisBackend'),
+]
+visualizer = dict(
+    name='visualizer',
+    type='SegLocalVisualizer',
+    vis_backends=[
+        dict(type='LocalVisBackend'),
+    ])
+work_dir = '/root/hyperseg/runs/mask2former_uav/h2_test_iter82000_export'
+
+10/01 09:19:00 - mmengine - INFO - Distributed training is not used, all SyncBatchNorm (SyncBN) layers in the model will be automatically reverted to BatchNormXd layers if they are used.
+/root/mmsegmentation/mmseg/engine/hooks/visualization_hook.py:60: UserWarning: The draw is False, it means that the hook for visualization will not take effect. The results will NOT be visualized or stored.
+  warnings.warn('The draw is False, it means that the '
+10/01 09:19:00 - mmengine - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+before_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) DistSamplerSeedHook                
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) IterTimerHook                      
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+before_val_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) SegVisualizationHook               
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_val_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_test_epoch:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+before_test_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_test_iter:
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) SegVisualizationHook               
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_run:
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+10/01 09:19:01 - mmengine - WARNING - The prefix is not set in metric class IoUMetric.
+Loads checkpoint by local backend from path: /root/hyperseg/runs/mask2former_uav/h2_swin_l_mask2former_160k_seed3407_fp32/best_mIoU_iter_82000.pth
+10/01 09:19:02 - mmengine - INFO - Load checkpoint from /root/hyperseg/runs/mask2former_uav/h2_swin_l_mask2former_160k_seed3407_fp32/best_mIoU_iter_82000.pth
+/root/miniconda3/lib/python3.12/site-packages/torch/functional.py:512: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3587.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+10/01 09:19:14 - mmengine - INFO - Iter(test) [  50/1300]    eta: 0:04:43  time: 0.1937  data_time: 0.0023  memory: 2020  
+10/01 09:19:24 - mmengine - INFO - Iter(test) [ 100/1300]    eta: 0:04:17  time: 0.2045  data_time: 0.0027  memory: 2020  
+10/01 09:19:34 - mmengine - INFO - Iter(test) [ 150/1300]    eta: 0:04:01  time: 0.1927  data_time: 0.0019  memory: 2020  
+10/01 09:19:44 - mmengine - INFO - Iter(test) [ 200/1300]    eta: 0:03:48  time: 0.2013  data_time: 0.0022  memory: 2020  
+10/01 09:19:54 - mmengine - INFO - Iter(test) [ 250/1300]    eta: 0:03:38  time: 0.1957  data_time: 0.0020  memory: 2020  
+10/01 09:20:04 - mmengine - INFO - Iter(test) [ 300/1300]    eta: 0:03:26  time: 0.2030  data_time: 0.0024  memory: 2020  
+10/01 09:20:14 - mmengine - INFO - Iter(test) [ 350/1300]    eta: 0:03:15  time: 0.1978  data_time: 0.0021  memory: 2020  
+10/01 09:20:24 - mmengine - INFO - Iter(test) [ 400/1300]    eta: 0:03:04  time: 0.2009  data_time: 0.0019  memory: 2020  
+10/01 09:20:34 - mmengine - INFO - Iter(test) [ 450/1300]    eta: 0:02:53  time: 0.2026  data_time: 0.0017  memory: 2020  
+10/01 09:20:44 - mmengine - INFO - Iter(test) [ 500/1300]    eta: 0:02:42  time: 0.1911  data_time: 0.0016  memory: 2020  
+10/01 09:20:54 - mmengine - INFO - Iter(test) [ 550/1300]    eta: 0:02:31  time: 0.1944  data_time: 0.0018  memory: 2020  
+10/01 09:21:03 - mmengine - INFO - Iter(test) [ 600/1300]    eta: 0:02:21  time: 0.2010  data_time: 0.0018  memory: 2020  
+10/01 09:21:13 - mmengine - INFO - Iter(test) [ 650/1300]    eta: 0:02:10  time: 0.1900  data_time: 0.0018  memory: 2020  
+10/01 09:21:23 - mmengine - INFO - Iter(test) [ 700/1300]    eta: 0:02:00  time: 0.2039  data_time: 0.0017  memory: 2020  
+10/01 09:21:33 - mmengine - INFO - Iter(test) [ 750/1300]    eta: 0:01:50  time: 0.1939  data_time: 0.0019  memory: 2020  
+10/01 09:21:43 - mmengine - INFO - Iter(test) [ 800/1300]    eta: 0:01:40  time: 0.1950  data_time: 0.0017  memory: 2020  
+10/01 09:21:53 - mmengine - INFO - Iter(test) [ 850/1300]    eta: 0:01:30  time: 0.2080  data_time: 0.0018  memory: 2020  
+10/01 09:22:03 - mmengine - INFO - Iter(test) [ 900/1300]    eta: 0:01:20  time: 0.2057  data_time: 0.0020  memory: 2020  
+10/01 09:22:13 - mmengine - INFO - Iter(test) [ 950/1300]    eta: 0:01:10  time: 0.2043  data_time: 0.0018  memory: 2020  
+10/01 09:22:23 - mmengine - INFO - Iter(test) [1000/1300]    eta: 0:01:00  time: 0.1928  data_time: 0.0018  memory: 2020  
+10/01 09:22:33 - mmengine - INFO - Iter(test) [1050/1300]    eta: 0:00:50  time: 0.1953  data_time: 0.0017  memory: 2020  
+10/01 09:22:42 - mmengine - INFO - Iter(test) [1100/1300]    eta: 0:00:40  time: 0.2039  data_time: 0.0018  memory: 2020  
+10/01 09:22:52 - mmengine - INFO - Iter(test) [1150/1300]    eta: 0:00:29  time: 0.1918  data_time: 0.0016  memory: 2020  
+10/01 09:23:02 - mmengine - INFO - Iter(test) [1200/1300]    eta: 0:00:19  time: 0.1956  data_time: 0.0015  memory: 2020  
+10/01 09:23:12 - mmengine - INFO - Iter(test) [1250/1300]    eta: 0:00:09  time: 0.2054  data_time: 0.0017  memory: 2020  
+10/01 09:23:22 - mmengine - INFO - Iter(test) [1300/1300]    eta: 0:00:00  time: 0.1865  data_time: 0.0015  memory: 2020  
+10/01 09:23:22 - mmengine - WARNING - IoUMetric got empty `self.results`. Please ensure that the processed results are properly added into `self.results` in `process` method.
+10/01 09:23:22 - mmengine - INFO - results are saved to /root/hyperseg/runs/mask2former_uav
+10/01 09:23:22 - mmengine - INFO - Iter(test) [1300/1300]    data_time: 0.0020  time: 0.1996
+OK: 1300 predictions
+2026-10-01T09:23:50+08:00  export exit=0 png=1300 elapsed=300s
+2026-10-01T09:23:51+08:00  packed pred_test2_h2_iter82000.tar.gz 12M

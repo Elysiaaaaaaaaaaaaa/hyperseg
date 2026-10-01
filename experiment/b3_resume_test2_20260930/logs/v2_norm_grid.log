@@ -1,0 +1,75 @@
+device=cuda val_samples=699
+{
+  "architecture": "HyperSeg-UAV v2 (tools/model_1.py)",
+  "checkpoint": "/root/hyperseg/models/hyperseg_resume_best.pt",
+  "checkpoint_epoch": 134,
+  "checkpoint_val_miou": 0.7631595244109886,
+  "tensors_loaded": 730,
+  "translated_legacy_encoder_keys": 628,
+  "model_config": {
+    "classes": 9,
+    "widths": [
+      64,
+      128,
+      320,
+      512
+    ],
+    "context_dim": 128,
+    "pretrained": false,
+    "model_name": "nvidia/mit-b3",
+    "adapter_rank": 8,
+    "adapter_scale": 0.1,
+    "version": "v2"
+  },
+  "backbone": "/root/hyperseg/models/nvidia--mit-b3"
+}
+  return F.conv2d(input, weight, bias, self.stride,
+normalize=imagenet  size=  768 replayed=0.718650 diff=4.45e-02 (no) in 16s
+normalize=imagenet  size= 1024 replayed=0.716095 diff=4.71e-02 (no) in 32s
+normalize=imagenet  size=  512 replayed=0.677203 diff=8.60e-02 (no) in 12s
+{
+  "checkpoint": "/root/hyperseg/models/hyperseg_resume_best.pt",
+  "checkpoint_epoch": 134,
+  "recorded_val_miou": 0.7631595244109886,
+  "tolerance": 0.001,
+  "protocol": "size = square resize, batch 2, hyperseg_uav.losses.mean_iou averaged over batches",
+  "trials": [
+    {
+      "size": 768,
+      "normalize": "imagenet",
+      "samples": 699,
+      "batches": 350,
+      "replayed_val_miou": 0.7186501088319004,
+      "elapsed_seconds": 15.73423607647419,
+      "recorded_val_miou": 0.7631595244109886,
+      "absolute_difference": 0.04450941557908816,
+      "matches": false
+    },
+    {
+      "size": 1024,
+      "normalize": "imagenet",
+      "samples": 699,
+      "batches": 350,
+      "replayed_val_miou": 0.7160946686982805,
+      "elapsed_seconds": 31.575163036584854,
+      "recorded_val_miou": 0.7631595244109886,
+      "absolute_difference": 0.04706485571270802,
+      "matches": false
+    },
+    {
+      "size": 512,
+      "normalize": "imagenet",
+      "samples": 699,
+      "batches": 350,
+      "replayed_val_miou": 0.6772028806825178,
+      "elapsed_seconds": 12.24666491150856,
+      "recorded_val_miou": 0.7631595244109886,
+      "absolute_difference": 0.08595664372847078,
+      "matches": false
+    }
+  ],
+  "matched": null,
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 4090"
+}
+NO_COMBINATION_MATCHED

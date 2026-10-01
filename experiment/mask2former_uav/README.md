@@ -2,8 +2,10 @@
 
 This experiment evaluates Mask2Former + MiT-B3 (H1) against the repository's
 existing HyperSegUAV architecture (H0). The standard MMSeg SegFormer decoder
-config is an optional framework control, not H0. Mask2Former + Swin-L (H2)
-is the competition-baseline comparison planned separately.
+config is an optional framework control, not H0. Mask2Former + Swin-L (H2,
+the competition baseline) now has a landed design and training entry: see
+[H2_SWIN_L_MASK2FORMER.md](H2_SWIN_L_MASK2FORMER.md) — 20k iterations via
+`run.py train --model mask2former_swin_l` and `launch_h2_server.sh`.
 It uses the sibling `../mmsegmentation` checkout and does not modify that
 repository. Comparisons require a matched data split and evaluation protocol.
 
@@ -174,6 +176,33 @@ H1 已在 server2 完成全部 160000 次迭代及最终验证，日志结束时
 - 下载归档：[h1_test_predictions_20260918.tar.gz](results/h1_mit_b3_160k_seed3407_fp32_test/h1_test_predictions_20260918.tar.gz)
 - 归档 SHA-256：`abe7513aff498948c09bf7c9c2217b5d2f094464edb8c4e4ea968f7d37df6f18`
 
+## H2 results (Swin-L + Mask2Former, 20k iters, 2026-09-30)
+
+Trained on server2 in 2.15 h and exported on the same day.  Full run record and the
+comparison against the `h3_bgfix_20260930` 20k arms are in
+[H2_SWIN_L_MASK2FORMER.md](H2_SWIN_L_MASK2FORMER.md) and [experiment.md](experiment.md).
+
+| item | value |
+| --- | --- |
+| best val mIoU | **69.8000%** at step 20000 (`best_mIoU_iter_20000.pth`) |
+| val curve | plateaus at 16000–20000 (68.45 / 69.79 / 69.42 / 69.80) — the 20k budget is exhausted |
+| log | [logs/h2_swin_l_mask2former_20k_seed3407_fp32.train.log](logs/h2_swin_l_mask2former_20k_seed3407_fp32.train.log) |
+| test_2 export | 1300 PNGs, whole-image 1024, 213 s, [results/h2_swin_l_mask2former_20k_test2](results/h2_swin_l_mask2former_20k_test2) |
+| test_2 archive | `pred_test2_h2_20k.tar.gz`, SHA-256 `3eff53a191b10ca0f26f38b7c97f6fdf342d5bca1178f69b505ac2fcb3c73888` |
+
+At the same 20k budget H2 (69.80) sits **below** the repository HyperSeg decoder
+(`baseline` 70.38, `aug` 70.42) and **above** the false-background arms
+(69.26 / 68.63 / 68.37), so on labelled validation the decoder swap does not pay for
+itself at this budget.  On the unlabelled `test_2` it behaves differently rather than
+better: it recovers Building inside the images H3 had already collapsed
+(22.8% vs 2.9% for the same 146 images) but raises Background on the ordinary images,
+ending with the highest global Background share (0.3566).  H2's `test_2` export is
+whole-image 1024 while the bgfix/H3 sets are 512 px sliding window, so those numbers
+are cross-protocol.
+
+Scalar key note: MMSeg 1.2.2 writes the **bare** `mIoU` key in
+`<work_dir>/<timestamp>/vis_data/scalars.json`; there is no `val/mIoU`.
+
 ## Label contract
 
 Raw masks contain labels `0..8`, where `0` is Ignore.  MMSegmentation sees:
@@ -324,7 +353,27 @@ sized crop prediction.
 ## Files
 
 - `mask2former_mit_b3_512.py`: primary model and labelled train/val/test config.
+- `mask2former_swin_l_512.py`: H2 competition-baseline (Swin-L) config, 20k iters.
 - `segformer_mit_b3_512.py`: controlled standard SegFormer decoder.
 - `*_submission.py`: unlabelled export variants.
 - `run.py`: split preparation, data audit and reproducible command wrapper.
 - `run_test.py`: H1 test-set path/checkpoint discovery and prediction export.
+- `launch_h2_server.sh` / `watch_h2_remote.sh`: H2 launcher (CUDA + weight-hash
+  preflight -> 20-iter smoke gate -> detached 20k) and its server-side watcher.
+  The launcher's `resume60k` mode continues the finished 20k run to 60k iters;
+  the watcher takes `[interval] [work_dir] [label] [log]` and also logs `lr`.
+- `prepare_resume_checkpoint.py`: rewrites a finished MMSeg checkpoint so it can
+  be resumed under a new LR schedule. MMSeg stores the param-scheduler state
+  (including the old `end`) even with `save_optimizer=False`, and MMEngine
+  restores it with `__dict__.update()`, which would freeze the LR for a whole
+  continuation run. Dropping it lets a freshly built PolyLR take effect; the
+  script also derives and self-tests the re-anchored LR (`--self-test`).
+- `run_infer_h2_test2.sh`: H2 export driver for the 1300-image `test_2` set
+  (whole-image 1024, then `check_submission.py`, then tarball).
+- `run_h2_ckpt_test.sh <checkpoint> <label> [--skip-export]`: offline test for any
+  H2 checkpoint **while training keeps running** (2 dataloader workers, ~2 GB GPU).
+  Step 1 `run.py eval` on the held-out labelled `test.txt` (699 images);
+  step 2 whole-image `test_2` export + compliance check + tarball. This is the
+  reusable entry point for "test the current best checkpoint without stopping
+  the run"; call it with absolute paths only — a relative script path makes the
+  script's own `root=$(cd .../../..)` resolve to the wrong tree.
